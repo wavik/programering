@@ -1,0 +1,4287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="ESBookingWebService" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="ESBookingWebService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="ESBookingWebService">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetAllArenas">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllArenasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllArenasResult" type="tns:ArrayOfCWebArena" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCWebArena">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebArena" nillable="true" type="tns:CWebArena" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebArena">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ArenaGuid" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="ArenaName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sections" type="tns:ArrayOfCWebArenaSection" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageMap" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCWebArenaSection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebArenaSection" nillable="true" type="tns:CWebArenaSection" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebArenaSection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SectionName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SectionGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="NoOfFreeSeats" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArenaGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:ArenaSectionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Seats" type="tns:ArrayOfCWebArenaSeat" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImageMapPoints" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ArenaSectionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Standing" />
+          <s:enumeration value="Sitting" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfCWebArenaSeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebArenaSeat" nillable="true" type="tns:CWebArenaSeat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebArenaSeat">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SeatNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SectionGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Row" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArenaSeatType" type="tns:ArenaSeatType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ArenaObjectPosition" type="tns:CWebArenaObjectPosition" />
+          <s:element minOccurs="0" maxOccurs="1" name="SectionName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ArenaSeatType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Handicap" />
+          <s:enumeration value="Standing" />
+          <s:enumeration value="Stairs" />
+          <s:enumeration value="Wall" />
+          <s:enumeration value="Isle" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CWebArenaObjectPosition">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ObjectGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="X" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Y" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Angle" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SecureHeader" type="tns:SecureHeader" />
+      <s:complexType name="SecureHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetArena">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="arenaGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArenaResult" type="tns:CWebArena" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaSection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sectionGuid" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaSectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArenaSectionResult" type="tns:CWebArenaSection" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaCustomerCategoriesBySection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sectionGuid" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSeason" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaCustomerCategoriesBySectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArenaCustomerCategoriesBySectionResult" type="tns:ArrayOfCWebArenaCustomerCategoryPriceLevel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCWebArenaCustomerCategoryPriceLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebArenaCustomerCategoryPriceLevel" nillable="true" type="tns:CWebArenaCustomerCategoryPriceLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebArenaCustomerCategoryPriceLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerCategoryName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CustomerCategoryGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceLevelGuid" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="tns:CWebItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceTemplateGuid" type="s1:guid" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Period" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="PeriodCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocationId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="GroupId" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookingId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFamilyTicket" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Min" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Max" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubItems" type="tns:ArrayOfCWebItem" />
+          <s:element minOccurs="1" maxOccurs="1" name="Number" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ItemRef" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceInclVAT" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceExclVAT" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Abbrevation" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PLU" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCWebItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebItem" nillable="true" type="tns:CWebItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetArenaSeatCustomerCategories">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="seatGuid" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSeason" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaSeatCustomerCategoriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArenaSeatCustomerCategoriesResult" type="tns:ArrayOfCWebArenaCustomerCategoryPriceLevel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaItems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaItemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArenaItemsResult" type="tns:ArrayOfCWebItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaSectionStatusInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="arenaGuid" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSeason" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaSectionStatusInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArenaSectionStatusInfoResult" type="tns:ArrayOfCArenaSectionEventStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCArenaSectionEventStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CArenaSectionEventStatus" nillable="true" type="tns:CArenaSectionEventStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CArenaSectionEventStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SectionGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ArenaSectionStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ArenaSectionStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Disabled" />
+          <s:enumeration value="Available" />
+          <s:enumeration value="SoldOut" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetArenaSectionStatusInfoFree">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="arenaGuid" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSeason" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaSectionStatusInfoFreeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArenaSectionStatusInfoFreeResult" type="tns:ArrayOfCWebArenaSection" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaSeatStatusInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sectionGuid" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSeason" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetArenaSeatStatusInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetArenaSeatStatusInfoResult" type="tns:ArrayOfCArenaSeatEventStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCArenaSeatEventStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CArenaSeatEventStatus" nillable="true" type="tns:CArenaSeatEventStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CArenaSeatEventStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SeatGuid" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ArenaSeatStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ArenaSeatStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Disabled" />
+          <s:enumeration value="Available" />
+          <s:enumeration value="Booked" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CalcArenaPriceInclVAT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="seats" type="tns:ArrayOfCWebArenaBookedSeat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCWebArenaBookedSeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebArenaBookedSeat" nillable="true" type="tns:CWebArenaBookedSeat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebArenaBookedSeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Seat" type="tns:CWebArenaSeat" />
+          <s:element minOccurs="0" maxOccurs="1" name="ArenaCustomerCategoryPriceLevel" type="tns:CWebArenaCustomerCategoryPriceLevel" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookingId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PurchasedItems" type="tns:ArrayOfCWebItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CalcArenaPriceInclVATResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CalcArenaPriceInclVATResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmArenaBookingPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="booking" type="tns:CWebBooking" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CWebBooking">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BookedSeats" type="tns:ArrayOfCWebArenaBookedSeat" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:enumBookingStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="CancelDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebEvent" type="tns:CWebEvent" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Booker" type="tns:CWebCustomer" />
+          <s:element minOccurs="0" maxOccurs="1" name="Persons" type="tns:ArrayOfCWebCustomer" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookedCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="enumBookingStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Preliminary" />
+          <s:enumeration value="Confirmed" />
+          <s:enumeration value="Cancelled" />
+          <s:enumeration value="Queued" />
+          <s:enumeration value="None" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CWebEvent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ArenaCustomerCategories" type="tns:ArrayOfCWebArenaCustomerCategoryPriceLevel" />
+          <s:element minOccurs="0" maxOccurs="1" name="ArenaPriceLevels" type="tns:ArrayOfCArenaPriceLevel" />
+          <s:element minOccurs="1" maxOccurs="1" name="ArenaGuid" nillable="true" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookableUntil" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllowCancel" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsBookable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="WeekdayAndTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ArenaName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Resources" type="tns:ArrayOfCWebResource" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvailableBookingSlots" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Category" type="tns:CWebCategory" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvailableQueueSlots" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="FromDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UntilDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberBookedSlots" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="tns:ArrayOfCWebComment" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="tns:CWebLocation" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventType" type="tns:TypeOfEvent" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastCancel" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxParticipants" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AnonymousBookings" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventParent" type="tns:CWebEvent" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfInstances" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCArenaPriceLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CArenaPriceLevel" nillable="true" type="tns:CArenaPriceLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CArenaPriceLevel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PriceLevelGuid" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="PriceLevelName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Color" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCWebResource">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebResource" nillable="true" type="tns:CWebResource" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebResource">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Instructor" type="tns:CWebInstructor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebInstructor">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResourceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonRef" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FamilyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebCategory">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="tns:ArrayOfCWebComment" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChildCategories" type="tns:ArrayOfCWebCategory" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebEvents" type="tns:ArrayOfCWebEvent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCWebComment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebComment" nillable="true" type="tns:CWebComment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebComment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Note" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCWebCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebCategory" nillable="true" type="tns:CWebCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCWebEvent">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebEvent" nillable="true" type="tns:CWebEvent" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebLocation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocationGroupId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Capacity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TypeOfEvent">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unspecified" />
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Course" />
+          <s:enumeration value="CourseInstance" />
+          <s:enumeration value="Season" />
+          <s:enumeration value="SeasonInstance" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CWebCustomer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Company" type="tns:CWebCompany" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FamilyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonRef" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="InfoBySms" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="InfoByEmail" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReceiptBySms" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReceiptByEmail" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HomePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsBookingBlocked" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsEMailVerified" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mediatees" type="tns:ArrayOfCWebCustomer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebCompany">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CompanyRef" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrganisationNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactPerson" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VatRegistrationNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryAddress1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryAddress2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryCity" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonRef" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Mediatees" type="tns:ArrayOfCWebCustomer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCWebCustomer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebCustomer" nillable="true" type="tns:CWebCustomer" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConfirmArenaBookingPaymentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PerformArenaSaleCreditCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformArenaSaleCreditCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PerformArenaSaleCreditCardResult" type="tns:SaleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SaleResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="tns:ResultCode" />
+          <s:element minOccurs="1" maxOccurs="1" name="DeliveredStatus" type="tns:ResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiptUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaleRef" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardInfo" type="tns:ArrayOfCardInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ResultCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="FailedNotAuth" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="Success" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfCardInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CardInfo" type="tns:CardInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CardInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CardRef" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BarcodeData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventCardData" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BookSeat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="booking" type="tns:CWebBooking" />
+            <s:element minOccurs="0" maxOccurs="1" name="seat" type="tns:CWebArenaBookedSeat" />
+            <s:element minOccurs="1" maxOccurs="1" name="bookOnParent" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BookSeatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BookSeatResult" type="tns:CWebBooking" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnbookSeat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="seat" type="tns:CWebArenaBookedSeat" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSeason" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnbookSeatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UnbookSeatResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutomaticSeatBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="booking" type="tns:CWebBooking" />
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="nrToBook" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="sectionGuid" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSeason" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutomaticSeatBookingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AutomaticSeatBookingResult" type="tns:ArrayOfCWebArenaBookedSeat" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCustomerCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="booking" type="tns:CWebBooking" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSeason" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCustomerCategoryResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CancelArenaBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="booking" type="tns:CWebBooking" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelArenaBookingResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="LoadArenaBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bookingId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoadArenaBookingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoadArenaBookingResult" type="tns:CWebBooking" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmArenaBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="booking" type="tns:CWebBooking" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmArenaBookingResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="LoginCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="identification" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="logintype" type="tns:enumLoginType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="enumLoginType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Personnumber" />
+          <s:enumeration value="Code" />
+          <s:enumeration value="Email" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="LoginCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginCustomerResult" type="tns:CustomerResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CustomerResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="tns:CustomerResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Exceptions" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Customer" type="tns:CWebCustomer" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CustomerResultCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="FailedNotAuth" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="Success" />
+          <s:enumeration value="FailedEmailExists" />
+          <s:enumeration value="FailedPersonNoExists" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ResendPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResendPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ResendPasswordResult" type="tns:RequestResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Code" type="tns:ResponseCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ResponseCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="FailedNotAuth" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="Success" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="PersistCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customer" type="tns:CWebCustomer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PersistCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PersistCustomerResult" type="tns:CustomerResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckMailExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckMailExistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckMailExistsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="personNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerResult" type="tns:CustomerResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerByEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerByEmailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerByEmailResult" type="tns:CustomerResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateInvoiceCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="tns:CWebCompany" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateInvoiceCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateInvoiceCustomerResult" type="tns:ResultCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cardRef" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCardStatusResult" type="tns:CardStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="CardStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Blocked" />
+          <s:enumeration value="Expired" />
+          <s:enumeration value="Valid" />
+          <s:enumeration value="NonExistent" />
+          <s:enumeration value="Frozen" />
+          <s:enumeration value="ClipsOut" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetWebItems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="invoiceCustomerLoggedIn" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="privateCustomerLoggedIn" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWebItemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWebItemsResult" type="tns:ArrayOfCWebItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="itemRef" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCItemResult" type="tns:CWebItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSaleRef">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bookingId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSaleRefResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSaleRefResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWebReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="receipt" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWebReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWebReportResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcPriceInclVAT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfCWebItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcPriceInclVATResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CalcPriceInclVATResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcPriceExclVAT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfCWebItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CalcPriceExclVATResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CalcPriceExclVATResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSingleCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="plu" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSingleCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateSingleCardResult" type="tns:SaleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customer" type="tns:CWebCustomer" />
+            <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfCWebItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaymentItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePaymentItemResult" type="tns:CPaymentItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CPaymentItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Customer" type="tns:CWebCustomer" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfCWebItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNr" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPaymentItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPaymentItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentItemResult" type="tns:CPaymentItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearPaymentItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClearPaymentItemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PerformSaleCreditCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="invoiceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSaleCreditCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PerformSaleCreditCardResult" type="tns:SaleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSaleCash">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSaleCashResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PerformSaleCashResult" type="tns:SaleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSoldItemsForPrinting">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="saleRef" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSoldItemsForPrintingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSoldItemsForPrintingResult" type="tns:SaleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSaleInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="items" type="tns:ArrayOfCWebItem" />
+            <s:element minOccurs="0" maxOccurs="1" name="company" type="tns:CWebCompany" />
+            <s:element minOccurs="0" maxOccurs="1" name="reference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSaleInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PerformSaleInvoiceResult" type="tns:SaleResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsAlive">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsAliveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsAliveResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DecreaseClipCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cardRef" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="cardReaderRef" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DecreaseClipCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DecreaseClipCountResult" type="tns:ResultCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSetting">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ekey" type="tns:SettingKey" />
+            <s:element minOccurs="0" maxOccurs="1" name="defaultValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="SettingKey">
+        <s:restriction base="s:string">
+          <s:enumeration value="AgressoPath" />
+          <s:enumeration value="AgressoFileExtension" />
+          <s:enumeration value="AgressoFTPHost" />
+          <s:enumeration value="AgressoFTPUser" />
+          <s:enumeration value="AgressoFTPPassword" />
+          <s:enumeration value="AgressoFTPUploadPath" />
+          <s:enumeration value="AgressoFTPDownloadPath" />
+          <s:enumeration value="AgressoFTPReadPath" />
+          <s:enumeration value="AgressoInterface" />
+          <s:enumeration value="AgressoAparGrId" />
+          <s:enumeration value="AgressoAparGrIdPrel" />
+          <s:enumeration value="AgressoClient" />
+          <s:enumeration value="AgressoDim2Project" />
+          <s:enumeration value="AgressoDim7" />
+          <s:enumeration value="AgressoDim7VAT" />
+          <s:enumeration value="AgressoVoucherType" />
+          <s:enumeration value="AgressoPayMethod" />
+          <s:enumeration value="AgressoLongInfo1" />
+          <s:enumeration value="AgressoLongInfo1E" />
+          <s:enumeration value="AgressoCancelVoucherTypes" />
+          <s:enumeration value="AgressoPreliminaryInvoiceText" />
+          <s:enumeration value="AgressoVTF1EventCategoryRef" />
+          <s:enumeration value="CROMVerNumber" />
+          <s:enumeration value="AutogiroPaymentMethodRef" />
+          <s:enumeration value="PreliminaryInvoicePaymentMethodRef" />
+          <s:enumeration value="CommonActivityRef" />
+          <s:enumeration value="SMTPFrom" />
+          <s:enumeration value="SMTPMailFrom" />
+          <s:enumeration value="SMTPPassword" />
+          <s:enumeration value="SMTPServer" />
+          <s:enumeration value="SMTPUser" />
+          <s:enumeration value="SyncEventUser" />
+          <s:enumeration value="SyncEventPwd" />
+          <s:enumeration value="SyncLocation" />
+          <s:enumeration value="SyncFallbackPLU" />
+          <s:enumeration value="DebugUser" />
+          <s:enumeration value="DefaultPersonCategory" />
+          <s:enumeration value="DefaultNewInvoice" />
+          <s:enumeration value="AlwaysCreditOnNewInvoice" />
+          <s:enumeration value="FocusReceiptPrint" />
+          <s:enumeration value="ItemGroupCardsOnReceipt" />
+          <s:enumeration value="CardRefOnReceipt" />
+          <s:enumeration value="ExportASCIIPath" />
+          <s:enumeration value="AllowCreditGiftCert" />
+          <s:enumeration value="PermitPartInvoice" />
+          <s:enumeration value="DisableRounding" />
+          <s:enumeration value="RoundAccount" />
+          <s:enumeration value="RoundObject" />
+          <s:enumeration value="UseZ" />
+          <s:enumeration value="EnforceTellerCode" />
+          <s:enumeration value="DisableTellerCode" />
+          <s:enumeration value="UpdateLANPath" />
+          <s:enumeration value="UpdateFTPUser" />
+          <s:enumeration value="UpdateFTPPassword" />
+          <s:enumeration value="ProgramVersion" />
+          <s:enumeration value="NautilusURL" />
+          <s:enumeration value="NautilusCacheLocal" />
+          <s:enumeration value="HideVATFormulaOnReceipt" />
+          <s:enumeration value="Mifare" />
+          <s:enumeration value="AllowReceiptCopy" />
+          <s:enumeration value="MandatoryAccounts" />
+          <s:enumeration value="CardTemplateDateCurrentMonth" />
+          <s:enumeration value="AllowDeliveryToOtherLocation" />
+          <s:enumeration value="MonitorDisplayTime" />
+          <s:enumeration value="MonitorServer" />
+          <s:enumeration value="MonitorServerPort" />
+          <s:enumeration value="CollectorWarningLevel" />
+          <s:enumeration value="ExtraReportPath" />
+          <s:enumeration value="Version4LicenseKey" />
+          <s:enumeration value="AG_BANKGIRONUMMER" />
+          <s:enumeration value="AG_KUNDNUMMER" />
+          <s:enumeration value="AG_MAXBELOPP" />
+          <s:enumeration value="AG_DAY" />
+          <s:enumeration value="AG_PLU" />
+          <s:enumeration value="AG_SHOW_BUTTON_NEWJOB" />
+          <s:enumeration value="AG_USE_AUTOBLOCK" />
+          <s:enumeration value="AG_POSSIBLE_TO_RETRY_CANCLED_JOB" />
+          <s:enumeration value="AG_RETRY_COUNT" />
+          <s:enumeration value="AG_DAYS_GRACE_PERIOD" />
+          <s:enumeration value="DisplayIdleMessage1" />
+          <s:enumeration value="DisplayIdleMessage2" />
+          <s:enumeration value="FocusPhotoPath" />
+          <s:enumeration value="LocalPhotoPath" />
+          <s:enumeration value="LogAllMessagesToDB" />
+          <s:enumeration value="SmallestCoin" />
+          <s:enumeration value="SendPrePassageMonitorMessage" />
+          <s:enumeration value="FreeText1" />
+          <s:enumeration value="FreeText2" />
+          <s:enumeration value="FreeText3" />
+          <s:enumeration value="FreeText4" />
+          <s:enumeration value="FreeText5" />
+          <s:enumeration value="LoginTypeWeb" />
+          <s:enumeration value="AllowCreateNewUser" />
+          <s:enumeration value="SmartSMSId" />
+          <s:enumeration value="SmartSMSUser" />
+          <s:enumeration value="SmartSMSPassword" />
+          <s:enumeration value="SmartSMSSender" />
+          <s:enumeration value="UseInvoiceOffer" />
+          <s:enumeration value="NotTickedOffLimit" />
+          <s:enumeration value="LockOutDaysLimit" />
+          <s:enumeration value="QeueSpotsPerCustomer" />
+          <s:enumeration value="BookingCancelLastRun" />
+          <s:enumeration value="BookingQueueMaintenanceLastRun" />
+          <s:enumeration value="DefaultConfirmationTemplateGlobal" />
+          <s:enumeration value="DefaultPreliminaryConfirmationTemplateGlobal" />
+          <s:enumeration value="DefaultCancellationTemplateGlobal" />
+          <s:enumeration value="DefaultModificationTemplateGlobal" />
+          <s:enumeration value="DefaultModificationCoursBookingTemplateGlobal" />
+          <s:enumeration value="DefaultBookingQueueConfirmationTemplateGlobal" />
+          <s:enumeration value="ImmediateUpdateAutoFilter" />
+          <s:enumeration value="NTreeServer" />
+          <s:enumeration value="NTreeDatabase" />
+          <s:enumeration value="NTreeIntegratedSecurity" />
+          <s:enumeration value="NTreeUsername" />
+          <s:enumeration value="NTreePassword" />
+          <s:enumeration value="NTreeView" />
+          <s:enumeration value="ReportFilterOnTerminal" />
+          <s:enumeration value="SIEProgram" />
+          <s:enumeration value="SIECompanyType" />
+          <s:enumeration value="SIEOrgNr" />
+          <s:enumeration value="SIEAddress" />
+          <s:enumeration value="SIECompanyName" />
+          <s:enumeration value="SIECompanyBookkeepingCode" />
+          <s:enumeration value="SIEFilePath" />
+          <s:enumeration value="SIEEncodingCodePage" />
+          <s:enumeration value="SIEFileNameFormat" />
+          <s:enumeration value="SIEDim1" />
+          <s:enumeration value="SIEDim2" />
+          <s:enumeration value="SIEDim3" />
+          <s:enumeration value="SIEDim4" />
+          <s:enumeration value="SIEDim5" />
+          <s:enumeration value="SIEAccountPlanType" />
+          <s:enumeration value="SIECustomGrouping" />
+          <s:enumeration value="SIEIncludeVatInCredit" />
+          <s:enumeration value="AccountField1Name" />
+          <s:enumeration value="AccountField2Name" />
+          <s:enumeration value="AccountField3Name" />
+          <s:enumeration value="AccountField4Name" />
+          <s:enumeration value="AccountField5Name" />
+          <s:enumeration value="SiiwValidateCard" />
+          <s:enumeration value="RebnisCustomerSyncLastRun" />
+          <s:enumeration value="RebnisCustomerSyncURL" />
+          <s:enumeration value="InvoiceExportFilename" />
+          <s:enumeration value="SpectraCountryCode" />
+          <s:enumeration value="SpectraCurrencyCode" />
+          <s:enumeration value="SpectraLanguageCode" />
+          <s:enumeration value="SpectraLicenseKey" />
+          <s:enumeration value="SpectraInstallationId" />
+          <s:enumeration value="SpectraHost" />
+          <s:enumeration value="SpectraPort" />
+          <s:enumeration value="ExternalCreditCardActive" />
+          <s:enumeration value="SIIWCardExportLastRun" />
+          <s:enumeration value="SIIWActivityCategoryRef" />
+          <s:enumeration value="SIIWAgeGroupCategoryRef" />
+          <s:enumeration value="SIIWCustomerCategoryRef" />
+          <s:enumeration value="SiiwUrl" />
+          <s:enumeration value="SIIWInvoiceCustomerExportLastRun" />
+          <s:enumeration value="SiiwItemExportLastRun" />
+          <s:enumeration value="SIIWDefaultCustomerCategory" />
+          <s:enumeration value="SIIWWebPaymentMethodRef" />
+          <s:enumeration value="SIIWCardPaymentMethodRef" />
+          <s:enumeration value="SIIWSaleUserRef" />
+          <s:enumeration value="SIIWSaleTerminalRef" />
+          <s:enumeration value="SIIWSaleLocationRef" />
+          <s:enumeration value="SIIWQueueName" />
+          <s:enumeration value="SystemID" />
+          <s:enumeration value="AccountExportFilename" />
+          <s:enumeration value="PasswordExpirationDays" />
+          <s:enumeration value="SmtpPort" />
+          <s:enumeration value="SaleServicePort" />
+          <s:enumeration value="AccountExportVerificationNumberBase" />
+          <s:enumeration value="AllowShortCardData" />
+          <s:enumeration value="MessageTimerFactor" />
+          <s:enumeration value="AgressoLogPath" />
+          <s:enumeration value="AgressoUploadedDir" />
+          <s:enumeration value="AgressoDownloadedDir" />
+          <s:enumeration value="AgressoExecutedDir" />
+          <s:enumeration value="AgressoExportDir" />
+          <s:enumeration value="SmtpUseSsl" />
+          <s:enumeration value="AgressoDefaultPeriodCode" />
+          <s:enumeration value="ExportEncoding" />
+          <s:enumeration value="TicketTemplateId" />
+          <s:enumeration value="TicketUrl" />
+          <s:enumeration value="AccountDataSetSize" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetSettingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSettingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cardRef" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="cardData" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="cardReaderRef" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateCardResult" type="tns:CardValidationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CardValidationResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="MessageLines" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardState" type="tns:CardState" />
+          <s:element minOccurs="1" maxOccurs="1" name="Clips" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CardState">
+        <s:restriction base="s:string">
+          <s:enumeration value="Valid" />
+          <s:enumeration value="ValidNoLog" />
+          <s:enumeration value="NotInCardTable" />
+          <s:enumeration value="Blocked" />
+          <s:enumeration value="Frozen" />
+          <s:enumeration value="Expired" />
+          <s:enumeration value="NotActive" />
+          <s:enumeration value="ClipsOut" />
+          <s:enumeration value="InvalidAccessGroup" />
+          <s:enumeration value="InvalidDoor" />
+          <s:enumeration value="InvalidWeekday" />
+          <s:enumeration value="InvalidTime" />
+          <s:enumeration value="InvalidTimezone" />
+          <s:enumeration value="Blocktime" />
+          <s:enumeration value="ReturnTime" />
+          <s:enumeration value="TimeLimit" />
+          <s:enumeration value="WrongSystemID" />
+          <s:enumeration value="LockedLocker" />
+          <s:enumeration value="GiftCertificateDebt" />
+          <s:enumeration value="AutogiroDebt" />
+          <s:enumeration value="InvoiceDebt" />
+          <s:enumeration value="NoBooking" />
+          <s:enumeration value="ReadError" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetCardInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCardInfoResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLoginType">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLoginTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetLoginTypeResult" type="tns:enumLoginType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocationList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="locationGroupId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocationListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocationListResult" type="tns:ArrayOfCWebLocation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCWebLocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebLocation" nillable="true" type="tns:CWebLocation" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetLocationGroupList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLocationGroupListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocationGroupListResult" type="tns:ArrayOfCWebLocationGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCWebLocationGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebLocationGroup" nillable="true" type="tns:CWebLocationGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CWebLocationGroup">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LoginCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="identifier" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="logintype" type="tns:enumLoginType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginCompanyResult" type="tns:CWebCompany" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CNumericCrypt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="value" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CNumericCryptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CNumericCryptResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DecryptCardData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DecryptCardDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DecryptCardDataResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LookupCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LookupCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupCardResult" type="tns:LookupCardInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupCardInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PLU" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Locations" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCardHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCardHistoryResult" type="tns:ArrayOfCardHistory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCardHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CardHistory" nillable="true" type="tns:CardHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CardHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Reader" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="When" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LogError">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="errorCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogErrorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DecryptReceipt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DecryptReceiptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DecryptReceiptResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInstructorList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetInstructorListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInstructorListResult" type="tns:ArrayOfCWebInstructor" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCWebInstructor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebInstructor" nillable="true" type="tns:CWebInstructor" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMaxNumberOfQueueSlots">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMaxNumberOfQueueSlotsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetMaxNumberOfQueueSlotsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="eventType" type="tns:TypeOfEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEventResult" type="tns:CWebEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchForEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="tns:CEventSearchFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CEventSearchFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DontTouchBooking" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="EventType" type="tns:TypeOfEvent" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="OnlyWeb" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="WeekDays" type="tns:ArrayOfDayOfWeek" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventParents" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="EventCategories" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Locations" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocationGroupRef" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Resources" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FindClosed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="FilterOnTimePart" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowOnlyBookable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowEmpty" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowFull" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowOther" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDayOfWeek">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DayOfWeek" type="tns:DayOfWeek" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DayOfWeek">
+        <s:restriction base="s:string">
+          <s:enumeration value="Sunday" />
+          <s:enumeration value="Monday" />
+          <s:enumeration value="Tuesday" />
+          <s:enumeration value="Wednesday" />
+          <s:enumeration value="Thursday" />
+          <s:enumeration value="Friday" />
+          <s:enumeration value="Saturday" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SearchForEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchForEventsResult" type="tns:ArrayOfCWebEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchForEventsFlat">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="tns:CEventSearchFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchForEventsFlatResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchForEventsFlatResult" type="tns:ArrayOfCWebEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCategoryListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoryListResult" type="tns:ArrayOfCWebCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoriesAndEvents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="filter" type="tns:CEventSearchFilter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoriesAndEventsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoriesAndEventsResult" type="tns:ArrayOfCWebCategory" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchForEventParents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="fromdate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="enddate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="bookable" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isWeb" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchForEventParentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchForEventParentsResult" type="tns:ArrayOfCWebEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerBookings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personRef" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="status" type="tns:ArrayOfEnumBookingStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEnumBookingStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="enumBookingStatus" type="tns:enumBookingStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCustomerBookingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerBookingsResult" type="tns:ArrayOfCWebBooking" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCWebBooking">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CWebBooking" nillable="true" type="tns:CWebBooking" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCustomerBookingForEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="customer" type="tns:CWebCustomer" />
+            <s:element minOccurs="0" maxOccurs="1" name="evnt" type="tns:CWebEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerBookingForEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerBookingForEventResult" type="tns:BookingResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BookingResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:BookingResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Booking" type="tns:CWebBooking" />
+          <s:element minOccurs="0" maxOccurs="1" name="Exceptions" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="BookingResultCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="FailedNotAuth" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="Success" />
+          <s:enumeration value="CancelNotAllowed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetCurrentNumberOfQueueSlotsForCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="personRef" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentNumberOfQueueSlotsForCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCurrentNumberOfQueueSlotsForCustomerResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="personRef" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="seats" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="eventType" type="tns:TypeOfEvent" />
+            <s:element minOccurs="1" maxOccurs="1" name="existingBookingId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateBookingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateBookingResult" type="tns:BookingResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNamedBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="bookingPersonRef" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="personRefs" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="eventType" type="tns:TypeOfEvent" />
+            <s:element minOccurs="1" maxOccurs="1" name="existingBookingId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNamedBookingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNamedBookingResult" type="tns:BookingResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bookingId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelBookingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CancelBookingResult" type="tns:BookingResultCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveNamedBooking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bookingId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="personRefs" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveNamedBookingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveNamedBookingResult" type="tns:ResultCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPersonToQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="personRef" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="eventType" type="tns:TypeOfEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddPersonToQueueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddPersonToQueueResult" type="tns:BookingResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddNamedPersonToQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="personRef" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="personRefs" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="eventType" type="tns:TypeOfEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddNamedPersonToQueueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddNamedPersonToQueueResult" type="tns:ResultCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveNamedPersonFromQueue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="personRef" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="personRefs" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="eventType" type="tns:TypeOfEvent" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveNamedPersonFromQueueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveNamedPersonFromQueueResult" type="tns:ResultCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllArenasSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllArenas" />
+  </wsdl:message>
+  <wsdl:message name="GetAllArenasSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllArenasResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllArenasSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArena" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArenaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArenaSection" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArenaSectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSectionSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaCustomerCategoriesBySectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArenaCustomerCategoriesBySection" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaCustomerCategoriesBySectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArenaCustomerCategoriesBySectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaCustomerCategoriesBySectionSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSeatCustomerCategoriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArenaSeatCustomerCategories" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSeatCustomerCategoriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArenaSeatCustomerCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSeatCustomerCategoriesSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaItemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArenaItems" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaItemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArenaItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaItemsSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSectionStatusInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArenaSectionStatusInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSectionStatusInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArenaSectionStatusInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSectionStatusInfoSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSectionStatusInfoFreeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArenaSectionStatusInfoFree" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSectionStatusInfoFreeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArenaSectionStatusInfoFreeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSectionStatusInfoFreeSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSeatStatusInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetArenaSeatStatusInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSeatStatusInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetArenaSeatStatusInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetArenaSeatStatusInfoSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CalcArenaPriceInclVATSoapIn">
+    <wsdl:part name="parameters" element="tns:CalcArenaPriceInclVAT" />
+  </wsdl:message>
+  <wsdl:message name="CalcArenaPriceInclVATSoapOut">
+    <wsdl:part name="parameters" element="tns:CalcArenaPriceInclVATResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalcArenaPriceInclVATSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmArenaBookingPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmArenaBookingPayment" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmArenaBookingPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmArenaBookingPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmArenaBookingPaymentSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="PerformArenaSaleCreditCardSoapIn">
+    <wsdl:part name="parameters" element="tns:PerformArenaSaleCreditCard" />
+  </wsdl:message>
+  <wsdl:message name="PerformArenaSaleCreditCardSoapOut">
+    <wsdl:part name="parameters" element="tns:PerformArenaSaleCreditCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="PerformArenaSaleCreditCardSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="BookSeatSoapIn">
+    <wsdl:part name="parameters" element="tns:BookSeat" />
+  </wsdl:message>
+  <wsdl:message name="BookSeatSoapOut">
+    <wsdl:part name="parameters" element="tns:BookSeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="BookSeatSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="UnbookSeatSoapIn">
+    <wsdl:part name="parameters" element="tns:UnbookSeat" />
+  </wsdl:message>
+  <wsdl:message name="UnbookSeatSoapOut">
+    <wsdl:part name="parameters" element="tns:UnbookSeatResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnbookSeatSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="AutomaticSeatBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:AutomaticSeatBooking" />
+  </wsdl:message>
+  <wsdl:message name="AutomaticSeatBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:AutomaticSeatBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutomaticSeatBookingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="SetCustomerCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:SetCustomerCategory" />
+  </wsdl:message>
+  <wsdl:message name="SetCustomerCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:SetCustomerCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCustomerCategorySecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CancelArenaBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelArenaBooking" />
+  </wsdl:message>
+  <wsdl:message name="CancelArenaBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelArenaBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelArenaBookingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="LoadArenaBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:LoadArenaBooking" />
+  </wsdl:message>
+  <wsdl:message name="LoadArenaBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:LoadArenaBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoadArenaBookingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmArenaBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmArenaBooking" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmArenaBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmArenaBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmArenaBookingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="LoginCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginCustomer" />
+  </wsdl:message>
+  <wsdl:message name="LoginCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginCustomerSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="ResendPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ResendPassword" />
+  </wsdl:message>
+  <wsdl:message name="ResendPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ResendPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResendPasswordSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="PersistCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:PersistCustomer" />
+  </wsdl:message>
+  <wsdl:message name="PersistCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:PersistCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="PersistCustomerSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CheckMailExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckMailExists" />
+  </wsdl:message>
+  <wsdl:message name="CheckMailExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckMailExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckMailExistsSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomer" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerByEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerByEmail" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerByEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerByEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerByEmailSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="UpdateInvoiceCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateInvoiceCustomer" />
+  </wsdl:message>
+  <wsdl:message name="UpdateInvoiceCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateInvoiceCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateInvoiceCustomerSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCardStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCardStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetCardStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCardStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCardStatusSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetWebItemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWebItems" />
+  </wsdl:message>
+  <wsdl:message name="GetWebItemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWebItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWebItemsSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCItemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCItem" />
+  </wsdl:message>
+  <wsdl:message name="GetCItemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCItemSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSaleRefSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSaleRef" />
+  </wsdl:message>
+  <wsdl:message name="GetSaleRefSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSaleRefResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSaleRefSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetWebReportSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWebReport" />
+  </wsdl:message>
+  <wsdl:message name="GetWebReportSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWebReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWebReportSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CalcPriceInclVATSoapIn">
+    <wsdl:part name="parameters" element="tns:CalcPriceInclVAT" />
+  </wsdl:message>
+  <wsdl:message name="CalcPriceInclVATSoapOut">
+    <wsdl:part name="parameters" element="tns:CalcPriceInclVATResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalcPriceInclVATSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CalcPriceExclVATSoapIn">
+    <wsdl:part name="parameters" element="tns:CalcPriceExclVAT" />
+  </wsdl:message>
+  <wsdl:message name="CalcPriceExclVATSoapOut">
+    <wsdl:part name="parameters" element="tns:CalcPriceExclVATResponse" />
+  </wsdl:message>
+  <wsdl:message name="CalcPriceExclVATSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateSingleCardSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateSingleCard" />
+  </wsdl:message>
+  <wsdl:message name="CreateSingleCardSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateSingleCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateSingleCardSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentItemSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePaymentItem" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentItemSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePaymentItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaymentItemSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentItemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPaymentItem" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentItemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPaymentItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPaymentItemSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="ClearPaymentItemSoapIn">
+    <wsdl:part name="parameters" element="tns:ClearPaymentItem" />
+  </wsdl:message>
+  <wsdl:message name="ClearPaymentItemSoapOut">
+    <wsdl:part name="parameters" element="tns:ClearPaymentItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClearPaymentItemSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="PerformSaleCreditCardSoapIn">
+    <wsdl:part name="parameters" element="tns:PerformSaleCreditCard" />
+  </wsdl:message>
+  <wsdl:message name="PerformSaleCreditCardSoapOut">
+    <wsdl:part name="parameters" element="tns:PerformSaleCreditCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="PerformSaleCreditCardSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="PerformSaleCashSoapIn">
+    <wsdl:part name="parameters" element="tns:PerformSaleCash" />
+  </wsdl:message>
+  <wsdl:message name="PerformSaleCashSoapOut">
+    <wsdl:part name="parameters" element="tns:PerformSaleCashResponse" />
+  </wsdl:message>
+  <wsdl:message name="PerformSaleCashSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSoldItemsForPrintingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSoldItemsForPrinting" />
+  </wsdl:message>
+  <wsdl:message name="GetSoldItemsForPrintingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSoldItemsForPrintingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSoldItemsForPrintingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="PerformSaleInvoiceSoapIn">
+    <wsdl:part name="parameters" element="tns:PerformSaleInvoice" />
+  </wsdl:message>
+  <wsdl:message name="PerformSaleInvoiceSoapOut">
+    <wsdl:part name="parameters" element="tns:PerformSaleInvoiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="PerformSaleInvoiceSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="IsAliveSoapIn">
+    <wsdl:part name="parameters" element="tns:IsAlive" />
+  </wsdl:message>
+  <wsdl:message name="IsAliveSoapOut">
+    <wsdl:part name="parameters" element="tns:IsAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="DecreaseClipCountSoapIn">
+    <wsdl:part name="parameters" element="tns:DecreaseClipCount" />
+  </wsdl:message>
+  <wsdl:message name="DecreaseClipCountSoapOut">
+    <wsdl:part name="parameters" element="tns:DecreaseClipCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="DecreaseClipCountSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSettingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSetting" />
+  </wsdl:message>
+  <wsdl:message name="GetSettingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSettingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCardSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateCard" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCardSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateCardSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCardInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCardInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetCardInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCardInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCardInfoSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLoginType" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLoginTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginTypeSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocationList" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocationListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationListSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationGroupListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocationGroupList" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationGroupListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocationGroupListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocationGroupListSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="LoginCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:LoginCompany" />
+  </wsdl:message>
+  <wsdl:message name="LoginCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:LoginCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginCompanySecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CNumericCryptSoapIn">
+    <wsdl:part name="parameters" element="tns:CNumericCrypt" />
+  </wsdl:message>
+  <wsdl:message name="CNumericCryptSoapOut">
+    <wsdl:part name="parameters" element="tns:CNumericCryptResponse" />
+  </wsdl:message>
+  <wsdl:message name="CNumericCryptSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="DecryptCardDataSoapIn">
+    <wsdl:part name="parameters" element="tns:DecryptCardData" />
+  </wsdl:message>
+  <wsdl:message name="DecryptCardDataSoapOut">
+    <wsdl:part name="parameters" element="tns:DecryptCardDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="DecryptCardDataSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="LookupCardSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupCard" />
+  </wsdl:message>
+  <wsdl:message name="LookupCardSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupCardSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCardHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCardHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetCardHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCardHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCardHistorySecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="LogErrorSoapIn">
+    <wsdl:part name="parameters" element="tns:LogError" />
+  </wsdl:message>
+  <wsdl:message name="LogErrorSoapOut">
+    <wsdl:part name="parameters" element="tns:LogErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogErrorSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="DecryptReceiptSoapIn">
+    <wsdl:part name="parameters" element="tns:DecryptReceipt" />
+  </wsdl:message>
+  <wsdl:message name="DecryptReceiptSoapOut">
+    <wsdl:part name="parameters" element="tns:DecryptReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInstructorListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInstructorList" />
+  </wsdl:message>
+  <wsdl:message name="GetInstructorListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInstructorListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInstructorListSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMaxNumberOfQueueSlotsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMaxNumberOfQueueSlots" />
+  </wsdl:message>
+  <wsdl:message name="GetMaxNumberOfQueueSlotsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMaxNumberOfQueueSlotsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMaxNumberOfQueueSlotsSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetEventSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEvent" />
+  </wsdl:message>
+  <wsdl:message name="GetEventSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEventSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="SearchForEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchForEvents" />
+  </wsdl:message>
+  <wsdl:message name="SearchForEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchForEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchForEventsSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="SearchForEventsFlatSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchForEventsFlat" />
+  </wsdl:message>
+  <wsdl:message name="SearchForEventsFlatSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchForEventsFlatResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchForEventsFlatSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategoryList" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoryListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryListSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesAndEventsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategoriesAndEvents" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesAndEventsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoriesAndEventsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoriesAndEventsSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="SearchForEventParentsSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchForEventParents" />
+  </wsdl:message>
+  <wsdl:message name="SearchForEventParentsSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchForEventParentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchForEventParentsSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerBookingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerBookings" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerBookingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerBookingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerBookingsSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerBookingForEventSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerBookingForEvent" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerBookingForEventSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerBookingForEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerBookingForEventSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentNumberOfQueueSlotsForCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentNumberOfQueueSlotsForCustomer" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentNumberOfQueueSlotsForCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentNumberOfQueueSlotsForCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentNumberOfQueueSlotsForCustomerSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateBooking" />
+  </wsdl:message>
+  <wsdl:message name="CreateBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateBookingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateNamedBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNamedBooking" />
+  </wsdl:message>
+  <wsdl:message name="CreateNamedBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNamedBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateNamedBookingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="CancelBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelBooking" />
+  </wsdl:message>
+  <wsdl:message name="CancelBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelBookingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNamedBookingSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveNamedBooking" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNamedBookingSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveNamedBookingResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNamedBookingSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonToQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:AddPersonToQueue" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonToQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:AddPersonToQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddPersonToQueueSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="AddNamedPersonToQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:AddNamedPersonToQueue" />
+  </wsdl:message>
+  <wsdl:message name="AddNamedPersonToQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:AddNamedPersonToQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddNamedPersonToQueueSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNamedPersonFromQueueSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveNamedPersonFromQueue" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNamedPersonFromQueueSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveNamedPersonFromQueueResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveNamedPersonFromQueueSecureHeader">
+    <wsdl:part name="SecureHeader" element="tns:SecureHeader" />
+  </wsdl:message>
+  <wsdl:portType name="ESBookingWebServiceSoap">
+    <wsdl:operation name="GetAllArenas">
+      <wsdl:input message="tns:GetAllArenasSoapIn" />
+      <wsdl:output message="tns:GetAllArenasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArena">
+      <wsdl:input message="tns:GetArenaSoapIn" />
+      <wsdl:output message="tns:GetArenaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSection">
+      <wsdl:input message="tns:GetArenaSectionSoapIn" />
+      <wsdl:output message="tns:GetArenaSectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaCustomerCategoriesBySection">
+      <wsdl:input message="tns:GetArenaCustomerCategoriesBySectionSoapIn" />
+      <wsdl:output message="tns:GetArenaCustomerCategoriesBySectionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSeatCustomerCategories">
+      <wsdl:input message="tns:GetArenaSeatCustomerCategoriesSoapIn" />
+      <wsdl:output message="tns:GetArenaSeatCustomerCategoriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaItems">
+      <wsdl:input message="tns:GetArenaItemsSoapIn" />
+      <wsdl:output message="tns:GetArenaItemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSectionStatusInfo">
+      <wsdl:input message="tns:GetArenaSectionStatusInfoSoapIn" />
+      <wsdl:output message="tns:GetArenaSectionStatusInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSectionStatusInfoFree">
+      <wsdl:input message="tns:GetArenaSectionStatusInfoFreeSoapIn" />
+      <wsdl:output message="tns:GetArenaSectionStatusInfoFreeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSeatStatusInfo">
+      <wsdl:input message="tns:GetArenaSeatStatusInfoSoapIn" />
+      <wsdl:output message="tns:GetArenaSeatStatusInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcArenaPriceInclVAT">
+      <wsdl:input message="tns:CalcArenaPriceInclVATSoapIn" />
+      <wsdl:output message="tns:CalcArenaPriceInclVATSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmArenaBookingPayment">
+      <wsdl:input message="tns:ConfirmArenaBookingPaymentSoapIn" />
+      <wsdl:output message="tns:ConfirmArenaBookingPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PerformArenaSaleCreditCard">
+      <wsdl:input message="tns:PerformArenaSaleCreditCardSoapIn" />
+      <wsdl:output message="tns:PerformArenaSaleCreditCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BookSeat">
+      <wsdl:input message="tns:BookSeatSoapIn" />
+      <wsdl:output message="tns:BookSeatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnbookSeat">
+      <wsdl:input message="tns:UnbookSeatSoapIn" />
+      <wsdl:output message="tns:UnbookSeatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AutomaticSeatBooking">
+      <wsdl:input message="tns:AutomaticSeatBookingSoapIn" />
+      <wsdl:output message="tns:AutomaticSeatBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomerCategory">
+      <wsdl:input message="tns:SetCustomerCategorySoapIn" />
+      <wsdl:output message="tns:SetCustomerCategorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelArenaBooking">
+      <wsdl:input message="tns:CancelArenaBookingSoapIn" />
+      <wsdl:output message="tns:CancelArenaBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadArenaBooking">
+      <wsdl:input message="tns:LoadArenaBookingSoapIn" />
+      <wsdl:output message="tns:LoadArenaBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmArenaBooking">
+      <wsdl:input message="tns:ConfirmArenaBookingSoapIn" />
+      <wsdl:output message="tns:ConfirmArenaBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginCustomer">
+      <wsdl:input message="tns:LoginCustomerSoapIn" />
+      <wsdl:output message="tns:LoginCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResendPassword">
+      <wsdl:input message="tns:ResendPasswordSoapIn" />
+      <wsdl:output message="tns:ResendPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PersistCustomer">
+      <wsdl:input message="tns:PersistCustomerSoapIn" />
+      <wsdl:output message="tns:PersistCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckMailExists">
+      <wsdl:input message="tns:CheckMailExistsSoapIn" />
+      <wsdl:output message="tns:CheckMailExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomer">
+      <wsdl:input message="tns:GetCustomerSoapIn" />
+      <wsdl:output message="tns:GetCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerByEmail">
+      <wsdl:input message="tns:GetCustomerByEmailSoapIn" />
+      <wsdl:output message="tns:GetCustomerByEmailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInvoiceCustomer">
+      <wsdl:input message="tns:UpdateInvoiceCustomerSoapIn" />
+      <wsdl:output message="tns:UpdateInvoiceCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardStatus">
+      <wsdl:input message="tns:GetCardStatusSoapIn" />
+      <wsdl:output message="tns:GetCardStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWebItems">
+      <wsdl:input message="tns:GetWebItemsSoapIn" />
+      <wsdl:output message="tns:GetWebItemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCItem">
+      <wsdl:input message="tns:GetCItemSoapIn" />
+      <wsdl:output message="tns:GetCItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSaleRef">
+      <wsdl:input message="tns:GetSaleRefSoapIn" />
+      <wsdl:output message="tns:GetSaleRefSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWebReport">
+      <wsdl:input message="tns:GetWebReportSoapIn" />
+      <wsdl:output message="tns:GetWebReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcPriceInclVAT">
+      <wsdl:input message="tns:CalcPriceInclVATSoapIn" />
+      <wsdl:output message="tns:CalcPriceInclVATSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CalcPriceExclVAT">
+      <wsdl:input message="tns:CalcPriceExclVATSoapIn" />
+      <wsdl:output message="tns:CalcPriceExclVATSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSingleCard">
+      <wsdl:input message="tns:CreateSingleCardSoapIn" />
+      <wsdl:output message="tns:CreateSingleCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentItem">
+      <wsdl:input message="tns:CreatePaymentItemSoapIn" />
+      <wsdl:output message="tns:CreatePaymentItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentItem">
+      <wsdl:input message="tns:GetPaymentItemSoapIn" />
+      <wsdl:output message="tns:GetPaymentItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearPaymentItem">
+      <wsdl:input message="tns:ClearPaymentItemSoapIn" />
+      <wsdl:output message="tns:ClearPaymentItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PerformSaleCreditCard">
+      <wsdl:input message="tns:PerformSaleCreditCardSoapIn" />
+      <wsdl:output message="tns:PerformSaleCreditCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PerformSaleCash">
+      <wsdl:input message="tns:PerformSaleCashSoapIn" />
+      <wsdl:output message="tns:PerformSaleCashSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSoldItemsForPrinting">
+      <wsdl:input message="tns:GetSoldItemsForPrintingSoapIn" />
+      <wsdl:output message="tns:GetSoldItemsForPrintingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PerformSaleInvoice">
+      <wsdl:input message="tns:PerformSaleInvoiceSoapIn" />
+      <wsdl:output message="tns:PerformSaleInvoiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <wsdl:input message="tns:IsAliveSoapIn" />
+      <wsdl:output message="tns:IsAliveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DecreaseClipCount">
+      <wsdl:input message="tns:DecreaseClipCountSoapIn" />
+      <wsdl:output message="tns:DecreaseClipCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSetting">
+      <wsdl:input message="tns:GetSettingSoapIn" />
+      <wsdl:output message="tns:GetSettingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCard">
+      <wsdl:input message="tns:ValidateCardSoapIn" />
+      <wsdl:output message="tns:ValidateCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardInfo">
+      <wsdl:input message="tns:GetCardInfoSoapIn" />
+      <wsdl:output message="tns:GetCardInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginType">
+      <wsdl:input message="tns:GetLoginTypeSoapIn" />
+      <wsdl:output message="tns:GetLoginTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationList">
+      <wsdl:input message="tns:GetLocationListSoapIn" />
+      <wsdl:output message="tns:GetLocationListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationGroupList">
+      <wsdl:input message="tns:GetLocationGroupListSoapIn" />
+      <wsdl:output message="tns:GetLocationGroupListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginCompany">
+      <wsdl:input message="tns:LoginCompanySoapIn" />
+      <wsdl:output message="tns:LoginCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CNumericCrypt">
+      <wsdl:input message="tns:CNumericCryptSoapIn" />
+      <wsdl:output message="tns:CNumericCryptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DecryptCardData">
+      <wsdl:input message="tns:DecryptCardDataSoapIn" />
+      <wsdl:output message="tns:DecryptCardDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupCard">
+      <wsdl:input message="tns:LookupCardSoapIn" />
+      <wsdl:output message="tns:LookupCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardHistory">
+      <wsdl:input message="tns:GetCardHistorySoapIn" />
+      <wsdl:output message="tns:GetCardHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogError">
+      <wsdl:input message="tns:LogErrorSoapIn" />
+      <wsdl:output message="tns:LogErrorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DecryptReceipt">
+      <wsdl:input message="tns:DecryptReceiptSoapIn" />
+      <wsdl:output message="tns:DecryptReceiptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInstructorList">
+      <wsdl:input message="tns:GetInstructorListSoapIn" />
+      <wsdl:output message="tns:GetInstructorListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxNumberOfQueueSlots">
+      <wsdl:input message="tns:GetMaxNumberOfQueueSlotsSoapIn" />
+      <wsdl:output message="tns:GetMaxNumberOfQueueSlotsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEvent">
+      <wsdl:input message="tns:GetEventSoapIn" />
+      <wsdl:output message="tns:GetEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchForEvents">
+      <wsdl:input message="tns:SearchForEventsSoapIn" />
+      <wsdl:output message="tns:SearchForEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchForEventsFlat">
+      <wsdl:input message="tns:SearchForEventsFlatSoapIn" />
+      <wsdl:output message="tns:SearchForEventsFlatSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryList">
+      <wsdl:input message="tns:GetCategoryListSoapIn" />
+      <wsdl:output message="tns:GetCategoryListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesAndEvents">
+      <wsdl:input message="tns:GetCategoriesAndEventsSoapIn" />
+      <wsdl:output message="tns:GetCategoriesAndEventsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchForEventParents">
+      <wsdl:input message="tns:SearchForEventParentsSoapIn" />
+      <wsdl:output message="tns:SearchForEventParentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerBookings">
+      <wsdl:input message="tns:GetCustomerBookingsSoapIn" />
+      <wsdl:output message="tns:GetCustomerBookingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerBookingForEvent">
+      <wsdl:input message="tns:GetCustomerBookingForEventSoapIn" />
+      <wsdl:output message="tns:GetCustomerBookingForEventSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentNumberOfQueueSlotsForCustomer">
+      <wsdl:input message="tns:GetCurrentNumberOfQueueSlotsForCustomerSoapIn" />
+      <wsdl:output message="tns:GetCurrentNumberOfQueueSlotsForCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateBooking">
+      <wsdl:input message="tns:CreateBookingSoapIn" />
+      <wsdl:output message="tns:CreateBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNamedBooking">
+      <wsdl:input message="tns:CreateNamedBookingSoapIn" />
+      <wsdl:output message="tns:CreateNamedBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelBooking">
+      <wsdl:input message="tns:CancelBookingSoapIn" />
+      <wsdl:output message="tns:CancelBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNamedBooking">
+      <wsdl:input message="tns:RemoveNamedBookingSoapIn" />
+      <wsdl:output message="tns:RemoveNamedBookingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonToQueue">
+      <wsdl:input message="tns:AddPersonToQueueSoapIn" />
+      <wsdl:output message="tns:AddPersonToQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNamedPersonToQueue">
+      <wsdl:input message="tns:AddNamedPersonToQueueSoapIn" />
+      <wsdl:output message="tns:AddNamedPersonToQueueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNamedPersonFromQueue">
+      <wsdl:input message="tns:RemoveNamedPersonFromQueueSoapIn" />
+      <wsdl:output message="tns:RemoveNamedPersonFromQueueSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ESBookingWebServiceSoap" type="tns:ESBookingWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllArenas">
+      <soap:operation soapAction="ESBookingWebService/GetAllArenas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetAllArenasSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArena">
+      <soap:operation soapAction="ESBookingWebService/GetArena" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArenaSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSection">
+      <soap:operation soapAction="ESBookingWebService/GetArenaSection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArenaSectionSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaCustomerCategoriesBySection">
+      <soap:operation soapAction="ESBookingWebService/GetArenaCustomerCategoriesBySection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArenaCustomerCategoriesBySectionSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSeatCustomerCategories">
+      <soap:operation soapAction="ESBookingWebService/GetArenaSeatCustomerCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArenaSeatCustomerCategoriesSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaItems">
+      <soap:operation soapAction="ESBookingWebService/GetArenaItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArenaItemsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSectionStatusInfo">
+      <soap:operation soapAction="ESBookingWebService/GetArenaSectionStatusInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArenaSectionStatusInfoSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSectionStatusInfoFree">
+      <soap:operation soapAction="ESBookingWebService/GetArenaSectionStatusInfoFree" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArenaSectionStatusInfoFreeSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSeatStatusInfo">
+      <soap:operation soapAction="ESBookingWebService/GetArenaSeatStatusInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetArenaSeatStatusInfoSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcArenaPriceInclVAT">
+      <soap:operation soapAction="ESBookingWebService/CalcArenaPriceInclVAT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CalcArenaPriceInclVATSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmArenaBookingPayment">
+      <soap:operation soapAction="ESBookingWebService/ConfirmArenaBookingPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ConfirmArenaBookingPaymentSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformArenaSaleCreditCard">
+      <soap:operation soapAction="ESBookingWebService/PerformArenaSaleCreditCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PerformArenaSaleCreditCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookSeat">
+      <soap:operation soapAction="ESBookingWebService/BookSeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:BookSeatSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnbookSeat">
+      <soap:operation soapAction="ESBookingWebService/UnbookSeat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UnbookSeatSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutomaticSeatBooking">
+      <soap:operation soapAction="ESBookingWebService/AutomaticSeatBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AutomaticSeatBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomerCategory">
+      <soap:operation soapAction="ESBookingWebService/SetCustomerCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SetCustomerCategorySecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelArenaBooking">
+      <soap:operation soapAction="ESBookingWebService/CancelArenaBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CancelArenaBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadArenaBooking">
+      <soap:operation soapAction="ESBookingWebService/LoadArenaBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LoadArenaBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmArenaBooking">
+      <soap:operation soapAction="ESBookingWebService/ConfirmArenaBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ConfirmArenaBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginCustomer">
+      <soap:operation soapAction="ESBookingWebService/LoginCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LoginCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResendPassword">
+      <soap:operation soapAction="ESBookingWebService/ResendPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ResendPasswordSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersistCustomer">
+      <soap:operation soapAction="ESBookingWebService/PersistCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PersistCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMailExists">
+      <soap:operation soapAction="ESBookingWebService/CheckMailExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CheckMailExistsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomer">
+      <soap:operation soapAction="ESBookingWebService/GetCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerByEmail">
+      <soap:operation soapAction="ESBookingWebService/GetCustomerByEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCustomerByEmailSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInvoiceCustomer">
+      <soap:operation soapAction="ESBookingWebService/UpdateInvoiceCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateInvoiceCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardStatus">
+      <soap:operation soapAction="ESBookingWebService/GetCardStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCardStatusSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWebItems">
+      <soap:operation soapAction="ESBookingWebService/GetWebItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetWebItemsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCItem">
+      <soap:operation soapAction="ESBookingWebService/GetCItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCItemSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSaleRef">
+      <soap:operation soapAction="ESBookingWebService/GetSaleRef" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSaleRefSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWebReport">
+      <soap:operation soapAction="ESBookingWebService/GetWebReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetWebReportSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPriceInclVAT">
+      <soap:operation soapAction="ESBookingWebService/CalcPriceInclVAT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CalcPriceInclVATSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPriceExclVAT">
+      <soap:operation soapAction="ESBookingWebService/CalcPriceExclVAT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CalcPriceExclVATSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSingleCard">
+      <soap:operation soapAction="ESBookingWebService/CreateSingleCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateSingleCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentItem">
+      <soap:operation soapAction="ESBookingWebService/CreatePaymentItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreatePaymentItemSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentItem">
+      <soap:operation soapAction="ESBookingWebService/GetPaymentItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetPaymentItemSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearPaymentItem">
+      <soap:operation soapAction="ESBookingWebService/ClearPaymentItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ClearPaymentItemSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSaleCreditCard">
+      <soap:operation soapAction="ESBookingWebService/PerformSaleCreditCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PerformSaleCreditCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSaleCash">
+      <soap:operation soapAction="ESBookingWebService/PerformSaleCash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PerformSaleCashSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSoldItemsForPrinting">
+      <soap:operation soapAction="ESBookingWebService/GetSoldItemsForPrinting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSoldItemsForPrintingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSaleInvoice">
+      <soap:operation soapAction="ESBookingWebService/PerformSaleInvoice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PerformSaleInvoiceSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <soap:operation soapAction="ESBookingWebService/IsAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecreaseClipCount">
+      <soap:operation soapAction="ESBookingWebService/DecreaseClipCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DecreaseClipCountSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSetting">
+      <soap:operation soapAction="ESBookingWebService/GetSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSettingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCard">
+      <soap:operation soapAction="ESBookingWebService/ValidateCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ValidateCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardInfo">
+      <soap:operation soapAction="ESBookingWebService/GetCardInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCardInfoSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginType">
+      <soap:operation soapAction="ESBookingWebService/GetLoginType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLoginTypeSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationList">
+      <soap:operation soapAction="ESBookingWebService/GetLocationList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLocationListSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationGroupList">
+      <soap:operation soapAction="ESBookingWebService/GetLocationGroupList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetLocationGroupListSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginCompany">
+      <soap:operation soapAction="ESBookingWebService/LoginCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LoginCompanySecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CNumericCrypt">
+      <soap:operation soapAction="ESBookingWebService/CNumericCrypt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CNumericCryptSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecryptCardData">
+      <soap:operation soapAction="ESBookingWebService/DecryptCardData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DecryptCardDataSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupCard">
+      <soap:operation soapAction="ESBookingWebService/LookupCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LookupCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardHistory">
+      <soap:operation soapAction="ESBookingWebService/GetCardHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCardHistorySecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogError">
+      <soap:operation soapAction="ESBookingWebService/LogError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LogErrorSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecryptReceipt">
+      <soap:operation soapAction="ESBookingWebService/DecryptReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstructorList">
+      <soap:operation soapAction="ESBookingWebService/GetInstructorList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetInstructorListSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxNumberOfQueueSlots">
+      <soap:operation soapAction="ESBookingWebService/GetMaxNumberOfQueueSlots" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMaxNumberOfQueueSlotsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvent">
+      <soap:operation soapAction="ESBookingWebService/GetEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetEventSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForEvents">
+      <soap:operation soapAction="ESBookingWebService/SearchForEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SearchForEventsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForEventsFlat">
+      <soap:operation soapAction="ESBookingWebService/SearchForEventsFlat" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SearchForEventsFlatSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryList">
+      <soap:operation soapAction="ESBookingWebService/GetCategoryList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCategoryListSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesAndEvents">
+      <soap:operation soapAction="ESBookingWebService/GetCategoriesAndEvents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCategoriesAndEventsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForEventParents">
+      <soap:operation soapAction="ESBookingWebService/SearchForEventParents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SearchForEventParentsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerBookings">
+      <soap:operation soapAction="ESBookingWebService/GetCustomerBookings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCustomerBookingsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerBookingForEvent">
+      <soap:operation soapAction="ESBookingWebService/GetCustomerBookingForEvent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCustomerBookingForEventSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentNumberOfQueueSlotsForCustomer">
+      <soap:operation soapAction="ESBookingWebService/GetCurrentNumberOfQueueSlotsForCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrentNumberOfQueueSlotsForCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBooking">
+      <soap:operation soapAction="ESBookingWebService/CreateBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNamedBooking">
+      <soap:operation soapAction="ESBookingWebService/CreateNamedBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateNamedBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelBooking">
+      <soap:operation soapAction="ESBookingWebService/CancelBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CancelBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNamedBooking">
+      <soap:operation soapAction="ESBookingWebService/RemoveNamedBooking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RemoveNamedBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonToQueue">
+      <soap:operation soapAction="ESBookingWebService/AddPersonToQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddPersonToQueueSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNamedPersonToQueue">
+      <soap:operation soapAction="ESBookingWebService/AddNamedPersonToQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:AddNamedPersonToQueueSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNamedPersonFromQueue">
+      <soap:operation soapAction="ESBookingWebService/RemoveNamedPersonFromQueue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RemoveNamedPersonFromQueueSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ESBookingWebServiceSoap12" type="tns:ESBookingWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllArenas">
+      <soap12:operation soapAction="ESBookingWebService/GetAllArenas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetAllArenasSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArena">
+      <soap12:operation soapAction="ESBookingWebService/GetArena" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArenaSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSection">
+      <soap12:operation soapAction="ESBookingWebService/GetArenaSection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArenaSectionSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaCustomerCategoriesBySection">
+      <soap12:operation soapAction="ESBookingWebService/GetArenaCustomerCategoriesBySection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArenaCustomerCategoriesBySectionSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSeatCustomerCategories">
+      <soap12:operation soapAction="ESBookingWebService/GetArenaSeatCustomerCategories" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArenaSeatCustomerCategoriesSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaItems">
+      <soap12:operation soapAction="ESBookingWebService/GetArenaItems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArenaItemsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSectionStatusInfo">
+      <soap12:operation soapAction="ESBookingWebService/GetArenaSectionStatusInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArenaSectionStatusInfoSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSectionStatusInfoFree">
+      <soap12:operation soapAction="ESBookingWebService/GetArenaSectionStatusInfoFree" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArenaSectionStatusInfoFreeSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetArenaSeatStatusInfo">
+      <soap12:operation soapAction="ESBookingWebService/GetArenaSeatStatusInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetArenaSeatStatusInfoSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcArenaPriceInclVAT">
+      <soap12:operation soapAction="ESBookingWebService/CalcArenaPriceInclVAT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CalcArenaPriceInclVATSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmArenaBookingPayment">
+      <soap12:operation soapAction="ESBookingWebService/ConfirmArenaBookingPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ConfirmArenaBookingPaymentSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformArenaSaleCreditCard">
+      <soap12:operation soapAction="ESBookingWebService/PerformArenaSaleCreditCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PerformArenaSaleCreditCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BookSeat">
+      <soap12:operation soapAction="ESBookingWebService/BookSeat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:BookSeatSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnbookSeat">
+      <soap12:operation soapAction="ESBookingWebService/UnbookSeat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UnbookSeatSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutomaticSeatBooking">
+      <soap12:operation soapAction="ESBookingWebService/AutomaticSeatBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AutomaticSeatBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCustomerCategory">
+      <soap12:operation soapAction="ESBookingWebService/SetCustomerCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SetCustomerCategorySecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelArenaBooking">
+      <soap12:operation soapAction="ESBookingWebService/CancelArenaBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CancelArenaBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadArenaBooking">
+      <soap12:operation soapAction="ESBookingWebService/LoadArenaBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LoadArenaBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmArenaBooking">
+      <soap12:operation soapAction="ESBookingWebService/ConfirmArenaBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ConfirmArenaBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginCustomer">
+      <soap12:operation soapAction="ESBookingWebService/LoginCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LoginCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResendPassword">
+      <soap12:operation soapAction="ESBookingWebService/ResendPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ResendPasswordSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersistCustomer">
+      <soap12:operation soapAction="ESBookingWebService/PersistCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PersistCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckMailExists">
+      <soap12:operation soapAction="ESBookingWebService/CheckMailExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CheckMailExistsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomer">
+      <soap12:operation soapAction="ESBookingWebService/GetCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerByEmail">
+      <soap12:operation soapAction="ESBookingWebService/GetCustomerByEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCustomerByEmailSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateInvoiceCustomer">
+      <soap12:operation soapAction="ESBookingWebService/UpdateInvoiceCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateInvoiceCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardStatus">
+      <soap12:operation soapAction="ESBookingWebService/GetCardStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCardStatusSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWebItems">
+      <soap12:operation soapAction="ESBookingWebService/GetWebItems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetWebItemsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCItem">
+      <soap12:operation soapAction="ESBookingWebService/GetCItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCItemSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSaleRef">
+      <soap12:operation soapAction="ESBookingWebService/GetSaleRef" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSaleRefSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWebReport">
+      <soap12:operation soapAction="ESBookingWebService/GetWebReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetWebReportSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPriceInclVAT">
+      <soap12:operation soapAction="ESBookingWebService/CalcPriceInclVAT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CalcPriceInclVATSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalcPriceExclVAT">
+      <soap12:operation soapAction="ESBookingWebService/CalcPriceExclVAT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CalcPriceExclVATSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSingleCard">
+      <soap12:operation soapAction="ESBookingWebService/CreateSingleCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateSingleCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaymentItem">
+      <soap12:operation soapAction="ESBookingWebService/CreatePaymentItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreatePaymentItemSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentItem">
+      <soap12:operation soapAction="ESBookingWebService/GetPaymentItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetPaymentItemSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClearPaymentItem">
+      <soap12:operation soapAction="ESBookingWebService/ClearPaymentItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ClearPaymentItemSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSaleCreditCard">
+      <soap12:operation soapAction="ESBookingWebService/PerformSaleCreditCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PerformSaleCreditCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSaleCash">
+      <soap12:operation soapAction="ESBookingWebService/PerformSaleCash" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PerformSaleCashSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSoldItemsForPrinting">
+      <soap12:operation soapAction="ESBookingWebService/GetSoldItemsForPrinting" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSoldItemsForPrintingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSaleInvoice">
+      <soap12:operation soapAction="ESBookingWebService/PerformSaleInvoice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PerformSaleInvoiceSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <soap12:operation soapAction="ESBookingWebService/IsAlive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecreaseClipCount">
+      <soap12:operation soapAction="ESBookingWebService/DecreaseClipCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DecreaseClipCountSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSetting">
+      <soap12:operation soapAction="ESBookingWebService/GetSetting" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSettingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateCard">
+      <soap12:operation soapAction="ESBookingWebService/ValidateCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ValidateCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardInfo">
+      <soap12:operation soapAction="ESBookingWebService/GetCardInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCardInfoSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginType">
+      <soap12:operation soapAction="ESBookingWebService/GetLoginType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLoginTypeSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationList">
+      <soap12:operation soapAction="ESBookingWebService/GetLocationList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLocationListSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationGroupList">
+      <soap12:operation soapAction="ESBookingWebService/GetLocationGroupList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetLocationGroupListSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginCompany">
+      <soap12:operation soapAction="ESBookingWebService/LoginCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LoginCompanySecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CNumericCrypt">
+      <soap12:operation soapAction="ESBookingWebService/CNumericCrypt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CNumericCryptSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecryptCardData">
+      <soap12:operation soapAction="ESBookingWebService/DecryptCardData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DecryptCardDataSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupCard">
+      <soap12:operation soapAction="ESBookingWebService/LookupCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LookupCardSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardHistory">
+      <soap12:operation soapAction="ESBookingWebService/GetCardHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCardHistorySecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogError">
+      <soap12:operation soapAction="ESBookingWebService/LogError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LogErrorSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecryptReceipt">
+      <soap12:operation soapAction="ESBookingWebService/DecryptReceipt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstructorList">
+      <soap12:operation soapAction="ESBookingWebService/GetInstructorList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetInstructorListSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxNumberOfQueueSlots">
+      <soap12:operation soapAction="ESBookingWebService/GetMaxNumberOfQueueSlots" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMaxNumberOfQueueSlotsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEvent">
+      <soap12:operation soapAction="ESBookingWebService/GetEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetEventSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForEvents">
+      <soap12:operation soapAction="ESBookingWebService/SearchForEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SearchForEventsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForEventsFlat">
+      <soap12:operation soapAction="ESBookingWebService/SearchForEventsFlat" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SearchForEventsFlatSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryList">
+      <soap12:operation soapAction="ESBookingWebService/GetCategoryList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCategoryListSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesAndEvents">
+      <soap12:operation soapAction="ESBookingWebService/GetCategoriesAndEvents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCategoriesAndEventsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchForEventParents">
+      <soap12:operation soapAction="ESBookingWebService/SearchForEventParents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SearchForEventParentsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerBookings">
+      <soap12:operation soapAction="ESBookingWebService/GetCustomerBookings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCustomerBookingsSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerBookingForEvent">
+      <soap12:operation soapAction="ESBookingWebService/GetCustomerBookingForEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCustomerBookingForEventSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentNumberOfQueueSlotsForCustomer">
+      <soap12:operation soapAction="ESBookingWebService/GetCurrentNumberOfQueueSlotsForCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrentNumberOfQueueSlotsForCustomerSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateBooking">
+      <soap12:operation soapAction="ESBookingWebService/CreateBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNamedBooking">
+      <soap12:operation soapAction="ESBookingWebService/CreateNamedBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateNamedBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelBooking">
+      <soap12:operation soapAction="ESBookingWebService/CancelBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CancelBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNamedBooking">
+      <soap12:operation soapAction="ESBookingWebService/RemoveNamedBooking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RemoveNamedBookingSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPersonToQueue">
+      <soap12:operation soapAction="ESBookingWebService/AddPersonToQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddPersonToQueueSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNamedPersonToQueue">
+      <soap12:operation soapAction="ESBookingWebService/AddNamedPersonToQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:AddNamedPersonToQueueSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveNamedPersonFromQueue">
+      <soap12:operation soapAction="ESBookingWebService/RemoveNamedPersonFromQueue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RemoveNamedPersonFromQueueSecureHeader" part="SecureHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ESBookingWebService">
+    <wsdl:port name="ESBookingWebServiceSoap" binding="tns:ESBookingWebServiceSoap">
+      <soap:address location="http://www17.goteborg.se/gbgco/ESBookingWebService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ESBookingWebServiceSoap12" binding="tns:ESBookingWebServiceSoap12">
+      <soap12:address location="http://www17.goteborg.se/gbgco/ESBookingWebService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

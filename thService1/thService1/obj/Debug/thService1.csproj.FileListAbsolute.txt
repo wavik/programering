@@ -1,0 +1,7 @@
+C:\Users\chwa\Dropbox\programering\thService1\thService1\bin\Debug\thService1.exe
+C:\Users\chwa\Dropbox\programering\thService1\thService1\bin\Debug\thService1.pdb
+C:\Users\chwa\Dropbox\programering\thService1\thService1\bin\Debug\log4net.dll
+C:\Users\chwa\Dropbox\programering\thService1\thService1\bin\Debug\Topshelf.dll
+C:\Users\chwa\Dropbox\programering\thService1\thService1\obj\Debug\thService1.csprojResolveAssemblyReference.cache
+C:\Users\chwa\Dropbox\programering\thService1\thService1\obj\Debug\thService1.exe
+C:\Users\chwa\Dropbox\programering\thService1\thService1\obj\Debug\thService1.pdb
