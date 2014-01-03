@@ -1,7 +1,0 @@
-C:\Users\chwa\Dropbox\programering\service1\service1\bin\Debug\service1.exe.config
-C:\Users\chwa\Dropbox\programering\service1\service1\bin\Debug\service1.exe
-C:\Users\chwa\Dropbox\programering\service1\service1\bin\Debug\service1.pdb
-C:\Users\chwa\Dropbox\programering\service1\service1\bin\Debug\log4net.dll
-C:\Users\chwa\Dropbox\programering\service1\service1\obj\Debug\service1.csprojResolveAssemblyReference.cache
-C:\Users\chwa\Dropbox\programering\service1\service1\obj\Debug\service1.exe
-C:\Users\chwa\Dropbox\programering\service1\service1\obj\Debug\service1.pdb
