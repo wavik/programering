@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>Get_Version</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="getversionmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ Get_Version  <a href="fiop6apj.html">Overview</a>  <a
+ href="fiop1g38.html">Group</a></h1>
+<p>The <b>Get_Version</b> API call gets the main version ID string of the
+TMEX driver.  Make sure that the buffer 'ID_buf' is at least 80 bytes to
+hold the ID string. The format for the main identification (ID) string is
+"xx_DLLNAME_Vz.zz_month/day/year (FULLNAME.DLL)" where:</p>
+<blockquote><tt>_ - represent spaces<br>
+ </tt><br>
+  <tt>xx hardware type code 00 to 99 that the DLL uses. </tt><br>
+  <blockquote><tt>00 general DLL requiring a BASFUN type interrupt</tt><br>
+    <tt>01 COM port DLL</tt><br>
+    <tt>02 LPT port DLL</tt><br>
+    <tt>03 contain type 00,01, and 02</tt><br>
+    <tt>FF indicates a version 3.00 main driver that has a selectable and
+configurable hardware drivers.</tt><br>
+  </blockquote>
+  <tt> </tt><br>
+  <tt>DLLNAME - the name of the DLL that ranges in length from 1 to 8 characters.<br>
+ </tt><br>
+  <tt>Vz.zz - version number. (i.e. V1.00)  It could include other specifier
+such as ‘Alpha’ or ‘Beta’.<br>
+ </tt><br>
+  <tt>month/day/year - date DLL released<br>
+ </tt><br>
+  <tt>(FULLNAME.DLL) - is the full name of the DLL driver.</tt></blockquote>
+<tt><b><br>
+short far pascal Get_Version(</b><br>
+<b>char far *</b><i>ID_buf     </i>// buffer to hold main id string<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>ID_buf</i></p>
+<p>Specifies a pointer to a buffer to hold the main ID string.</p>
+<p><b>Return Value</b></p>
+<p>1   =&gt; ID string is in ID_buf.</p>
+<p>0   =&gt; could not get the ID</p>
+<p>-201 =&gt; Hardware_Specific driver not found and is required</p>
+<p><a href="geve149x.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="gety5t0u.html"><b>TMGetTypeVersion</b></a></p>
+<br>
+</body>
+</html>

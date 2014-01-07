@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMReadFile</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmreadfilemain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMReadFile  <a href="fiop6apj.html">Overview</a>  <a href="fiop1g38.html">Group</a></h1>
+<p>The <b>TMReadFile</b> API call reads from the file specified by the file
+handle number 'file_handle' and copies it into the buffer 'read_buffer',
+not to exceed ‘buff_size’ bytes (which should be the size of the read_buffer
+being provided).  'file_handle' must be set as a result of a call to <a
+ href="opfi3o32.html"><b>TMOpenFile</b></a>.  If the file to read is an ‘add’
+file with extension 100 decimal then the file length will be in page increments.
+ For example if the last data byte is in the 30<sup>th</sup> byte of the
+file, the length will go to the end of the page which would give a length
+of (2*28) or 56 bytes.  If the file to read is a ‘Monetary File ‘ with extension
+101, the length of the buffer is at least 36 bytes long (28 bytes for the
+‘Monetary File’ + 8 bytes for the Counter and Tamper bytes to append).</p>
+<tt><b><br>
+short far pascal TMReadFile(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>            // session handle for
+the desired 1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i>          // state buffer provided for
+the 1-Wire network session<br>
+<b>short </b><i>file_handle,</i>               // file handle<br>
+<b>unsigned char far *</b><i>read_buffer,  </i>// buffer to hold the file
+data read <br>
+<b>short</b> <i>buff_size</i>                  // the size that the buffer
+can hold in bytes<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>file_handle</i></p>
+<p>Specifies a file handle of the file to read. </p>
+<p><i>read_buffer</i></p>
+<p>Specifies a pointer to a buffer that will hold the data read from the
+file.  It must be at least ‘<i>max_read</i>’ bytes long.</p>
+<p><i>buff_size</i></p>
+<p>Specifies the size of ‘<i>read_buffer</i>’ in bytes.  If the file length
+is longer than <i>‘buff_size’</i>, an error is returned.</p>
+<p><b>Return Value</b></p>
+<p>&gt;= 0 =&gt; file read, and this is the number of bytes</p>
+<p>&lt;0 =&gt; <a href="fiop6blf.html"><b>TMEX File Operations Error Return
+Code</b></a></p>
+<p><a href="refi9o11.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="opfi3o32.html"><b>TMOpenFile</b></a></p>
+<br>
+</body>
+</html>

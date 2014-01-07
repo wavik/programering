@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMRom</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmrommain"></a><img src="./images/ibuttons.gif" alt=""
+ border="0">
+ TMRom  <a href="netw70vr.html">Overview</a>  <a href="netw4ipg.html">Group</a></h1>
+<p>The <b>TMRom</b> API call transfers a ROM data pattern between the internal
+eight-byte buffer maintained by the driver and an array 'ROM' of eight short
+integers declared in the application program. The direction of data transfer
+is specified by the value of the first integer in the array. If the first
+integer is zero, then the eight bytes from the internal buffer are transferred
+into the eight integer variables of the integer array. If the first integer
+is non-zero, then the least significant bytes of the eight integers are transferred
+into the internal eight-byte buffer.  This function allows an application
+program to obtain the ROM data of a device that has been found with the <a
+ href="firs2f5a.html"><b>TMFirst</b></a> or <a href="next25ym.html"><b>TMNext</b></a>
+functions. It also allows the application program to specify the ROM data
+of a specific device to be addressed with a multi-drop API call such as <a
+ href="fifi210u.html"><b>TMFirstFile</b></a>.  Note that only the least significant
+byte of each short integer in the ‘ROM’ array is used. </p>
+<tt><b><br>
+short far pascal TMRom(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>   // session handle for the desired
+1-Wire network <br>
+<b>void far *</b><i>state_buffer,</i> // state buffer provided for the 1-Wire
+network session<br>
+<b>short far *</b><i>ROM</i>          // buffer to read or write from the
+internal ROM buffer<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>ROM</i></p>
+<p>Specifies a pointer to an short array with eight elements that either
+will read or set the internal ROM buffer.</p>
+<p><b>Return Value</b></p>
+<p>1 =&gt; ROM read or set</p>
+<p>&lt;0 =&gt; <a href="netw14fn.html"><b>TMEX Network Error Return Code</b></a></p>
+<p><a href="romx7yat.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="acce3s4u.html"><b>TMAccess</b></a>; <a href="firs2f5a.html"><b>TMFirst</b></a></p>
+<br>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMEX Design Guide</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmexdesignguide"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMEX Design Guide  <a href="tmex8lrr.html">Overview</a></h1>
+<p>Most communication with 1-Wire devices, especially <u>i</u>Buttons, is
+accomplished through some sort of temporary contact.  Since this contact
+is temporary the underlying design philosophy of any 1-Wire device application
+is 'try and try again'.  It must be assumed at any time the user of the application
+will break contact temporarily or permanently with the 1-Wire device.  With
+this in mind, TMEX provides a wide variety of application programming interface
+(API) calls to verify which 1-Wire device is being communicated with and
+the results of that communication.  </p>
+<p>Each 1-Wire device has a guaranteed unique serial number (ROM).  TMEX
+provides API calls that read these CRC verified serial numbers.  Since each
+serial number is unique, multiple 1-Wire devices can be communicated with
+on the same communication channel.  This channel is referred to as a 1-Wire
+since communication is done over 1 wire and ground.  Each data-oriented API
+call to a 1-Wire device is preceded by the unique serial number thus preventing
+any ambiguity.</p>
+<p>To facilitate data integrity in the 1-Wire device, all data is stored
+in a structure that contains a length, data, and an inverted CRC-16 of that
+length and data.  This structure is referred to as the <a
+ href="udpt47ck.html"><b>Universal Data Packet (UDP)</b></a>. Since the Microsoft
+Windows environment is multi-tasking, TMEX provides the ability for several
+applications to communicate on the same 1-Wire network.  This is accomplished
+through the use of semaphore functions that provide a 'session_handle' that
+gives exclusive use of that 1-Wire network.  The time that this 'session_handle'
+is valid is referred to as a Session.  To be 'friendly' to other applications
+the duration of a Session should be as small as possible.  Each application
+running in Microsoft Windows may have a different state so each call to the
+TMEX API must provide a buffer for state variables.  </p>
+<p>All of the TMEX API calls are designed such that if their operation is
+interrupted no data corruption occurs.  An interruption would most likely
+occur due to intermittent contact.  To complete an interrupted function,
+simply call it again.  If the device does not return to the 1-Wire network
+then that call was not done and the 1-Wire device has not been changed. </p>
+<p>There is one exception to the rule that API calls can be interrupted,
+programming EPROMs.  Any EPROM programming is destructive, meaning it uses
+up data space.  To get around this TMEX has two special API calls, <a
+ href="crpr5xri.html"><b>TMCreateProgramJob</b></a> and <a
+ href="dopr3x66.html"><b>TMDoProgramJob</b></a>.  TMCreateProgramJob sets
+up a buffer that keeps track of any writes to the EPROM without actually
+doing the write.  TMDoProgramJob then proceeds to transfer the buffered changes
+to the EPROM device.  TMDoProgramJob MUST complete successfully for the data
+integrity of the EPROM device to remain.  TMDoProgramJob is set up such that
+if it returns an ERROR it can be called again to complete the operation.
+ Programming EPROMs requires special hardware.  For the PC COM port this
+hardware is a DS9097E PC Serial Port Adapter with an optional but recommended
+external power supply. </p>
+<p>Here is a possible 1-Wire Session.  Note that all TMEX API calls are prefixed
+with 'TM'.</p>
+<blockquote>
+  <p><a href="exst8l9q.html"><b>TMExtendedStartSession</b></a> - get permission
+to communicate on the 1-Wire network.</p>
+  <blockquote>
+    <p><a href="setu0apa.html"><b>TMSetup</b></a> - called only once at the
+beginning of the application to verify that the 1-Wire network exists.</p>
+    <p><a href="firs2f5a.html"><b>TMFirst</b></a>,<a href="next25ym.html"><b>TMNext</b></a>,<a
+ href="stac7ui6.html"><b>TMStrongAccess</b></a>,<a href="romm1rxq.html"><b>TMRom</b></a>...
+- get the unique registration number of the 1-Wire device to communicate
+with.</p>
+    <p><a href="crpr5xri.html"><b>TMCreateProgramJob</b></a> - called only
+if the 1-Wire device is an EPROM device AND a write operation is going to
+be attempted.</p>
+    <blockquote>
+      <p><a href="fifi210u.html"><b>TMFirstFile</b></a>,<a
+ href="chdi23zi.html"><b>TMChangeDirectory</b></a>,<a href="defi0be6.html"><b>TMDeleteFile</b></a>,<a
+ href="form2wtq.html"><b>TMFormat</b></a>... - do a file operation.</p>
+    </blockquote>
+    <p><a href="dopr3x66.html"><b>TMDoProgramJob</b></a> - called only if
+TMCreateProgramJob was called.  Keep calling until it returns success.  If
+the 1-Wire device loses contact, have the application force the user to make
+contact again.</p>
+    <p><a href="clos2m9a.html"><b>TMClose</b></a> - called only once at the
+end of the application to power down the 1-Wire network. (not always applicable,
+but always callable) </p>
+  </blockquote>
+  <p><a href="ense05da.html"><b>TMEndSession</b></a> - relinquish use of the
+1-Wire network.</p>
+</blockquote>
+<p><b>See Also</b></p>
+<p><a href="tmex8lrr.html"><b>TMEX API Overview</b></a></p>
+<br>
+</body>
+</html>

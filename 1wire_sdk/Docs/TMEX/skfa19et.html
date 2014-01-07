@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMSkipFamily Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmskipfamilyexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMSkipFamily Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+short result, cnt = 0, ROM[8];
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* attempt to find the first device on 1-Wire network */
+result = TMFirst(session_handle, state_buffer);
+
+/* loop to count all of the devices that don't have the family code 0x0C on the 1-Wire network */
+while (result == 1)
+{
+   /* read the ROM to see if need to skip */
+   ROM[0] = 0; /* reset to read */
+   result = TMRom(session_handle, state_buffer, ROM);
+   if (result != 1)
+      /* error, session not valid */
+
+   if (ROM[0] == 0x0C)
+   {
+      /* skip this ROM */
+      result = TMSkipFamily(session_handle, state_buffer);
+      if (result != 1)
+         /* error session not valid */
+   }
+   else
+      cnt++;  /* count this device because not 0x0C */
+
+   /* find next device */
+   result = TMNext(session_handle, state_buffer);
+}
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

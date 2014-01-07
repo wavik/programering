@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMEX File Operations Error Return Codes</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="fileoperationsreturncodes"></a><img
+ src="./images/ibuttons.gif" alt="" border="0">
+ TMEX File Operations Error Return Codes  <a href="fiop6apj.html">Overview</a>
+ <a href="fiop1g38.html">Group</a></h1>
+<tt>(-1)<b>   NO_DEVICE </b>            - no device found on 1-Wire network
+<br>
+(-2)<b>   WRONG_TYPE</b>            - wrong type of device for specified
+operation<br>
+(-3)<b>   FILE_READ_ERR</b>         - file/directory read error <br>
+(-4)<b>   BUFFER_TOO_SMALL</b>      - buffer is smaller than the file to
+read <br>
+(-5)<b>   HANDLE_NOT_AVAIL</b>      - all file handles are used<br>
+(-6)<b>   FILE_NOT_FOUND</b>        - file specified is not in the current
+directory<br>
+(-7)<b>   REPEAT_FILE</b>           - file already exists with name provided
+<br>
+(-8)<b>   HANDLE_NOT_USED</b>       - given file handle is not assigned a
+file<br>
+(-9)<b>   FILE_WRITE_ONLY</b>       - trying to read a write file handle<br>
+(-10)<b>  OUT_OF_SPACE</b>          - not enough room on device to write 
+<br>
+(-11)<b>  FILE_WRITE_ERR</b>        - write error, part may have expired<br>
+(-12)<b>  FILE_READ_ONLY</b>        - trying to write a read file handle<br>
+(-13)<b>  FUNC_NOT_SUP</b>          - function not supported<br>
+(-14)<b>  BAD_FILENAME</b>          - illegal file/directory name<br>
+(-15)<b>  CANT_DEL_READ_ONLY </b>   - trying to delete read only file<br>
+(-16)<b>  HANDLE_NOT_EXIST</b>      - file handle does not exist<br>
+(-17)<b>  ONE_WIRE_PORT_ERROR</b>   - error in the 1-Wire network, 1-Wire
+network may not be setup using TMSetup<br>
+(-18)<b>  INVALID_DIRECTORY</b>     - directory given is invalid<br>
+(-19)<b>  DIRECTORY_NOT_EMPTY</b>   - directory must be empty to delete it
+<br>
+(-20)<b>  UNABLE_TO_CREATE_DIR</b>  - maximum depth of 10 sub-directories
+is reached<br>
+(-21)<b>  NO_PROGRAM_JOB</b>        - there is no program job started<br>
+(-22)<b>  PROGRAM_WRITE_PROTECT</b> - device is written in a way that can
+not be changed<br>
+(-23)<b>  NON_PROGRAM_PARTS</b>     - there are non-EPROM parts on the 1-Wire
+network during an attempt to program<br>
+(-24)  <b>ADDFILE_TERMINATED</b>    - the AddFile is terminated and cannot
+be appended to <br>
+(-200) <b>INVALID_SESSION</b>       - session not valid.<br>
+(-201)<b> HS_NOT_FOUND</b>          - Hardware_Specific driver not found
+and is required.</tt> 
+<p><b>See Also</b></p>
+<p><a href="fiop6apj.html"><b>TMEX File Operations API Overview</b></a>, <a
+ href="fiop1g38.html"><b>TMEX File Operation API List</b></a> <a
+ href="tmex7l6a.html"><b>,TMEX Error Return Codes</b></a></p>
+<br>
+</body>
+</html>

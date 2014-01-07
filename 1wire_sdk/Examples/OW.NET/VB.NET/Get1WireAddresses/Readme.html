@@ -1,0 +1,143 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>Get1WireAddresses.exe Readme</title>
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p><b><span style='font-size:10.0pt;font-family:Arial'>&quot;Get1WireAddresses.exe&quot;
+Readme</span></b><span style='font-size:10.0pt;font-family:Arial'><br>
+<br>
+<b>Introduction</b><br>
+The &quot;Get1WireAddresses.exe&quot; is an example program that simply lists
+the 1-Wire/iButton devices available on a 1-Wire network.&nbsp; It also
+displays a description of the device.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:Arial'>This particular example was
+written in Microsoft Visual Basic .NET through Visual Studio .NET 2005.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>Requirements</span></b><span
+style='font-size:10.0pt;font-family:Arial'><br>
+<a href="http://www.maxim-ic.com/1-wiredrivers">1-Wire Drivers</a> version 4.00
+or higher, with the OneWireAPI.NET.dll in the same directory as the executable.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>.NET
+Framework 2.0 Redistributable:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><a
+     href="http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5"
+     id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><a
+     href="http://www.microsoft.com/downloads/details.aspx?FamilyID=b44a0000-acf8-4fa1-affb-40e78d788b00"
+     id="ctl00_mainContentContainer_ctl04">Download x64 version</a> </span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+Visual J# .NET 2.0 Second Edition Redistributable:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><a
+     href="http://go.microsoft.com/?linkid=6802972"
+     id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><a
+     href="http://go.microsoft.com/?linkid=6802973"
+     id="ctl00_mainContentContainer_ctl04">Download x64 version</a> </span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+When compiling this program, make sure that the program references
+&#8220;vjslib&#8221;, and the OneWireAPI.NET.dll.</span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:Arial'>Operation<br>
+</span></b><span style='font-size:10.0pt;font-family:Arial'>To run the
+Get1WireAddresses.exe program, double-click on the
+&quot;Get1WireAddresses.exe&quot; file.&nbsp; This runs the program.&nbsp; The
+main window of the program will appear containing a text box and 1
+button.&nbsp; The top of the text box shows which 1-Wire adapter and port is
+being used as the &quot;Default&quot; adapter and port.&nbsp; To change the
+&quot;Default&quot; adapter and port, please look in the 1-Wire Drivers folder
+under &quot;Program Files&quot; and find the &quot;Default 1-Wire Net&quot;
+icon.&nbsp; Double-clicking this icon will allow the user to select from the
+different available 1-Wire adapters and ports. </span></p>
+
+<p><span style='font-size:10.0pt;font-family:Arial'>The button on the main
+window of Get1WireAddresses.exe is titled &quot;Search&quot;.&nbsp; Clicking on
+&quot;Search&quot; will list each 1-Wire/iButton device's unique address, along
+with a short description of the device.</span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:Arial'>Files</span></b></p>
+
+<p>&nbsp; <span style='font-size:10.0pt;font-family:"Courier New"'>AssemblyInfo.vb&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - VB.NET module containing
+manufacturer data<br>
+<br>
+&nbsp;Get1WireAddresses.sln&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Visual Studio.NET solutions file<br>
+<br>
+&nbsp;Get1WireAddresses.vbproj&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - VB.NET project file<br>
+<br>
+&nbsp;Get1WireAddresses.vbproj.user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - VB.NET
+project user file<br>
+<br>
+&nbsp;GetAddresses.resx&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - VB.NET resources file<br>
+<br>
+&nbsp;GetAddresses.vb&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - VB module containing source to
+program<br>
+<br>
+&nbsp;..\..\..\..\Lib\OW.NET\OneWireAPI.NET.dll - 1-Wire API<br>
+<br>
+&nbsp;Readme.html&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - This file.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;..\bin\Get1WireAddresses.exe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- Program executable.</span></p>
+
+</div>
+
+</body>
+
+</html>

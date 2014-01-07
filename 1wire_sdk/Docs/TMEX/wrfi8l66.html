@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMWriteFile</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmwritefilemain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMWriteFile  <a href="fiop6apj.html">Overview</a>  <a
+ href="fiop1g38.html">Group</a></h1>
+<p>The <b>TMWriteFile</b> API call writes the file specified by the file handle
+'file_handle' with the data from the buffer 'write_buffer', containing 'num_write'
+bytes.  'file_handle' must be set as a result of a call to TMCreateFile. 
+This API call works only with regular files with extensions 0-99 decimal and
+the ‘Monetary File’ with extension 101.  For ‘add’ files with extension 100
+decimal, use the API call  <a href="wrad82i6.html"><b>TMWriteAddFile</b></a>.
+In case of the ‘Monetary File’, multiple retries will NOT be attempted. If
+the file was written many times, then the counter would not end up where it
+was expected. If this function fails then the file must be closed and then
+recreated with TMCreateFile. If the Counter has changed then the file needs
+to be re-encrypted.</p>
+<tt><b><br>
+short far pascal TMWriteFile(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>             // session handle for
+the desired 1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i>           // state buffer provided for
+the 1-Wire network session<br>
+<b>short </b><i>file_handle,</i>                // file handle<br>
+<b>unsigned char far *</b><i>write_buffer,</i>  // buffer containing the file
+data to write<br>
+<b>short</b> <i>num_write</i>                   // number of bytes to write
+<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>file_handle</i></p>
+<p>Specifies a file handle of the file to read. </p>
+<p><i>write_buffer</i></p>
+<p>Specifies a pointer to a buffer that contains the data to write to the
+file.  It must be at least ‘<i>num_write</i>’ bytes long.</p>
+<p><i>num_write</i></p>
+<p>Specifies the number of bytes to write from the ‘<i>write_buffer</i>’.
+</p>
+<p><b>Return Value</b></p>
+&gt;= 0 =&gt; file written, and this is the number of bytes<br>
+&lt;0 =&gt; <a href="fiop6blf.html"><b>TMEX File Operations Error Return Code</b></a>
+<p><a href="wrfi1kv9.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="crfi4x7y.html"><b>TMCreateFile</b></a></p>
+<br>
+<br>
+</body>
+</html>

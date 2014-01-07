@@ -1,0 +1,5 @@
+C:\Users\chwa\Dropbox\programering\1wire_sdk\Examples\Compact.NET\C#\bin\OneWireIO-Pure.exe
+C:\Users\chwa\Dropbox\programering\1wire_sdk\Examples\Compact.NET\C#\OneWireIO\obj\Release\OneWireIO-Pure.csprojResolveAssemblyReference.cache
+C:\Users\chwa\Dropbox\programering\1wire_sdk\Examples\Compact.NET\C#\OneWireIO\obj\Release\OneWireIO.OneWireIO.resources
+C:\Users\chwa\Dropbox\programering\1wire_sdk\Examples\Compact.NET\C#\OneWireIO\obj\Release\OneWireIO-Pure.csproj.GenerateResource.Cache
+C:\Users\chwa\Dropbox\programering\1wire_sdk\Examples\Compact.NET\C#\OneWireIO\obj\Release\OneWireIO-Pure.exe

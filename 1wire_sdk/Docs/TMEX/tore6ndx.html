@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMTouchReset Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmtouchresetexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMTouchReset Code Example</H1>
+
+<PRE><CODE>long session_handle;
+short result;
+char result_str[80];
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* reset the 1-Wire network and provide a string to represent the result */
+result = TMTouchReset(session_handle);
+
+switch(result)
+{
+    case 0: sprintf(result_str,"No device on 1-Wire network");
+               break;
+       case 1: sprintf(result_str,"Device on 1-Wire network"); 
+            break;
+       case 2: sprintf(result_str,"Alarming device on 1-Wire 
+            network"); 
+            break;
+       case 3: sprintf(result_str,"1-Wire network shorted"); 
+            break;
+       case 4: sprintf(result_str,"1-Wire network not setup"); 
+            break;
+       case 5: sprintf(result_str,"TMTouchReset not supported"); 
+            break;
+       default: sprintf(result_str,"unknown result"); 
+            break;
+};
+
+/* close the session with a call to TMEndSession */
+...</CODE></PRE>
+
+</BODY>
+</HTML>

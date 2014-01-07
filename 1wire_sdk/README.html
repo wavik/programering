@@ -1,0 +1,474 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 11">
+<meta name=Originator content="Microsoft Word 11">
+<link rel=File-List href="README_files/filelist.xml">
+<title>1-Wire SDK for Windows Readme</title>
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>BestFit</w:Zoom>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.h1, li.h1, div.h1
+	{mso-style-name:h1;
+	margin-top:5.0pt;
+	margin-right:0in;
+	margin-bottom:5.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	layout-grid-mode:char;
+	font-size:24.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+p.h2, li.h2, div.h2
+	{mso-style-name:h2;
+	margin-top:5.0pt;
+	margin-right:0in;
+	margin-bottom:5.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	layout-grid-mode:char;
+	font-size:18.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+span.htmlmarkup
+	{mso-style-name:htmlmarkup;
+	color:red;
+	display:none;
+	mso-hide:all;}
+span.msoins0
+	{mso-style-name:msoins0;
+	color:teal;
+	text-decoration:underline;
+	text-underline:single;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:152455849;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-670634576 -1753029576 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-start-at:4;
+	mso-level-number-format:bullet;
+	mso-level-text:\F02D;
+	mso-level-tab-stop:72.75pt;
+	mso-level-number-position:left;
+	margin-left:72.75pt;
+	text-indent:-18.75pt;
+	font-family:Symbol;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0in 5.4pt 0in 5.4pt;
+	mso-para-margin:0in;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-ansi-language:#0400;
+	mso-fareast-language:#0400;
+	mso-bidi-language:#0400;}
+</style>
+<![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoNormal align=center style='text-align:center'><b><span
+style='font-size:14.0pt;font-family:Arial'>Welcome to the 1-Wire SDK for
+Windows</span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+class=htmlmarkup><b><span style='font-size:14.0pt;font-family:Arial'>&lt;span
+style=&quot;font-size: 18pt;&quot;&gt;</span></b></span><b><span
+style='font-size:14.0pt;font-family:Arial'>Version 4.00<span class=htmlmarkup>&lt;/span&gt;</span></span></b></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+class=htmlmarkup><b>&lt;span style=&quot;font-size: 18pt;&quot;&gt;</b></span><b>&nbsp;<span
+class=htmlmarkup>&lt;/span&gt;</span></b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>The 1-Wire Software Development Kit (SDK) for Windows is divided into 3
+sections, each representing a unique Applications Programmer Interface (API).
+The first section focuses on the 1-Wire .NET J# libraries called OW.NET API.
+The second section focuses on an API that is essentially a port of the OW.NET
+&quot;DSPortAdapter&quot; object to C#, called the Compact.NET API. It is
+primarily for Windows CE/Mobile/Pocket PC platforms using the Compact .NET
+framework but can also be used on full Windows platforms if only a minimal
+1-Wire interface is needed.&nbsp; For now Maxim only provides the equivalent of
+the DSPortAdapter object in the Compact.NET API.&nbsp; However, an open-source
+effort is underway to provide more pure C# classes (such as OneWireContainers,
+MemoryBanks, etc).&nbsp; It is available from <a
+href="http://sourceforge.net/projects/owdotnet/">http://sourceforge.net/projects/owdotnet/</a>.&nbsp;
+The third section is the TMEX API. This is a basic low-level, natively-compiled
+API that performs 1-Wire communication and file structure primitives.&nbsp;
+Both the OW.NET API and the TMEX API need the <a
+href="http://www.maximintegrated.com/1-wiredrivers">1-Wire Drivers</a> package
+installed before the example programs will run. Compact.NET programs can run
+without the 1-Wire Drivers as it can make calls to C#'s serial port library for
+the DS9097U style adapters.&nbsp;However if the 1-Wire Drivers are installed,
+the Compact.NET library will call the native drivers through the TMEX API to
+support all adapter types. The 1-Wire Drivers package also includes a
+demonstration application, the OneWireViewer, that can exercise most
+1-Wire/iButton devices.&nbsp; The 1-Wire SDK for Windows supports the same
+operating systems supported by a specific version of the 1-Wire Drivers.&nbsp; <span
+class=htmlmarkup>&lt;/span&gt;</span><br>
+</span><span class=htmlmarkup>&lt;span style=&quot;font-size: 12pt;&quot;&gt;</span><br>
+<span class=htmlmarkup><span style='font-family:Arial'>&lt;/span&gt;<b>&lt;span
+style=&quot;font-size: 13.5pt;&quot;&gt;</b></span></span><b><span
+style='font-family:Arial'>Kit Contents (by Subdirectory):</span><br>
+<br>
+</b><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;/span&gt;&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>/Docs</span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </b><span class=htmlmarkup><b><span
+style='font-family:Arial'>&lt;/span&gt;</span></b></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>Contains HTML documentation for each API.&nbsp; Start with opening the
+1-Wire_SDK_Help.html file, or open the index.html files under each API
+subdirectory.<span class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+<p class=MsoNormal><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>/Examples<span class=htmlmarkup>&lt;/span&gt;</span></span></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>Contains example programs. Underneath this directory are directories
+specific to each API mentioned above.&nbsp; Underneath each API directory, the
+example programs are organized by compiler/language.&nbsp; Each compiler
+directory will have a \bin subdirectory where all the binaries for each
+compiled program for that compiler are located. <span class=htmlmarkup>&lt;/span&gt;</span></span></p>
+
+<p class=MsoNormal><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>/Lib<span class=htmlmarkup>&lt;/span&gt;</span></span></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>Contains the API libraries.&nbsp; These libraries are compiled against
+for each API example program, except for TMEX examples.&nbsp; The TMEX API
+libraries get installed by the 1-Wire Drivers installation package.<span
+class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+<p class=MsoNormal><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>/Source<span class=htmlmarkup>&lt;/span&gt;</span></span></b></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>Contains the source to the APIs.&nbsp; Each API is represented here
+except for the TMEX API, which is closed source. <span class=htmlmarkup>&lt;/span&gt;</span></span></p>
+
+<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+
+<p class=h1><span style='font-size:10.0pt;font-family:Arial'>What’s New in 4.00</span></p>
+
+<p class=MsoNormal><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>&nbsp;<span class=htmlmarkup>&lt;/span&gt;</span></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>OW.NET<span class=htmlmarkup>&lt;/span&gt;</span></span></b><span
+class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;&lt;/span&gt;</span></span><span
+style='font-family:Arial'> </span></p>
+
+<p class=MsoNormal style='margin-left:72.75pt;text-indent:-18.75pt;mso-list:
+l0 level1 lfo1;tab-stops:list 72.75pt'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=htmlmarkup><span style='font-family:
+Arial'>&lt;span style=&quot;font-size: 12pt;&quot;&gt;</span></span><span
+style='font-family:Arial'>The J# source to this API was consolidated with the
+Java source from the latest 1-Wire API. </span></p>
+
+<p class=MsoNormal style='margin-left:72.75pt;text-indent:-18.75pt;mso-list:
+l0 level1 lfo1;tab-stops:list 72.75pt'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:Arial'>Support for the
+DS2430A has been corrected to account for the Tprog time when writing to the
+part.<span class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>Compact.NET<span class=htmlmarkup>&lt;/span&gt;</span></span></b><span
+style='font-family:Arial'> </span></p>
+
+<p class=MsoNormal style='margin-left:72.75pt;text-indent:-18.75pt;mso-list:
+l0 level1 lfo1;tab-stops:list 72.75pt'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span class=htmlmarkup><span style='font-family:
+Arial'>&lt;span style=&quot;font-size: 12pt;&quot;&gt;</span></span><span
+style='font-family:Arial'>Added x64 and a new TMEX P/Invoke layer.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:72.75pt;text-indent:-18.75pt;mso-list:
+l0 level1 lfo1;tab-stops:list 72.75pt'><![if !supportLists]><span
+style='font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol'><span style='mso-list:Ignore'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span style='font-family:Arial'>AnyCPU builds
+are now possible, along with x64 builds using the OneWireLinkLayer.dll.<span
+class=htmlmarkup>&lt;/span&gt;</span></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>TMEX<span class=htmlmarkup>&lt;/span&gt;</span></span></b><span
+style='font-family:Arial'> </span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>-</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>None.</span><span class=htmlmarkup>&lt;span style=&quot;font-size: 12pt;&quot;&gt;</span>&nbsp;&nbsp;</p>
+
+<p class=MsoNormal><span class=htmlmarkup>&lt;span style=&quot;font-size:
+12pt;&quot;&gt;</span>&nbsp;<span class=htmlmarkup>&lt;/span&gt;</span></p>
+
+<p class=h1><span style='font-size:10.0pt;font-family:Arial'>What’s New in 4.00
+Beta 2</span></p>
+
+<p class=MsoNormal><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>&nbsp;<span class=htmlmarkup>&lt;/span&gt;</span></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>OW.NET<span class=htmlmarkup>&lt;/span&gt;</span></span></b><span
+class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;&lt;/span&gt;</span></span><span
+style='font-family:Arial'> </span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>-</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>Formerly this API was available for download separately, but has now
+been consolidated into the 1-Wire SDK for Windows.<span class=htmlmarkup>&lt;/span&gt;</span>
+</span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>-</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>Upgraded to .NET framework 2.0 and J# redistributable 2.0 Second
+Edition.&nbsp; The library and executables are &quot;AnyCPU&quot; builds.&nbsp;
+This means they run as 32-bit processes under 32-bit operating systems, and
+64-bit processes under 64-bit operating systems.<span class=htmlmarkup>&lt;/span&gt;</span>
+</span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>-</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>All VB.NET examples are new. <span class=htmlmarkup>&lt;/span&gt;</span></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>-</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>Support for the DS2431 has been corrected.&nbsp; Support for the
+DS28EC20, DS28EA00, and DS1922E have been added in the OneWireViewer and OW.NET
+API.<span class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>Compact.NET<span class=htmlmarkup>&lt;/span&gt;</span></span></b><span
+style='font-family:Arial'> </span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>-</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>New as a released project.<span class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>TMEX<span class=htmlmarkup>&lt;/span&gt;</span></span></b><span
+style='font-family:Arial'> </span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>-</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>New 64-bit programs have been added, specifically, loopit64.exe,
+swvc64.exe, and tempvc64.exe.<span class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>OWCOM API<span class=htmlmarkup>&lt;/span&gt;</span></span></b><span
+style='font-family:Arial'> </span></p>
+
+<p class=MsoNormal style='margin-left:1.0in;text-indent:-.25in'><span
+style='font-family:Symbol'>-</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>Unfortunately, support for the OWCOM API has been discontinued because
+Microsoft no longer supports the underlying technology. However, an older
+version of this SDK with OWCOM examples will still be made available on-line
+for a limited time here:&nbsp; <a
+href="http://www.maximintegrated.com/products/ibutton/software/windowsdk/index.cfm">http://www.maximintegrated.com/products/ibutton/software/windowsdk/index.cfm</a><a
+name="_Hlt210008281"></a><span class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+<p class=MsoNormal><span class=htmlmarkup>&lt;span style=&quot;font-size:
+12pt;&quot;&gt;</span>&nbsp;<span class=htmlmarkup>&lt;/span&gt;</span></p>
+
+<p class=MsoNormal><span class=htmlmarkup>&lt;span style=&quot;font-size:
+12pt;&quot;&gt;</span>&nbsp;<span class=htmlmarkup>&lt;/span&gt;</span></p>
+
+<p class=h1><span style='font-size:10.0pt;font-family:Arial'>SDK Contents</span></p>
+
+<p class=MsoNormal><span class=htmlmarkup><b><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 14pt;&quot;&gt;</span></b></span><b><span
+style='font-family:Arial'>&nbsp;<span class=htmlmarkup>&lt;/span&gt;</span></span></b></p>
+
+<p class=MsoNormal><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'><a
+href="../Local%20Settings/Temporary%20Internet%20Files/OLK21/Docs/OW.NET/OW.NET_API_SDK_Contents.html">OW.NET
+API SDK CONTENTS</a><span class=htmlmarkup>&lt;/span&gt;</span></span></p>
+
+<p class=MsoNormal><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'><a
+href="../Local%20Settings/Temporary%20Internet%20Files/OLK21/Docs/Compact.NET/Compact.NET_API_SDK_Contents.html">COMPACT.NET
+API SDK CONTENTS</a><br>
+<a
+href="../Local%20Settings/Temporary%20Internet%20Files/OLK21/Docs/TMEX/TMEX_API_SDK_Contents.html">TMEX
+API SDK CONTENTS</a><span class=htmlmarkup>&lt;/span&gt;</span></span></p>
+
+<p class=MsoNormal><span class=htmlmarkup>&lt;span style=&quot;font-size: 12pt;&quot;&gt;</span>&nbsp;<span
+class=htmlmarkup>&lt;/span&gt;</span></p>
+
+<p class=MsoNormal><span class=htmlmarkup>&lt;span style=&quot;font-size:
+12pt;&quot;&gt;</span>&nbsp;<span class=htmlmarkup>&lt;/span&gt;</span></p>
+
+<p class=h2><span style='font-size:10.0pt;font-family:Arial'>For more
+information</span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>1-Wire information:&nbsp; <a href="http://www.maximintegrated.com/1-wire">http://www.maximintegrated.com/1-wire</a><span
+class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span style=&quot;font-size:
+12pt;&quot;&gt;</span></span><span style='font-family:Arial'>iButton
+information:&nbsp; <a href="http://www.ibutton.com/">http://www.ibutton.com</a><span
+class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+<p class=MsoNormal style='margin-left:.5in;text-indent:-.25in'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class=htmlmarkup><span style='font-family:Arial'>&lt;span
+style=&quot;font-size: 12pt;&quot;&gt;</span></span><span style='font-family:
+Arial'>Technical support:&nbsp; <a
+href="http://support.maximintegrated.com/1-wire">http://support.maximintegrated.com/1-wire</a>
+or <a href="http://support.maximintegrated.com/1-wire">http://support.maximintegrated.com/1-wire</a><span
+class=htmlmarkup>&lt;/span&gt;</span> </span></p>
+
+</div>
+
+</body>
+
+</html>

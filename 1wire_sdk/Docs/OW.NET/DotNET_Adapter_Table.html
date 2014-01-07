@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>1-Wire Adapter Table</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h1>OW.NET and Compact.NET API Adapter List&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <br>
+</h1>
+The adapters available for 1-Wire networking are listed below.
+&nbsp;The OW.NET and Compact.NET APIs allows the programmer to specify
+which adapter is being used and which port. &nbsp;The adapters can be
+specified by name (as in a text string). &nbsp;The four physical
+adapter names are: &nbsp;{DS9490}, {DS1410E}, {DS9097U}, and the
+{DS9097E}. &nbsp;Please note that the curly braces "{}" are required.
+&nbsp;Please see the documentation for <a
+ href="html/classcom_1_1dalsemi_1_1onewire_1_1adapter_1_1_d_s_port_adapter.html">DSPortAdapter()</a>
+and/or
+<a
+ href="../../Compact.NET/class_dal_semi_1_1_one_wire_1_1_adapter_1_1_port_adapter.html">PortAdapter()</a>
+for more information.<br>
+<br>
+For OW.NET, the fifth adapter is a network adapter or "NetAdapter".
+&nbsp;It is a
+TCP/IP network-based DSPortAdapter. It allows for the use of an actual
+DSPortAdapter which isn't located on the local machine, but rather is
+connected to another device which is reachable via a TCP/IP network
+connection. &nbsp;Please see <a
+ href="html/classcom_1_1dalsemi_1_1onewire_1_1adapter_1_1_net_adapter.html">NetAdapter</a>
+and <a
+ href="html/classcom_1_1dalsemi_1_1onewire_1_1adapter_1_1_net_adapter.html">NetAdapterHost</a>
+for more
+details.<br>
+<br>
+The adapter also has a port associated with it. &nbsp;For example, the
+{DS9097U} adapter is accessible on the serial port of a PC, but which
+port? &nbsp;In this case, the valid port list could be one of sixteen
+ports, COM0 through COM15. &nbsp;Normally, PC serial ports would most
+likely be on either COM1, COM2, or COM3. &nbsp;Similarly, the other
+adapters have a list of sixteen possible ports from which to choose.
+&nbsp;The {DS9490} has USB0 through
+USB15, the {DS1410E} has LPT0 through LPT15, and the DS9097E has COM0
+through
+COM15 possible ports. &nbsp;Please note that the ports can be
+enumerated
+through, so the programmer does not need to know the actual string name
+attached
+to the port. &nbsp;For the NetAdapter, the syntax for the
+selectPort(String) command is the hostname of the computer which hosts
+the actual DSPortAdapter and the TCP/IP port that the host is listening
+on. If the port number is not specified, a default value of 6161 is
+used. Here are a few examples
+to illustrate the syntax: <br>
+<br>
+my.host.com:6060 <br>
+180.0.2.46:6262 <br>
+my.host.com <br>
+180.0.2.46 <br>
+<br>
+<h2>1-Wire Adapter List<br>
+</h2>
+<br>
+<table border="1" cellpadding="2" cellspacing="2" width="100%">
+  <tbody>
+    <tr>
+      <td align="center" bgcolor="#6666cc" valign="top" width="150"><b><font
+ color="#ffffff">Adapter Part Number<br>
+      </font></b></td>
+      <td align="center" bgcolor="#6666cc" valign="top" width="65"><b><font
+ color="#ffffff">PC Port<br>
+      </font></b></td>
+      <td align="center" bgcolor="#6666cc" valign="top" width="80"><b><font
+ color="#ffffff">OWCOM Adapter<br>
+Name<br>
+      </font></b></td>
+      <td align="center" bgcolor="#6666cc" valign="top"><b><font
+ color="#ffffff">OWCOM<br>
+Adapter<br>
+Ports</font></b><br>
+      </td>
+      <td align="center" bgcolor="#6666cc" valign="top"><b><font
+ color="#ffffff">Features<br>
+      </font></b></td>
+    </tr>
+    <tr>
+      <td valign="top" width="150">
+      <p align="justify"><b><font size="2">&nbsp;DS9490B (iButton
+holder)</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;USB<br>
+      </td>
+      <td align="center" valign="top" width="80"><b>{DS9490}</b><br>
+      </td>
+      <td valign="top"><small>USBX </small><small><br>
+(where X is the port number from 0 up to 15 )</small><small> </small><br>
+      </td>
+      <td valign="top">power delivery, overdrive, single <u>i</u>Button
+holder<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="150">
+      <p align="justify"><b><font size="2">&nbsp;DS9490R (RJ11-Out)<br>
+      </font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;USB<br>
+      </td>
+      <td align="center" valign="top" width="80"><b>{DS9490}</b><br>
+      </td>
+      <td valign="top"><small>USBX</small></td>
+      <td valign="top">power delivery, overdrive, RJ&#8211;11 out for
+DS1402D-DR8 <u>i</u>Button holder<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><b><font size="2">&nbsp;DS9480
+(future product)</font></b></td>
+      <td style="vertical-align: top;">&nbsp;USB<br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;<b>{DS9097U}</b></td>
+      <td style="vertical-align: top;"><small>COMX<br>
+&nbsp;(where X is the port number from 0 up to 15 )</small></td>
+      <td style="vertical-align: top;">USB-to-Serial-Port adapter,
+power delivery, overdrive, RJ&#8211;11 out for DS1402D-DR8 <u>i</u>Button
+touch-and-hold probe, EPROM write, led indicators<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="150">
+      <p align="justify"><b><font size="2">&nbsp;DS1410E (legacy)<br>
+      </font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Parallel<br>
+      </td>
+      <td align="center" valign="top" width="80"><b>{DS1410E}</b> </td>
+      <td valign="top"><small>LPTX<br>
+      </small><small>(where X is the port number from 0 up to 15 )</small><br>
+      </td>
+      <td valign="top">power delivery, overdrive, dual <u>i</u>Button
+holder, DS2401 ID</td>
+    </tr>
+    <tr>
+      <td valign="top" width="150">
+      <p><b><font size="2">&nbsp;DS9097U-009</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="80"><b>{DS9097U}</b> </td>
+      <td valign="top"><small>COMX<br>
+      </small></td>
+      <td valign="top">power delivery, overdrive, RJ&#8211;11 connector,
+DS2502 ID</td>
+    </tr>
+    <tr>
+      <td valign="top" width="150">
+      <p><b><font size="2">&nbsp;DS9097U-S09</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="80"><b>{DS9097U}</b> </td>
+      <td valign="top"><small>COMX&nbsp;</small></td>
+      <td valign="top">power delivery, overdrive, RJ&#8211;11 connector, no ID<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="150">
+      <p><b><font size="2">&nbsp;DS9097U-E25</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="80"><b>{DS9097U}</b> </td>
+      <td valign="top"><small>COMX</small></td>
+      <td valign="top">power delivery, overdrive, RJ&#8211;11 connector,
+EPROM write</td>
+    </tr>
+    <tr>
+      <td valign="top" width="150">
+      <p><b><font size="2">&nbsp;DS1411</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="80"><b>{DS9097U}</b> </td>
+      <td valign="top"><small>COMX</small></td>
+      <td valign="top">power delivery, overdrive,&nbsp;single <u>i</u>Button
+holder<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top" width="150">
+      <p><b><font size="2">&nbsp;DS9097, DS9097E, DS1413 (legacy)<br>
+      </font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="80"><b>{DS9097E}</b> </td>
+      <td valign="top"><small>COMX</small></td>
+      <td valign="top">legacy passive serial port adapters.&nbsp;
+DS9097E has EPROM write capabilities.&nbsp; DS1413 is iButton holder<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+The above adapters are supported by the 1-Wire Drivers on the following
+Microsoft operating systems:&nbsp; <span style="font-weight: bold;">Windows
+XP</span> (service pack 2 and above), <span style="font-weight: bold;">Windows
+Vista</span>, and <span style="font-weight: bold;">Windows 2008</span>.&nbsp;
+They are supported on both 32-bit and 64-bit operating system versions
+of these OSes.&nbsp; <br>
+<br>
+<br>
+<br>
+</body>
+</html>

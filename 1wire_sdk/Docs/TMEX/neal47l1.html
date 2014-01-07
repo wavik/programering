@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMNextAlarm Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmnextalarmexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMNextAlarm Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+short result, cnt = 0;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* attempt to find the first alarming device on 1-Wire network */
+result = TMFirstAlarm(session_handle, state_buffer);
+
+/* loop to count all of the alarming devices on the 1-Wire network */
+while (result == 1)
+{
+   cnt++;
+
+   /* find next alarming device */
+   result = TMNextAlarm(session_handle, state_buffer);
+}
+
+/* close the session with a call to TMEndSession */
+...</CODE></PRE>
+
+</BODY>
+</HTML>

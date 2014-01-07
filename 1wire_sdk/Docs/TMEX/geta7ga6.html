@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMGetAdapterSpec</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmgetadapterspecmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMGetAdapterSpec  <a href="hso5i2f.html">Overview</a>  <a
+ href="hsl3d84.html">Group</a></h1>
+<p>The <b>TMGetAdapterSpec</b> API call, copies information about the current
+port adapter on the 1-Wire network specified by 'session_handle' into the
+provided structure, “Specification” (see below). This is the same structure
+used in <a href="getf1sxa.html"><b>TMGetFamilySpec</b></a>.</p>
+<p>This structure returns information on the feature set of the 1-Wire adapter.
+See the <a href="tmex8lrr.html"><b>TMEX API Overview</b></a> for a list of
+adapters.  The structure returns information on whether or not the adapter
+in question is capable of overdrive speeds, power delivery (strong pullup),
+EPROM programming, flexible speed timing, and performing a 1-Wire break (short
+to ground).</p>
+<pre><b><code>typedef struct {<br>   unsigned short features[32];<br>   char description[255];<br>} Specification;</code></b></pre>
+<p>(This is a packed structure on 1 byte boundaries)</p>
+<p>Currently, only the first five unsigned short integers of the “features”
+array are defined as follows: </p>
+features[0] = overdrive <br>
+features[1] = strong pullup<br>
+features[2] = EPROM programming<br>
+features[3] = flexible speed<br>
+features[4] = 1-Wire break (short to ground)<br>
+features[5-31] are left for future expansion
+<p>description:  An array of characters that contains 3 fields; part number,
+alternative part number and brief functional description. The fields are
+delimited by commas and the string is null terminated.</p>
+<p>Note: Requires a successful call to <a href="setu0apa.html"><b>TMSetup</b></a>
+before the adapter specification can be ascertained.</p>
+<tt><b><br>
+short far pascal TMGetAdapterSpec(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>           // session handle for
+the desired 1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i>         // state buffer provided for
+the 1-Wire network session<br>
+<b>Specification far</b> *<i>AdapterSpec</i>  // pointer to a Specification
+struct<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>AdapterSpec</i></p>
+<p>Specifies a Specification struct that returns information on whether or
+not the adapter in question is capable of overdrive speeds, power delivery
+(strong pullup), EPROM programming, flexible speed timing, and performing
+a 1-Wire break (short to ground).</p>
+<p><b>Return Value</b></p>
+<p>1 =&gt; adapter information is in struct 'AdapterSpec'</p>
+<p>&lt;0 =&gt; a FILE_OPERATIONS error has occurred</p>
+<p><a href="geta7rz9.html"><b>Code Example</b></a></p>
+<br>
+</body>
+</html>

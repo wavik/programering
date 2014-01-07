@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMAutoOverDrive Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmautooverdriveexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMAutoOverDrive Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+short result, cnt = 0, ROM[8];
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* Set into Auto Overdrive */
+result = TMAutoOverDrive(session_handle, state_buffer, 1);
+
+/* check the result */
+if (result == 1)
+{
+    /* The driver will go in and out of Overdrive automatically */
+    ...
+}
+else
+    /* Error, invalid mode */
+    ...
+    
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

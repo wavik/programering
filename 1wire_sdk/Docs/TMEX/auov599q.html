@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+        
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMAutoOverDrive</title>
+</head>
+  <body bgcolor="#ffffff" text="#000000">
+     
+<h1><a name="tmautooverdrivemain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+  TMAutoOverDrive  <a href="netw70vr.html">Overview</a>  <a
+ href="netw4ipg.html">Group</a></h1>
+    
+<p>The <b>TMAutoOverDrive</b> API call sets TMEX to automatically switch
+to Overdrive communication speed if the 1-Wire device, 1-Wire network and
+driver support it.  This is done by doing all serial ROM searches at normal
+1-Wire speeds and switching to Overdrive speeds when the device is accessed
+with TMAccess.  Automatic Overdrive is selected if the ‘Mode’ is 1 and not
+selected if ‘Mode’ is 0.  Under the following conditions the TMEX driver
+will switch to Overdrive:</p>
+    
+<ol>
+  	<li>TMAutoOverDrive has be called with Mode = 1<br>
+     <br>
+   </li>
+   	<li>The serial ROM number family type supports Overdrive<br>
+     <br>
+   </li>
+   	<li><a href="acce3s4u.html"><b>TMAccess</b></a> is called.   Note that
+TMAccess is automatically called in high level memory functions.<br>
+     <br>
+   </li>
+   	<li>Successful communication to the part is achieved at Overdrive speeds</li>
+   
+</ol>
+    
+<p>The following conditions will switch the TMEX driver out of Overdrive
+if communication is currently in Overdrive due to TMAutoOverDrive:</p>
+    
+<ol>
+  	<li>Any search NETWORK API call such as <a href="firs2f5a.html"><b>TMFirst</b></a> 
+or <a href="next25ym.html"><b>TMNext</b></a>.  A change to the serial ROM
+number using <a href="romm1rxq.html"><b>TMRom</b></a>. <br>
+     <br>
+   </li>
+   	<li>A failure of <a href="acce3s4u.html"><b>TMAccess</b></a> at Overdrive 
+speeds<br>
+     <br>
+   </li>
+   	<li>End to the Session on that 1-Wire network.</li>
+   
+</ol>
+    
+<p><b><br>
+ </b></p>
+ <tt><b>short far pascal TMAutoOverDrive(</b><br>
+ <b>long</b> <i>session_handle</i><b>, </b>        // session handle for
+the desired 1-Wire network  <br>
+ <b>void far *</b><i>state_buffer,</i>      // state buffer provided for
+the 1-Wire network session  <br>
+ <b>short</b> <i>Mode</i>                                     // Auto Overdrive 
+mode selection  <br>
+ <b>);</b></tt>     
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX 
+Type Descriptions</b></a>.</p>
+    
+<p><b>Parameters</b></p>
+    
+<p><i>session_handle</i></p>
+    
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the 
+desired 1-Wire network port.  This parameter is required by most TMEX API 
+functions.</p>
+    
+<p><i>state_buffer</i></p>
+    
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state 
+information for the 1-Wire networks. This parameter is required by most TMEX 
+API functions.</p>
+    
+<p><i>Mode</i></p>
+    
+<p>Specifies Auto-Overdrive mode that is to be selected.  A Mode of 1 will 
+indicate that Overdrive speed should be attempted whenever possible.  A Mode 
+of 0 will indicate that only normal communication speed should be used.</p>
+    
+<p><b>Return Value</b></p>
+    
+<p>1   =&gt; Auto-overdrive mode set</p>
+    
+<p>&lt;0 =&gt; <a href="netw14fn.html"><b>TMEX Network Error Return Code</b></a></p>
+    
+<p><a href="auov7fmt.html"><b>Code Example</b></a></p>
+    
+<p><b>See Also</b></p>
+    
+<p><a href="ovac42i6.html"><b>TMOverAccess</b></a>, <a
+ href="onwi9zfy.html"><b>TMOneWireCom</b></a></p>
+   <br>
+ <br>
+ <br>
+</body>
+</html>

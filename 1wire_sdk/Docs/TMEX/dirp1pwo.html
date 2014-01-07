@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>DirectoryPath TMEX Type</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="directorypath"></a><img src="./images/ibuttons.gif" alt=""
+ border="0">
+ DirectoryPath TMEX Type  <a href="tmex4do3.html">Group</a></h1>
+<pre><code><b>typedef struct  <br>{<br>    unsigned char NumEntries;    /* number of entries in structure */<br>    char Ref;                    /* directory reference character */<br>    char Entries[10][4];         /* entry items */<br>} DirectoryPath;<br></b><br>(This is a packed structure on 1 byte boundaries)<br></code></pre>
+<p>The DirectoryPath structure is modeled after the way in which working
+directory paths are written and read using the 'CD' DOS command. For example
+when typing 'CD' in a sub-directory in DOS you may get this:</p>
+<tt>           CD&lt;ENTER&gt; <br>
+           C:\WORK\C\NEW</tt>
+<p>The string that was given by 'CD' has a depth of 3 sub-directories referenced
+from the root.  If this information was to be returned in the DirectoryPath
+structure then:</p>
+<tt>           NumEntries = 3            (there are 3 entries, one for each
+sub-directory) <br>
+           Ref = \                   (reference character is from the root
+\ ) <br>
+           Entries[0] = "WORK"       (first sub-directory from root) <br>
+           Entries[1] = "C   "         (second sub-directory from root) <br>
+           Entries[2] = "NEW "       (third sub-directory from root)</tt>
+<p>This analogy continues to work for setting the working directory with
+the DOS 'CD' command. For example:</p>
+<tt>           CD \MAIL\WK3\TUES\MORN &lt;ENTER&gt;</tt>
+<p>This command would set the current directory to '\MAIL\WK3\TUES\MORN'
+as referenced from the root.  To do this with the DirectoryPath structure,
+first set the 'Operation' flag to 0 to set the current directory and fill
+out the value as:</p>
+<tt>           NumEntries = 4<br>
+           Ref = \<br>
+           Entries[0] = "MAIL"<br>
+           Entries[1] = "WK3 "<br>
+           Entries[2] = "TUES"<br>
+           Entries[3] = "MORN"</tt>
+<p>If the current directory is '\MAIL\WK3\TUES\MORN' and the desired directory
+is '\MAIL\WK3\WED' there is a short cut using the 'CD':</p>
+<tt>           CD .\..\WED &lt;ENTER&gt;</tt>
+<p>This syntax of this command says that from the current directory '.' go
+to the previous directory '..' and then go to the sub-directory 'WED'.  This
+short cut can also be done with the DirectoryPath structure:</p>
+<tt>           NumEntries = 2       (there are 2 entries)<br>
+           Ref = .              (reference character is from the current
+directory)<br>
+           Entries[0] = "..  "   (special case entry that goes to previous
+directory)<br>
+           Entries[1] = "WED "  (sub-directory entry from current)</tt>
+<p>Note that the 'Entries' are left justified and padded with spaces to 4
+characters.  The sub-directory depth is limited to 10 deep.  If the 'NumEntries'
+is set to or is read to be 0 then the current directory is at the ROOT. 
+Here are the allowable values for all of the components of the DirectoryPath
+structure:</p>
+<tt>           NumEntries: 0-10<br>
+<br>
+           Ref:        \  (reference from ROOT directory  (set or read))<br>
+                       .  (reference from current directory (set only)) <br>
+<br>
+           Entries:    (left justified padded with spaces with 4 characters)<br>
+           <br>
+              (special case Entries)<br>
+                 ".   "   (reference entry to the current directory)<br>
+                 "..  "  (back reference entry to the previous directory)
+   <br>
+<br>
+              (valid characters)<br>
+                 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                 0123456789  <br>
+                 !#$%&amp;'-@^_`{}~</tt><br>
+<br>
+</body>
+</html>

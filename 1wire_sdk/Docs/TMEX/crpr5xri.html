@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMCreateProgramJob</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmcreateprogramjobmain"></a><img
+ src="./images/ibuttons.gif" alt="" border="0">
+ TMCreateProgramJob  <a href="fiop6apj.html">Overview</a>  <a
+ href="fiop1g38.html">Group</a></h1>
+<p>The <b>TMCreateProgramJob</b> API call starts a program job with the current
+EPROM device.  This function must be called immediately before any TMEX function
+that writes to an EPROM device.  The writes in the TMEX function are not actually
+done, they are just logged in the program job data space.   After the TMEX
+function has been completed successfully, then another specialty function
+<a href="dopr3x66.html"><b>TMDoProgramJob</b></a> must be called to carry
+out the EPROM programming.   EPROMs are treated differently by TMEX because
+any write to an EPROM is destructive, meaning it uses up device memory. 
+In NV-RAM devices, if an operation is unsuccessful then the function could
+then be just called again with no ill effects.  If EPROMs were regarded in
+this way then some or all of the memory space could be lost.  The second specialty
+API call ,TMDoProgramJob, is called again and again by the application program
+until all of the jobs are completed.  This puts the onus on the application
+programmer to make sure that the EPROM device does not go away in mid write
+and waste memory space.  For instance if  after doing a TMCreateProgramJob
+and TMWriteFile successfully, the TMDoProgramJob comes back saying that the
+device has left the 1-Wire network then the application should put up some
+message saying that the device needs to come back and call TMDoProgramJob
+again.  The data space needed to write EPROMs is located at the end of the
+status buffer provided in the functions.   There can be only one program job
+at a time.  If after TMCreateProgramJob is called, the internal ROM buffer
+is changed then the program job is invalidated. See the <a
+ href="tmde7ied.html"><b>TMEX APPLICATION DESIGN GUIDE</b></a> for more discussion
+of TMCreateProgramJob.  </p>
+<tt><b><br>
+short far pascal TMCreateProgramJob(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>          // session handle for
+the desired 1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i>     // state buffer provided for the
+1-Wire network session<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><b>Return Value</b></p>
+<p>1  =&gt; Program Job is ready</p>
+<p>&lt;0 =&gt; <a href="fiop6blf.html"><b>TMEX File Operations Error Return
+Code</b></a></p>
+<p><a href="crpr61gl.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="dopr3x66.html"><b>TMDoProgramJob</b></a></p>
+<br>
+<br>
+</body>
+</html>

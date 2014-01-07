@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Universal Data Packet</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="universaldatapacket"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> Universal Data Packet <A HREF="tmexapi.html">Overview</A></H1>
+
+<P>The Universal Data Packet (UDP) is a structure to store data on a 1-Wire device.  It contains one to two length bytes, data and two inverted CRC16 bytes.  The structure is:</P>
+
+<PRE><CODE>+---------------------------------+
+|  length   |   data   |   CRC16  |
+|           |          |  binary  |
+|  0...508  |  0...508 |  LO/HI   |
+| 1-2 bytes |   bytes  |  2 bytes |
++---------------------------------+</CODE></PRE>
+
+<P>The UDPs always start on page boundaries but can end anywhere.  The length is the number of data bytes not including the length byte(s) and the CRC16 bytes.  There is one length byte if the number of data bytes is less then 255.  If there are 255 or more data bytes then the first length byte is 255 and the next length byte is 0 to 253.  The first and second length bytes added together provide the number of data bytes.  The CRC16 is first initialized to the starting page number.  This provides a check to verify the page that was intended is being read.  The CRC16 is then calculated over the length and data bytes.  The CRC16 is then inverted and stored low byte first followed by the high byte.  A detailed description of the CRC16 can be found in Application Note 27 “Understanding and Using Cyclic Redundancy Checks with Dallas Semiconductor iButton<SUP>TM</SUP> Products”.  The Application Note can be found here:  <U>http://pdfserv.maxim-ic.com/arpdf/AppNotes/app27.pdf</U>.</P>
+
+<P>The <A HREF="exfi97c5.html"><B>1-Wire File Structure</B></A> implemented in TMEX uses a subset of the Universal Data Packet.  It limits the length so that the whole structure will fit in one page.  For the current devices with 32 bytes per page the length is limited to 29 data bytes.  The last data byte is used as a continuation pointer leaving 28 true data bytes.</P>
+
+<P>The Default Data Structure (DDS) is an old standard that specifies only one Universal Data Packet starting at page zero.  This standard does not provide a directory or file type operations but it has speed advantages for simple applications.</P>
+
+<P><B>See Also</B></P>
+
+<P><A HREF="exfi97c5.html"><B>1-Wire File Structure</B></A>, <A HREF="crc4pim.html"><B>TMCRC</B></A></P>
+
+</BODY>
+</HTML>

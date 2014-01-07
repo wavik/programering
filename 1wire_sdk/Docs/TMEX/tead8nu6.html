@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMTerminateAddFile</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmterminateaddfilemain"></a><img
+ src="./images/ibuttons.gif" alt="" border="0">
+ TMTerminateAddFile  <a href="fiop6apj.html">Overview</a>  <a
+ href="fiop1g38.html">Group</a></h1>
+<p>The <b>TMTerminateAddFile</b> API call writes the length and CRC bytes
+into an 'add' type file to terminate it.  Doing this prevents further change
+to the file and it makes the file compatible with the other 1-Wire file structure
+files.  The filename to Terminate is specified in 'fentry' which is in the
+structure <a href="file30mx.html"><b>FileEntry</b></a>.  Only the 'name' and
+'extension' portions of FileEntry need to be set before calling TMTerminateAddFile.
+The file must be in the current directory on the current device on the 1-Wire
+network specified by the session handle 'session_handle'.</p>
+<tt><b><br>
+short far pascal TMTerminateAddFile(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>    // session handle for the desired
+1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i>  // state buffer provided for the 1-Wire
+network session<br>
+<b>FileEntry far *</b><i>fentry</i>    // pointer to a structure with the
+file information<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>fentry</i></p>
+<p>Specifies a pointer to a memory location that contains a <a
+ href="file30mx.html"><b>FileEntry</b></a> structure.  This structure must
+have the name and extension portions set before calling this API.  </p>
+<p><b>Return Value</b></p>
+<p>1  =&gt; 'add' file terminated successfully</p>
+<p>&lt;0 =&gt; <a href="fiop6blf.html"><b>1-Wire File Operations Error Return
+Code</b></a></p>
+<p><a href="tead9nj9.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="wrad82i6.html"><b>TMWriteAddFile</b></a></p>
+<br>
+</body>
+</html>

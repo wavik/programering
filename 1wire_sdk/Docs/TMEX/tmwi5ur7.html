@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMEX Windows Considerations</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmexwindowsconsiderations"></a><img
+ src="./images/ibuttons.gif" alt="" border="0"> TMEX Windows
+Considerations <a href="tmex8lrr.html">Overview</a></h1>
+<p>The TMEX DLL drivers must be in a directory that can be found by the
+Microsoft
+Windows application. The 1-Wire Drivers installation program will
+automatically
+copy the drivers into the Windows\System sub-directory. It is
+recommended
+that the end user install the 1-Wire drivers and then install the
+target
+application. The DLL drivers are designed such that there is a main
+driver
+and then a series of <a href="hso5i2f.html"><b>Hardware Specific</b></a>
+sub-drivers. For Windows the main driver is IBFS32.DLL for 32-bit
+Microsoft operating systems and IBFS64.DLL for 64-bit Microsoft
+operating systems. When requesting a 1-Wire network
+port, the port number and type are specified in the function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a>. The main
+driver
+then calls one of the Hardware_Specific sub-drivers. Here is a list of
+the
+default port type drivers.<br>
+</p>
+<p><span style="font-weight: bold;">32-bit Drivers:</span><br>
+</p>
+<p style="font-weight: bold;">Type#&nbsp;&nbsp;&nbsp; Port &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Driver Name &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Description</p>
+<p>1&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+COM&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;IB97E32.DLL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;uses the DS9097E (legacy serial port
+adapters) on COM ports</p>
+<p>2&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+LPT&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; IB10E32.DLL&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; uses the DS1410E
+adapter on LPT ports</p>
+<p>5&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+COM&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;IB97U32.DLL&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; uses the DS9097U or DS9480 (future USB
+device)
+adapter on COM ports</p>
+<p>6&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+USB&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; IBUSB32.DLL&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;uses the DS9490R or DS9490B
+adapter on USB ports&nbsp; (<span style="color: rgb(255, 0, 0);">please
+note drivers prior to version 4.01 of the 1-Wire Drivers used
+IB90USB.DLL</span>).<br>
+</p>
+<p><span style="font-weight: bold;"><br>
+64-bit Drivers:</span><br>
+</p>
+<p style="font-weight: bold;">Type#&nbsp;&nbsp;&nbsp; Port &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Driver Name &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Description</p>
+<p>1&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+COM&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;IB97E64.DLL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;uses the DS9097E (legacy serial port
+adapters) on COM ports</p>
+<p>2&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+LPT&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; IB10E64.DLL&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; uses the DS1410E
+adapter on LPT ports</p>
+<p>5&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+COM&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;IB97U64.DLL&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; uses the DS9097U or DS9480 (future USB
+device)
+adapter on COM ports</p>
+6&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+USB&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; IBUSB64.DLL&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;uses the DS9490R or DS9490B
+adapter on USB ports&nbsp;
+<p>These defaults can be changed or new drivers can be registered by
+means
+of the system registry. The defaults are set automatically to the USB
+port when the 1-Wire Drivers setup
+program is run. The following is a list of registry keys added during
+installation.</p>
+<pre><code>&nbsp;</code></pre>
+<p style="font-weight: bold;">32-bit Platforms</p>
+<pre>HKEY_CURRENT_USER\SOFTWARE\Maxim Integrated Products\1-Wire Drivers]<br>"MainDriver"="IBFS32.DLL"<br>"TYPE1"="IB97E32.DLL"<br>"TYPE2"="IB10E32.DLL"<br>"TYPE5"="IB97U32.DLL"<br>"TYPE6"="IBUSB32.DLL"<br>"DefaultPortNum"="1"<br>"DefaultPortType"="6"<br><br><span
+ style="font-weight: bold;">64-bit Platforms</span><br>[HKEY_CURRENT_USER\SOFTWARE\Maxim Integrated Products\1-Wire Drivers\x64]<br>"MainDriver"="IBFS64.DLL"<br>"TYPE1"="IB97E64.DLL"<br>"TYPE2"="IB10E64.DLL"<br>"TYPE5"="IB97U64.DLL"<br>"TYPE6"="IBUSB64.DLL"<br>"DefaultPortNum"="1"<br>"DefaultPortType"="6"<br><br><code>&nbsp;</code></pre>
+<p style="font-weight: bold;">DS1410E Device Driver Service Settings:</p>
+<pre><code>[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\DS1410D]<br>"ErrorControl"=dword:00000001<br>"Group"="Extended Base"<br>"Start"=dword:00000001<br>"Tag"=dword:00000002<br>"Type"=dword:00000001<br>&nbsp;</code></pre>
+<pre><code><span style="font-weight: bold;">All Platforms:</span><br><br></code>Appropriate registry keys set through Windows plug-and-play installation of WinUSB through the *.inf file (either DS2490WinUSB_x86.inf or the DS2490WinUSB_amd64.inf).<br><code><br></code><br><span
+ style="font-weight: bold;">WinUSB Installation Files:</span><br>WDFCoInstaller01007.dll  (32-bit edition)<br>WinUSBCoInstaller.dll  (32-bit edition)<br>DS2490WinUSB_x86.cat<br>DS2490WinUSB_x86.inf<br>or<br>WDFCoInstaller01007.dll  (64-bit edition)<br>WinUSBCoInstaller.dll    (64-bit edition)<br>DS2490WinUSB_amd64.cat<br>DS2490WinUSB_amd64.inf<br><br><span
+ style="font-weight: bold;">TMEX Library Interface Files:</span><br>IBFS32.LIB  (found in the example programs folders that require it)<br>IBFS64.LIB  (found in the example programs folders that require it)<br><code></code></pre>
+<p>During the 1-Wire drivers installation the default port number and
+type
+are also set. This can be changed with the "Default 1-Wire Net.exe"
+program installed in the application directory in "Program
+Files".&nbsp; It is recommended that before starting an example TMEX
+application for
+the first time, set the default port. Should the user then change
+the port, this information should remain with the setting information
+with
+the specific application. </p>
+<p>An additional TMEX Hardware_Specific driver can be added by adding
+another
+string value to the key, for example: TYPE3 MYDRIVER.DLL This can be
+done
+with the registry editor that comes with Windows.</p>
+<p>The TMEX DLLs have an extra API call 'Get_Version' to get the
+version
+number of the main TMEX DLL. There is also an API call to get the
+version
+of each of the registered Hardware_Specific types called <a
+ href="gety5t0u.html"><b>TMGetTypeVersion</b></a>. It is recommended
+that
+these API calls be used and their information provided somewhere in the
+application,
+perhaps in an 'about' box.</p>
+<p>Since Microsoft Windows is multi-tasking, each application must
+provide
+a state buffer to the TMEX driver in each API call. To have the state
+preserved
+from session to session make this buffer global and do not alter its
+contents. The size of this buffer must be at least 5K (5120) bytes if
+no EPROM write
+operation is needed in the application or 15K (15360) bytes if EPROM
+write
+operations will be done. The size of this state buffer may increase
+with
+later versions of TMEX. </p>
+<p>Calling implementations to TMEX from several Windows programming
+languages:</p>
+<p>iBTMEXCW.H&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+ href="scwi071h.html"><b>C</b></a></p>
+<p>iBTMEXPW.PAS&nbsp;&nbsp;&nbsp; <a href="spwi3z8l.html"><b>Delphi</b></a></p>
+<p>iBTMEXBD.BAS &nbsp;&nbsp; <a href="svbw4xph.html"><b>Visual Basic</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="tmex3vlg.html"><b>TMEX API List</b></a></p>
+<br>
+</body>
+</html>

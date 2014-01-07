@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMReadPacket</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmreadpacketmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMReadPacket  <a href="tran5ozb.html">Overview</a>  <a
+ href="tran7dx0.html">Group</a></h1>
+<p>The <b>TMReadPacket</b> API call reads a Universal Data Packet (UDP) starting
+on 'start_page' in a 1-Wire device.  The data is placed into 'read_buffer'
+up to a maximum of 'max_read' bytes. Returns a read count length greater
+than or equal to 0 for success or one of the TRANSPORT error values for a
+failure.  See the description of the <a href="udpt47ck.html"><b>Universal
+Data Packet</b></a>.</p>
+<tt><b><br>
+short far pascal TMReadPacket(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>            // session handle for
+the desired 1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i>          // state buffer provided for
+the 1-Wire network session<br>
+<b>short</b> <i>start_page,</i>                // page number to start read
+the packet<br>
+<b>unsigned char far *</b><i>read_buffer,</i>  // buffer to hold the read
+data<br>
+<b>short</b> <i>max_read</i>                   // the maximum number of bytes
+that can be read<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>start_page</i></p>
+<p>Specifies the page that the packet begins at.  A CRC-16 verified packet
+always starts at the beginning of a page boundary.  The valid range of a
+start page depends on the device type.  Current 1-Wire devices range from
+0 to 256 pages. </p>
+<p><i>read_buffer</i></p>
+<p>Specifies a pointer to a memory location that will contain the data that
+is read.  The size of the buffer must be at least ‘<i>max_read</i>’ bytes
+long. </p>
+<p><i>Max_read</i></p>
+<p>Specifies the maximum number of bytes that can be placed in the ‘<i>read_buffer</i>’.
+ An TRANSPORT error code will be returned if the packet on the 1-Wire device
+is larger than the provided buffer. </p>
+<p><b>Return Value</b></p>
+<p>&gt;=0  =&gt; length of valid data read</p>
+<p>&lt;0  =&gt; <a href="tran4z77.html"><b>TMEX Transport Error Return Code</b></a></p>
+<p><a href="repa0i91.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="wrpa3x66.html"><b>TMWritePacket</b></a></p>
+<br>
+</body>
+</html>

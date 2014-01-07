@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMEX API Overview</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmexapioverview"></a><img src="./images/ibuttons.gif"
+ alt="" border="0"> <b>TMEX API Overview <a href="tmexapi.html">Overview</a></b>
+<b> <a href="tmex3vlg.html">Group</a></b></h1>
+<p>The TMEX API is divided into five layers. </p>
+<blockquote><b><a href="sess1ut3.html">Session</a></b><br>
+  <b><a href="fiop6apj.html">File Operations</a></b><br>
+  <b><a href="tran5ozb.html">Transport</a></b><br>
+  <b><a href="netw70vr.html">Network</a></b><br>
+  <b><a href="hso5i2f.html">Hardware Specific</a></b></blockquote>
+<p>The Hardware_Specific layer contains the only API calls that are
+hardware
+specific. The Session layer allows 1-Wire Network arbitration in a
+multi-tasking
+environment. The Network layer refers to API functions that read and
+verify
+the unique serial registration numbers of the <u>i</u>Buttons and
+other 1-Wire
+devices. The Transport layer has data functions such as reading and
+writing
+Universal Data Packets. The File_Operations layer contains API calls to
+read and write files and do directory operations. </p>
+<p>The TMEX API provides the function calls to communicate to iButtons
+and
+other 1-Wire devices over a 1-Wire Network. The 1-Wire network must be
+connected
+to a PC through a supported adapter. For a list of adapters available,
+please
+see the table below. Currently, adapters are available for USB,
+parallel,
+and serial ports. One end of the adapter connects to the PC, while the
+other
+end connects to the 1-Wire network.<br>
+<br>
+</p>
+<pre></pre>
+<h2>SUPPORTED TMEX ADAPTERS</h2>
+<table style="width: 883px; height: 360px;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td align="center" bgcolor="#6666cc" valign="top" width="150"><b><font
+ color="#ffffff">Adapter<br>
+      </font></b></td>
+      <td align="center" bgcolor="#6666cc" valign="top" width="65"><b><font
+ color="#ffffff">Port<br>
+      </font></b></td>
+      <td align="center" bgcolor="#6666cc" valign="top" width="55"><b><font
+ color="#ffffff">Port Type<br>
+      </font></b></td>
+      <td align="center" bgcolor="#6666cc" valign="top"><b><font
+ color="#ffffff">Features<br>
+      </font></b></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" valign="top" width="150">
+      <p><b><font size="2">DS9490B (iButton
+holder)</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;USB<br>
+      </td>
+      <td align="center" valign="top" width="55"><b>6</b><br>
+      </td>
+      <td valign="top">power delivery, overdrive, single <u>i</u>Button
+holder<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" valign="top" width="150">
+      <p><b><font size="2">DS9490R (RJ11-Out)</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;USB<br>
+      </td>
+      <td align="center" valign="top" width="55"><b>6</b><br>
+      </td>
+      <td valign="top">power delivery, overdrive, RJ–11<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" valign="top" width="150">
+      <p><b><font size="2">DS1410E (legacy)<br>
+      </font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Parallel<br>
+      </td>
+      <td align="center" valign="top" width="55"><b>2</b><br>
+      </td>
+      <td valign="top">power delivery, overdrive, dual <u>i</u>Button
+holder,
+DS2401 ID</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" valign="top" width="150"><b><font
+ size="2">DS9480 (future product)<br>
+      </font></b></td>
+      <td valign="top" width="65">&nbsp;Serial (via USB)<br>
+      </td>
+      <td align="center" valign="top" width="55"><b>5</b></td>
+      <td valign="top">USB-to-Serial-Port adapter,
+power delivery, overdrive, EPROM write, led indicators</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" valign="top" width="150">
+      <p><b><font size="2">DS9097U-009</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="55"><b>5</b><br>
+      </td>
+      <td valign="top">power delivery, overdrive, RJ–11 connector,
+DS2502
+ID</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" valign="top" width="150">
+      <p><b><font size="2">DS9097U-S09</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="55"><b>5</b><br>
+      </td>
+      <td valign="top">power delivery, overdrive, RJ–11 connector, no ID<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" valign="top" width="150">
+      <p><b><font size="2">DS9097U-E25</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="55"><b>5</b><br>
+      </td>
+      <td valign="top">power delivery, overdrive, RJ–11 connector,
+EPROM write</td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" valign="top" width="150">
+      <p><b><font size="2">DS1411</font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="55"><b>5</b><br>
+      </td>
+      <td valign="top">power delivery, overdrive,&nbsp;single <u>i</u>Button
+holder<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" valign="top" width="150">
+      <p><b><font size="2">DS9097, DS9097E, DS1413 (legacy adapters)<br>
+      </font></b></p>
+      </td>
+      <td valign="top" width="65">&nbsp;Serial<br>
+      </td>
+      <td align="center" valign="top" width="55"><b>1</b><br>
+      </td>
+      <td valign="top">legacy passive serial port adapters.&nbsp;
+DS9097E has EPROM write capabilities.&nbsp; DS1413 is iButton holder</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<center></center>
+<p></p>
+<p>
+The above adapters are supported by the 1-Wire Drivers on the following
+Microsoft operating systems:&nbsp; <span style="font-weight: bold;">Windows
+XP</span> (service pack 2 and above), <span style="font-weight: bold;">Windows
+Vista</span>, and <span style="font-weight: bold;">Windows 2008
+(Server)</span>.&nbsp;
+They are supported on both 32-bit and 64-bit operating system versions
+of these OSes.&nbsp; <br>
+</p>
+<p>The DS9490R, DS9490B, and DS9480 (future product) are USB Port
+adapters for the 1-Wire protocol. They can be plugged into a USB port
+and
+provide the connection between a 1-Wire network and a computer. To
+access
+a 1-Wire network through the USB Port, the TMEX API programmer provides
+the
+appropriate number representing the respective TMEX port type to the
+TMExtendedStartSession
+function call. In this case, since the DS9490X USB port adapters are
+Type
+6, the number provided would be 6.&nbsp; The DS9480 is a USB-TO-SERIAL
+adapter which looks like a serial port adapter.&nbsp; So, in this case,
+the programmer would provide Type 5 as the number provided.<br>
+</p>
+<p>The USB 1-Wire adapters have several features. They support
+“power delivery” (strong pull-up), which provides power to special
+purpose
+1-Wire devices such as the temperature <u>i</u>Button. They are also
+capable
+of communicating at “overdrive” speeds, which is a faster communication
+rate
+supported by some 1-Wire devices. The DS9480 (a future product) may
+incorporate the ability to write to 1-Wire devices containing EPROM
+memory,
+such as the DS1982 <u>i</u>Button. Writing to EPROM means that the
+adapter
+in question is capable of producing a 480-microsecond, 12 volt pulse on
+the
+1-Wire Net.<font color="#ff0000">WARNING!! Caution must be maintained
+when
+using the EPROM write ability, since any non-EPROM 1-Wire devices on
+the
+1-Wire Network during a 12-volt program pulse may be damaged.</font>
+Finally,
+the DS9480 (a future product) contains an LED indicator that can be
+used to indicate that communication
+to the 1-Wire device is in progress.</p>
+<p>The DS1410E is a Parallel Port adapter that functions on the
+LPT port (Type 2) and do not support programming the EPROM-based 1-Wire
+products.
+The DS1410E adapter supports overdrive communication and also supports
+power
+delivery.</p>
+<p>The DS9097U-009, DS9097U-S09, and DS1413 are Serial Port adapters.
+They work on the COM port (Type 5) and support overdrive and power
+delivery.&nbsp; The DS9097,
+DS1413 and DS9097E are legacy adapters and work on the COM port (Type
+1) and do not support
+overdrive communication or power delivery. <br>
+</p>
+<p>The basic design of the TMEX API is patterned after the
+International
+Standards Organization (ISO) reference model of Open System
+Interconnection
+(OSI), which specifies a layered protocol having up to seven layers,
+denoted
+as Physical, Link, Network, Transport, Session, Presentation, and
+Application.
+According to this model, the electrical and timing requirements of
+1-Wire
+devices and the characteristics of the 1-Wire Network comprise the
+Physical
+layer. The software API calls <a href="tore3fou.html"><b>TMTouchReset</b></a>,
+<a href="toby91ri.html"><b>TMTouchByte</b></a>, and <a
+ href="tobi767i.html"><b>TMTouchBit</b></a> correspond in this model
+with
+the Link layer, which also includes hardware initialization and fault
+detection
+facilities. The parameters of these API calls vary on different
+operations
+and on different devices. The Link layer is referred to as the
+Hardware_Specific
+layer above. The multi-drop functions <a href="firs2f5a.html"><b>TMFirst</b></a>,
+<a href="next25ym.html"><b>TMNext</b></a>, <a href="acce3s4u.html"><b>TMAccess</b></a>,
+etc., that support selection of individual network nodes correspond to
+the
+Network layer. The software that transfers NV RAM data to and from
+individual
+network nodes corresponds to the Transport layer. In multi-user or
+multi-tasking
+environments such as Microsoft Windows, a Session layer effectively
+manages
+sharing of the 1-Wire Network among multiple instances (simultaneous
+invocations)
+of 1-Wire application programs. The Presentation layer provides a file
+structure
+that allows data on 1-Wire devices to be organized into independent
+files
+and randomly accessed. The Application layer represents the final
+application
+program designed by the software developer.</p>
+<p><b>See Also</b></p>
+<p><a href="tmex3vlg.html"><b>TMEX API List</b></a></p>
+<br>
+<br>
+<br>
+</body>
+</html>

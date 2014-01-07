@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMFamilySearchSetup</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmfamilysearchsetupmain"></a><img
+ src="./images/ibuttons.gif" alt="" border="0">
+ TMFamilySearchSetup  <a href="netw70vr.html">Overview</a>  <a
+ href="netw4ipg.html">roup</a></h1>
+<p>The <b>TMFamilySearchSetup</b> API call sets the ROM buffer and search
+status to attempt to find a certain 1-Wire device family type.   This does
+not effect the 1-Wire network in any way, it just sets the search algorithm
+up to find a certain 1-Wire device family type the next time a search function
+is called (i.e. TMNext or TMNextAlarm).  This function will be successful
+if the port requested to do this on is valid.  This function sets up the
+search to find a certain type on the next call only if there is one available.
+ If there is not one available, TMNext or TMNextAlarm may still find a device
+of a different type.  The normal sequence to search for a particular family
+type is as follows:</p>
+<p>1) Call TMFamilySearchSetup with the desired family type</p>
+<p>2) Call <a href="next25ym.html"><b>TMNext</b></a> or <a
+ href="neal4mjy.html"><b>TMNextAlarm</b></a></p>
+<p>3) if step 2 is successful then check the family code using <a
+ href="romm1rxq.html"><b>TMRom</b></a> to see if the correct type was found.</p>
+<p>4) if step 2 is not successful or the incorrect family code was found
+in step 3 then no devices of that type were on the 1-Wire network at the
+time of the search.</p>
+<tt><b><br>
+short far pascal TMFamilySearchSetup(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>    // session handle for the desired
+1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i>  // state buffer provided for the 1-Wire
+network session<br>
+<b>short</b> <i>family_type</i>        // 1-Wire device family type to search
+for<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>family_type</i></p>
+<p>Specifies the family type to search for on the next search function call.
+ Each 1-Wire device type has an associated family type number.</p>
+<p><b>Return Value</b></p>
+<p>1   =&gt; search setup to find family_type</p>
+<p>&lt;0 =&gt; <a href="netw14fn.html"><b>TMEX Network Error Return Code</b></a></p>
+<p><a href="fase2e3p.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="next25ym.html"><b>TMNext</b></a>, <a href="skfa5r1q.html"><b>TMSkipFamily</b></a>,
+<a href="romm1rxq.html"><b>TMRom</b></a>, <a href="neal4mjy.html"><b>TMNextAlarm</b></a></p>
+<br>
+</body>
+</html>

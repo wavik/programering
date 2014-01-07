@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <font>
+  <title>OW.NET Primer</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  </font>
+</head>
+<body>
+<h1>OW.NET API Primer &nbsp; &nbsp;<a href="../1-Wire_SDK_Help.html">1-Wire
+SDK Help</a></h1>
+<blockquote>Communication with the 1-Wire network is through an
+&#8216;adapter&#8217; (com.dalsemi.onewire.adapter.DSPortAdapter class).
+&nbsp;Physically speaking, an adapter is a hardware device through
+which the 1-Wire master communicates to the network of 1-Wire devices
+(1-Wire network). &nbsp;Many adapters exist for the different kinds of
+ports on
+a PC such as the serial, parallel, or USB ports. &nbsp;Please see the <a
+ href="./DotNET_Adapter_Table.html">OW.NET Adapter List</a> for a
+comprehensive list of adapters available for the PC. &nbsp;The software
+implementation of the adapter is <a
+ href="./html/classcom_1_1dalsemi_1_1onewire_1_1adapter_1_1_d_s_port_adapter.html">DSPortAdapter()</a>.
+&nbsp; The static class, &#8216;<a
+ href="./html/classcom_1_1dalsemi_1_1onewire_1_1_one_wire_access_provider.html">com.dalsemi.onewire.OneWireAccessProvider</a>&#8217;
+is used to get an adapter class instance. All of the adapters can be
+enumerated or a specifc (or the default) adapter can be retrieved
+(enumerateAllAdapters(), getAdapter(), and getDefaultAdapter()). Each
+adapter may support multiple &#8216;ports&#8217; so a 1-Wire network consists of an
+adapter/port combination. Here is a brief list of the operations needed
+to access and use the 1-Wire network. </blockquote>
+<font>
+<dir>
+<dir>
+<p>1. Get an adapter instance<br>
+2. Get exclusive use of the 1-Wire network<br>
+3. Find a 1-Wire device <br>
+4. Perform operations through the device&#8217;s container<br>
+5. End exclusive use of the 1-wire network<br>
+6. Free the port when ending application</p>
+</dir>
+<p>Note that &#8216;1.&#8217; and &#8216;6.&#8217; are performed only once at the beginning and
+end of the application. &#8216;2.&#8217; through &#8216;5.&#8217; comprise the bulk of the
+1-Wire
+operations and are performed multiple times during the execution of an
+application.</p>
+<b>
+<p>Default 1-Wire Network</p>
+</b>
+<dir>
+<p>For .NET applications, the default 1-Wire Network (adapter on a
+specific port) is retrieved<br>
+through the OneWireAccessProvider method "getDefaultAdapter":</p>
+<p style="margin-left: 40px;">Dim adapter As
+com.dalsemi.onewire.adapter.DSPortAdapter<br>
+adapter = com.dalsemi.onewire.OneWireAccessProvider.getDefaultAdapter</p>
+<p>This method actually retrieves the default 1-Wire Network from the
+Windows system<br>
+registry. More information on what these keys are, see White Paper 6:
+1-Wire Drivers<br>
+Installation Guide for Windows:<br>
+<a href="http://www.maximintegrated.com/an1740">http://www.maximintegrated.com/an1740</a><br>
+<br>
+Alternatively, the programmer can also retrieve a specific adapter using<br>
+OneWireAccessProvider's "getAdapter" method. Here's an example that
+retrieves the<br>
+DS9490 adapter on port 1:</p>
+<p style="margin-left: 40px;">Dim adapter As
+com.dalsemi.onewire.adapter.DSPortAdapter<br>
+adapter =
+com.dalsemi.onewire.OneWireAccessProvider.getAdapter("{DS9490}", "USB1")</p>
+<p>The current adapter list is (brackets required):<br>
+{DS9490}<br>
+{DS9097U}<br>
+{DS1410E}<br>
+{DS9097E}</p>
+<p>Since the adapters being used currently in the .NET version of the
+1-Wire API are through TMEX, they need the brackets. Also, the port
+numbers are a name/number combination.&nbsp; The names can be USB, COM,
+or LPT. The numbers can be 0-15. Examples are:<br>
+USB1<br>
+COM1<br>
+LPT1</p>
+<dir>
+<dir></dir>
+</dir>
+</dir>
+<b>
+<p>Access to 1-Wire Network</p>
+</b>
+<dir>
+<p>To allow for multi-thread access to the 1-Wire network, a pair of
+methods are provided in the adapter class to give exclusive access.
+They are &#8216;beginExclusive()&#8217; and &#8216;endExclusive()&#8217;. It is recommended
+that this pair wrap any access
+to the 1-Wire network.</p>
+<p>The beginExclusive method is invoked on an adapter object to obtain
+a lock on the underlying physical adapter. Once the lock is owned by a
+particular adapter, no other adapter instance can invoke methods that
+result in communication with either the port adapter directly or the
+1-Wire network it controls. Any attempt to do so results in a
+OneWireException being thrown. The lock applies to other processes as
+well as other threads within the same process. The lock can be freed by
+either of two mechanisms. Typically, the adapter instance that owns the
+lock will invoke endExclusive, voluntarily releasing the lock. Also,
+the lock will automatically be freed in the event that the owning
+process terminates without invoking endExclusive.</p>
+<p>The boolean value passed to beginExclusive specifies whether the
+caller wishes to wait until the lock is free or return immediately
+regardless of the lock&#8217;s state. If block is false, beginExclusive will
+immediately return true in the event that the lock was successfully
+acquired and false otherwise. If block is true, beginExclusive will
+attempt to acquire the lock; if it is already owned by another adapter
+instance, beginExclusive blocks indefinitely until the lock has been
+freed and it can claim ownership. When block is true and beginExclusive
+returns normally (that is, non-abruptly), it will always return true.<br>
+</p>
+</dir>
+<b>
+<p>Finding 1-Wire devices (and iButtons)</p>
+</b>
+<dir>
+<p>Each 1-Wire device type is identified with a 1 byte &#8216;family code&#8217;.
+This family code is used to provide the appropriate container and can
+also be used to limit the search of the 1-Wire Network to one or more
+device types (see family code list below). For example the following
+code fragment will search for devices with 0x10 family code. Note that
+&#8216;adapter&#8217; is a working instance of DSPortAdapter.</p>
+</dir>
+</dir>
+</font>
+<div style="margin-left: 120px;"><font><span
+ style="font-family: monospace;">Dim owd_enum As java.util.Enumeration</span></font><br>
+<font><span style="font-family: monospace;">Dim owd As
+com.dalsemi.onewire.container.OneWireContainer<br>
+<br>
+</span></font><font><span style="font-family: monospace;">Try</span></font><br>
+<font><span style="font-family: monospace;">' get exclusive use of
+1-Wire network</span></font><br>
+<font><span style="font-family: monospace;">adapter.beginExclusive(True)</span></font><br>
+<font><span style="font-family: monospace;">' clear any previous search
+restrictions</span></font><br>
+<font><span style="font-family: monospace;">adapter.setSearchAllDevices()</span></font><br>
+<font><span style="font-family: monospace;">adapter.targetAllFamilies()</span></font><br>
+<font><span style="font-family: monospace;">adapter.setSpeed(com.dalsemi.onewire.adapter.DSPortAdapter.SPEED_REGULAR)</span></font><br>
+<font><span style="font-family: monospace;">' enumerate through all the
+1-Wire devices found (with Java-style enumeration)</span></font><br>
+<font><span style="font-family: monospace;">owd_enum =
+adapter.getAllDeviceContainers</span></font><br>
+<font><span style="font-family: monospace;">ResultsTextBox.AppendText(Environment.NewLine()
+&amp; "1-Wire List:" &amp;</span></font><br>
+<font><span style="font-family: monospace;">&nbsp;&nbsp;
+Environment.NewLine())</span></font><br>
+<font><span style="font-family: monospace;">' enumerate through all the
+1-Wire devices found (with Java-style enumeration)</span></font><br>
+<font><span style="font-family: monospace;">'</span></font><br>
+<font><span style="font-family: monospace;">While
+owd_enum.hasMoreElements()</span></font><br>
+<font><span style="font-family: monospace;">' retrieve OneWireContainer</span></font><br>
+<font><span style="font-family: monospace;">owd = owd_enum.nextElement()</span></font><br>
+<font><span style="font-family: monospace;">' do something with the
+1-Wire device</span></font><br>
+<font><span style="font-family: monospace;">ResultsTextBox.AppendText(Environment.NewLine())<br>
+ResultsTextBox.AppendText("Address = " &amp; owd.getAddressAsString
+&amp;<br>
+&nbsp;&nbsp; Environment.NewLine())<br>
+ResultsTextBox.AppendText("Description = " &amp; owd.getDescription
+&amp;<br>
+&nbsp;&nbsp; Environment.NewLine())<br>
+End While<br>
+' end exclusive use of 1-Wire net adapter<br>
+adapter.endExclusive()<br>
+<br>
+Catch ex As Exception<br>
+ResultsTextBox.AppendText(Environment.NewLine() &amp;
+Environment.NewLine() &amp;<br>
+&nbsp;&nbsp; "Error: " &amp; ex.ToString)<br>
+End Try<br>
+</span></font></div>
+<font>
+<dir>
+<dir>
+<p>Note that there are other search methods (findFirstDevice() and
+findNextDevice()) that do not automatically create a container and may
+be quicker if speed is essential. Also see these other methods for
+search options: getAddress(), getDeviceContainer(), excludeFamily(),
+setSearchOnlyAlarmDevices(), and setNoResetSearch().<br>
+</p>
+</dir>
+<b>
+<p>1-Wire Containers</p>
+</b>
+<dir>
+<p>As described in the &#8216;Finding 1-Wire Devices&#8217; section, each type of
+1-Wire device has a &#8216;family code&#8217; that indicates its functionality. The
+adapter uses this family code to provide a &#8216;container&#8217; to interface to
+it. The container (com.dalsemi.onewire.container.OneWireContainer) is
+then used by th e application to manipulate the device. Each container
+class has the following format OneWireContainerXX where XX is the
+&#8216;family code&#8217;. For example, the DS1920 has a family code of 0x10 so the
+container to use it is OneWireContainer10. The adapter will
+automatically provide the correct container . If the
+family code is unknown then the adapter will provide the super-class
+generic
+container.</p>
+<p>For a list of the containers (and family codes) provided in this
+API, see <a href="http://www.maximintegrated.com/an155">Application Note 155</a>:&nbsp;
+"1-Wire Software Resource Guide Device Description" (specifically,
+Table 1).<br>
+</p>
+</dir>
+</dir>
+</font> <font>
+<dir>
+<dir>
+<p> </p>
+</dir>
+</dir>
+</font>
+<center></center>
+<dir>
+<dir>
+<p><font><b>Types of Containers</b></font></p>
+<dir>
+<p><font><b>Memory </b></font></p>
+<dir>
+<p><font>The base class of all containers &#8216;OneWireContainer&#8217; has a
+method called &#8216;getMemoryBanks()&#8217; that returns an enumeration of memory
+bank instances. A memory bank is a section of memory on a 1-Wire device
+that has specific properties. For example the 1-Wire Network Address of
+a device is a read-on ly bank of 8 bytes. This technique is used to get
+a handle on the diverse types of memory that comprise 1-Wire devices.
+There are three interfaces that the memory bank may implement. These
+interfaces are hierarchical:</font></p>
+<p><font><b>MemoryBank</b> &#8211; basic read/write (getSize(), read(),
+write()..)<br>
+<b>PagedMemoryBank</b> (extends MemoryBank) &#8211; paged read/write with
+packets (getNumberPages(), readPage(), writePagePacket()..)<br>
+<b>OTPMemoryBank</b> (extents PagedMemoryBank) &#8211; One-Time-Programmable,
+usually EPROM (canRedirectPage(), lockPage())</font></p>
+<p><font>See the example &#8216;MemoryBanks&#8217; for an example application
+that
+utilizes memory banks.</font></p>
+<p><font>Any 1-Wire devices that contain memory can also use the 1-Wire
+File system. The following classes in the com.dalsemi.onewire.utils
+package
+can be used just like the Java equivalient:</font></p>
+<p><font><b>OWFile</b> &#8211; Like java.io.File<br>
+<b>OWFileInputStream</b> &#8211; Like java.io.FileInputStream<br>
+<b>OWFileOutputSTream</b> &#8211; Like java.io.FileInputStream<br>
+<b>OWFileDescriptor</b> &#8211; Like java.io.FileDescriptor</font></p>
+<p><font>See the example &#8216;FileApp&#8217; to demonstrate using the 1-Wire file
+system. The specification for the 1-Wire file system can be found in
+Application Note 114:<br>
+</font><a href="http://www.maximintegrated.com/an114"><u><font color="#0000ff">http://www.maximintegrated.com/an114</font></u></a></p>
+</dir>
+<p><font><b>Sensor </b></font></p>
+<dir>
+<p><font>A 1-Wire Sensor is a device that can make a reading or change
+the state of something physical (such as a DS2413 switch). Typically
+the operations of 1-Wire Sensors is memory mapped so writing to a
+particular location
+causes the state to change. To accommodate this type of architecture
+and
+reduce the number of 1-Wire operations that need to take place, a
+&#8216;read-modify-write&#8217; technique is used. Each Sensor interface is derived
+from a super-interface (<a
+ href="./html/interfacecom_1_1dalsemi_1_1onewire_1_1container_1_1_one_wire_sensor.html">com.dalsemi.onewire.container.OneWireSensor</a>)
+that contain just two methods: readDevice(), writeDevice(). The read
+returns a byte array and the write takes a byte array (or for .NET
+users, an array of SBytes). The byte array
+is the
+state of the device. The interfaces that extend this interface have
+&#8216;get&#8217;
+and &#8216;set&#8217; methods that manipulate the byte array. So a OneWireSensor
+operation is:</font></p>
+<dir>
+<dir>
+<p><font>1. readDevice()<br>
+2. &#8216;get&#8217; and &#8216;set&#8217; methods<br>
+3. writeDevice()</font></p>
+</dir>
+</dir>
+<p><font>The following is a list of the interfaces and a brief
+description. Note that the container list above indicates the
+interfaces used.</font></p>
+<dir>
+<dir>
+<p><font><a
+ href="./html/interfacecom_1_1dalsemi_1_1onewire_1_1container_1_1_a_d_container.html"><b>ADContainer</b></a>
+- A/D
+sensor<br>
+<a
+ href="./html/interfacecom_1_1dalsemi_1_1onewire_1_1container_1_1_clock_container.html"><b>ClockContainer</b></a>
+&#8211; clock<br>
+<a
+ href="./html/interfacecom_1_1dalsemi_1_1onewire_1_1container_1_1_switch_container.html"><b>SwitchContainer</b></a>
+&#8211; switch<br>
+<a
+ href="./html/interfacecom_1_1dalsemi_1_1onewire_1_1container_1_1_temperature_container.html"><b>TemperatureContainer</b></a>
+&#8211; temperature reading sensor<br>
+<a
+ href="./html/interfacecom_1_1dalsemi_1_1onewire_1_1container_1_1_potentiometer_container.html"><b>PotentiometerContainer</b></a>
+- digital potentiometer device<br>
+<a
+ href="./html/interfacecom_1_1dalsemi_1_1onewire_1_1container_1_1_humidity_container.html"><b>HumidityContainer</b></a>&#8211;
+humidity reading sensor <br>
+</font></p>
+</dir>
+</dir>
+</dir>
+</dir>
+</dir>
+</dir>
+<dir>
+<dir>
+<dir></dir>
+</dir>
+<p><font><b>Overdrive Speed with 1-Wire Containers</b></font></p>
+<dir>
+<p><font>Most 1-Wire devices support Overdrive speed, a 1-Wire Net
+communication speed that supports up to 142 k-bits/second of 1-Wire
+data. The method
+getMaxSpeed(), defined in <a
+ href="./html/classcom_1_1dalsemi_1_1onewire_1_1container_1_1_one_wire_container.html">OneWireContainer</a>,
+will tell you if you're device can support Overdrive speed.</font></p>
+<p><font>Communicating with a device in Overdrive speed just requires
+that you call the setSpeed(int,boolean), defined in OneWireContainer.
+The boolean value indicates whether or not it is okay for the device to
+fall back to a slower speed if communication fails. The DSPortAdapter
+object also has a set Speed(int) method, but it is not advisable to
+call this one directly. Instead, allowing the container itself to be
+the only entity who manipulates the DSPortAdapter's state, you can be
+assured that the two will not be
+out of sync.</font></p>
+<p><font>Also, if you're in a situation where you have devices on the
+1-Wire Net who support Overdrive and devices that don't, it's important
+to remember that regular speed communication will cause devices in
+Overdrive mode to revert to regular speed. This change of 1-Wire speed
+could potentially cause I /O errors on the devices that were in
+Overdrive the first time they are accesses after the speed change. The
+opposite situation (Overdrive communication on the same network with
+devices in regular speed) is harmless. Calling
+the OneWireContainer&#8217;s doSpeed() method will force a re-negotiation of
+th
+e 1-Wire speed. However this can be a slow procedure on some platforms
+so
+it should not be called indiscriminately. The OneWireContainer&#8217;s
+implementation
+specific methods (clock methods, temperature methods, memory methods
+...)
+will automatically call doSpeed() at appropriate times. </font></p>
+<p><font> </font></p>
+</dir>
+</dir>
+<div style="margin-left: 40px;"><span style="font-weight: bold;">License</span><br>
+</div>
+<div style="margin-left: 80px;">Maxim Integrated has selected
+the least restrictive license it could find to apply to the<br>
+Java source code in this kit. It is based almost word for word on the
+Xfree86 license<br>
+(<a href="http://www.xfree86.org/4.0/LICENSE1.html">http://www.xfree86.org/4.0/LICENSE1.html</a>).
+It basically says you can do anything you want<br>
+with this code. If you distribute the source then just leave the
+license blurb at the top of the source<br>
+files. That&#8217;s it. See the license in the &#8216;COPYRIGHT&#8217; file and at the
+top of all of the source files.<br>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

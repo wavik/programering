@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+     
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMEX Contents</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<blockquote>  
+  <blockquote>    
+    <blockquote>      </blockquote>
+  </blockquote>
+</blockquote>
+<h1 align="left"><a name="tmexcontents"></a><img
+ src="./images/ibuttonm.gif" alt="" border="0">
+    TMEX API        <a href="../1-Wire_SDK_Help.html">1-Wire SDK Help</a></h1>
+<blockquote>
+  <blockquote>
+    <blockquote>          </blockquote>
+  </blockquote>
+</blockquote>
+<p><img src="./images/overview.gif" alt="" border="0">
+  <a href="tmex8lrr.html"><b>API Overview</b></a></p>
+<blockquote>     
+  <blockquote>         
+    <p>The basic design of TMEX is based on the International Standards Organization
+(ISO) reference model of Open System Interconnection (OSI).  Its layered
+protocol includes five layers: Session layer, File Operations layer, Transport
+layer, Network layer and Hardware Specific layer.</p>
+  </blockquote>
+</blockquote>
+<blockquote>     
+  <p><img src="./images/bygroup.gif" alt="" border="0">
+  <a href="tmex3vlg.html"><b>Function List by Group</b></a></p>
+</blockquote>
+<blockquote>     
+  <blockquote>         
+    <p>The TMEX commands are listed in the appropriate layer according to
+their function.</p>
+  </blockquote>
+</blockquote>
+<blockquote>     
+  <p><img src="./images/byalpha.gif" alt="" border="0">
+  <a href="tmex75tg.html"><b>Function Alphabetical List</b></a></p>
+</blockquote>
+<blockquote>     
+  <blockquote>         
+    <p>The TMEX commands are listed in the alphabetical order.</p>
+  </blockquote>
+</blockquote>
+<p><img src="./images/desguide.gif" alt="" border="0">
+  <a href="tmde7ied.html"><b>TMEX Design Guide</b></a></p>
+<blockquote>     
+  <ul>
+	<li>TMEX provides many kinds of application programming interface (API)
+calls to verify which 1-Wire device is being communicated with and the results
+of that communication.  Most communication with iButtons is a temporary contact.<br>
+      <br>
+    </li>
+	<li>Each 1-Wire device has a guaranteed unique serial number (ROM) and multiple
+1-Wire devices can be communicated with on the same communication channel
+(1-Wire Communication). TMEX provides API calls that read these CRC verified
+serial numbers and each data-oriented API call to a 1-Wire device is preceded
+by its unique serial number to prevent any ambiguity.<br>
+      <br>
+    </li>
+	<li>All data is stored in the structure “ <a href="udpt47ck.html"><b>Universal
+Data Packet</b></a> “. TMEX provides the ability for several applications
+to communicate on the same 1-Wire network without data corruption.</li>
+     
+  </ul>
+</blockquote>
+<blockquote>     
+  <p><img src="./images/wincon.gif" alt="" border="0">
+  <a href="tmwi5ur7.html"><b>Windows Considerations</b></a></p>
+</blockquote>
+<blockquote>     
+  <blockquote>         
+    <p>The TMEX DLL drivers must be in a directory that can be found by the
+Microsoft Windows application. The 1-Wire Drivers installation program will
+automatically copy the drivers into the Windows\System sub-directory.  It
+is recommended that the end user install the 1-Wire Drivers and then install
+the target application.  The DLL drivers are designed such that there is
+a main driver and then a series of Hardware Specific sub-drivers.</p>
+  </blockquote>
+</blockquote>
+<p><img src="./images/exfisy.gif" alt="" border="0">
+  <a href="exfi97c5.html"><b>1-Wire File Structure</b></a></p>
+<blockquote>     
+  <blockquote>         
+    <p>The 1-Wire File Structure is the foundation of the Presentation Layer
+of TMEX. It provides a directory structure for data stored on a 1-Wire device,
+allowing named files to be randomly accessed.  The data organization of the
+1-Wire File Structure is very similar to that of a floppy disk. A sector
+of a floppy roughly corresponds to a memory page of a 1-Wire device.  The
+directory tells which files are stored, where the data is located in the
+device, and how many pages it occupies.  The 1-Wire File Structure is carefully
+designed to provide high speed and optimal performance in a Touch environment.
+Every memory page can be read, CRC-checked or written without the need to
+access other pages.  If a file is modified, only the affected pages need
+to be rewritten.</p>
+  </blockquote>
+</blockquote>
+<p><img src="./images/tmerr.gif" alt="" border="0">
+  <a href="tmex7l6a.html"><b>TMEX Error Return Codes</b></a></p>
+<blockquote>     
+  <blockquote>         
+    <p>Shows all TMEX Error Return Codes in each layer.</p>
+  </blockquote>
+</blockquote>
+<br>
+<br>
+<br>
+</body>
+</html>

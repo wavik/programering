@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMOneWireLevel Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmonewirelevelexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMOneWireLevel Code Example</H1>
+
+<PRE><CODE>long session_handle;
+short result;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* read the OneWireLevel state */
+result = TMOneWireLevel(session_handle, 1, 0, 0);
+
+switch (result)
+{
+    case 0x00: printf(“Normal communication speed\n”); break;
+    case 0x01: printf(“Overdrive communication speed\n”); break;
+    case 0x02: printf(“Relaxed communication speed\n”); break;
+    default: printf(“Error %d\n”); break;
+};
+
+OR
+
+/* prime a change to OneWireLevel state after next TMTouchByte */
+result = TMOneWireLevel(session_handle, 0, 1, 2);
+
+if (result &gt;= 0)
+{
+    /* start a temperature conversion on a DS1920 and do a strong pull-up
+    right after the TMTouchByte is done */
+    result = TMTouchByte(session_handle,0x44);
+    ...
+}
+else
+    /* error invalude LevelMode */
+    ...
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

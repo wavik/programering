@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>1-Wire SDK Help</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1 align="center"><img src="Ibuttonm.bmp" alt="" height="75" width="75">
+&nbsp;&nbsp;&nbsp; Welcome to the 1-Wire SDK for Windows Help</h1>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <h1 align="center">Version 4.00&nbsp;<br>
+        </h1>
+      </blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<br>
+The 1-Wire Software Development Kit (SDK) for Windows is divided into 3
+sections, each representing a unique Applications Programmer Interface
+(API). The first focuses on the 1-Wire .NET J# libraries and is called <a
+ href="./OW.NET/html/index.html">OW.NET API</a>. The second section
+focuses on a second API (pretty much a subset of OW.NET API) called <a
+ href="Compact.NET/html/index.html">Compact.NET API</a>.&nbsp; This is
+a limited port of OW.NET to C# and is focused on
+Windows CE/Mobile/Pocket PC using the Compact .NET framework.&nbsp; For
+now Maxim only provides the equivalent of the DSPortAdapter object in
+the Compact.NET API.&nbsp; However, an open-source
+effort is taking place to provide more pure C# classes (such as
+OneWireContainers, MemoryBanks, etc).&nbsp; It is available from<a
+ href="http://sourceforge.net/projects/owdotnet/">
+http://sourceforge.net/projects/owdotnet/</a>.&nbsp; The third API is
+the <a href="TMEX/tmexapi.html">TMEX API</a>. This is a basic
+low-level, natively-compiled API that performs 1-Wire communication and
+file structure primitives (as opposed to the .NET APIs that are
+high-level and object oriented).&nbsp; Both the OW.NET API and the TMEX
+API need the 1-Wire Drivers package
+installed before the example programs will run. Compact.NET programs
+can run without the 1-Wire Drivers as it can make calls to C#'s serial
+port library.&nbsp; <br>
+<br>
+So, if using TMEX or OW.NET, please install the latest 1-Wire Drivers
+installation package from <a
+ href="http://www.maximintegrated.com/1-wiredrivers">http://www.maximintegrated.com/1-wiredrivers</a>
+(Version 4.02 beta or higher) before using this kit. &nbsp;The 1-Wire
+Drivers setup program will install the 1-Wire low-level device drivers
+that are used by both APIs
+to communicate through any supported 1-Wire port adapter (serial,
+parallel,
+or USB). &nbsp;The setup program also installs all necessary code
+libraries
+for the TMEX API. This includes all appropriate TMEX
+API dlls and a JNI (Java Native Interface) dll that provides a Java
+interface to the TMEX API. In addition, the 1-Wire Drivers setup
+program installs the OneWireViewer software application. The
+OneWireViewer can demonstrate and exercise the features available
+on virtually any 1-Wire/iButton device.<br>
+<br>
+The 1-Wire SDK for Windows supports the Microsoft Windows operating
+systems supported by a specific version of the 1-Wire Drivers.&nbsp;
+Below are useful starting points in navigating the provided html help
+files.<br>
+<br>
+<h3><b>OW.NET API</b></h3>
+<a href="./OW.NET/OW.NET_Primer.html">OW.NET Primer</a>, <br>
+<a href="./OW.NET/html/index.html">OW.NET API</a>.<br>
+<br>
+<h3><b><b>Compact.NET API<br>
+</b></b></h3>
+<a href="./Compact.NET/html/index.html">Compact.NET API</a>.<br>
+<br>
+<h3><b>TMEX API</b></h3>
+<a href="TMEX/tmexapi.html">TMEX API Introduction</a>, <br>
+<a href="TMEX/tmex8lrr.html">TMEX API Overview</a>, <br>
+<a href="TMEX/tmex75tg.html">TMEX API Alphabetized Function List</a>
+<br>
+<br>
+<b><br>
+</b>
+<h2><b>Which API Should You Use?</b></h2>
+The application developer is free to choose one of the three APIs
+presented above. &nbsp;However, there are a few deciding factors that
+can influence the choice. &nbsp;Here are a few of them:<br>
+<br>
+<b>1) &nbsp;Rapid Application Development. &nbsp;</b>The OW.NET API has
+advantages in this area. &nbsp;This is an object-oriented, high-level
+API. &nbsp;It has method calls such as <i>readDevice(),
+getTemperature()</i> and <i>doADConvert()</i> that can take the place
+of several TMEX API function calls. &nbsp;The TMEX API functions are
+lower level and deal with sending and receiving bytes to and from
+1-Wire devices. &nbsp;The programmer must write his own subroutines to
+actually "get" the temperature or do an A-to-D conversion for a
+particular 1-Wire device.<br>
+<br>
+<b>2) &nbsp;API dependencies</b>. &nbsp;The TMEX API has fewer
+dependencies, so the application programmer has less to re-distribute
+with his 1-Wire application. &nbsp;The OW.NET API is dependent upon the
+installation of Microsoft's .NET framework version 2.0, and the J#
+redistributable version 2.0 Second Edition.&nbsp; For more information
+on dependencies and software redistribution with the
+1-Wire Drivers, please see <a href="http://www.maximintegrated.com/an1740">White
+Paper 6</a> "1-Wire Drivers Installation
+Guide
+for Windows". &nbsp;It can be found in the list of Application Notes
+and White
+Papers here: &nbsp;<a
+ href="http://www.maximintegrated.com/appnotes10.cfm/ac_pk/1">http://www.maximintegrated.com/appnotes10.cfm/ac_pk/1</a>.<br>
+<br>
+<b>3) &nbsp;Supported Features</b>. &nbsp;Although both APIs support
+the same 1-Wire adapters and 1-Wire features, OW.NET has more built-in
+functionality. &nbsp;Since OW.NET was designed to be a high-level API
+(a J# compiled version of our <a
+ href="http://www.maximintegrated.com/products/ibutton/software/1wire/1wire_api.cfm">1-Wire
+API for Java</a>), it supports more features than the TMEX API such as <a
+ href="OW.NET/html/classcom_1_1dalsemi_1_1onewire_1_1container_1_1_one_wire_container.html">OneWireContainer</a>
+objects
+and <a
+ href="OW.NET/html/interfacecom_1_1dalsemi_1_1onewire_1_1container_1_1_memory_bank.html">MemoryBanks</a>.
+<br>
+<br>
+<span style="font-weight: bold;">4)&nbsp; Windows CE/Mobile/Pocket PC
+Development</span>.&nbsp; The Compact.NET API is perfect for
+this.&nbsp; Although it only provides DSPortAdapter functionality for
+now, it can be used to develop 1-Wire applications communicating
+through the serial port of the development machine without any 1-Wire
+Drivers installation.<br>
+<b></b><br>
+<br>
+<h2><b>1-Wire SDK Contents</b></h2>
+For list of the contents of this SDK, please see:<br>
+<a href="OW.NET/OW.NET_API_SDK_Contents.html"><b>OW.NET SDK Contents</b></a>,
+<a style="font-weight: bold;"
+ href=".%5CCompact.NET%5CCompact.NET_API_SDK_Contents.html">Compact.NET
+SDK Contents</a>, <a href="TMEX/TMEX_API_SDK_Contents.html"><b>TMEX
+API SDK Contents</b></a><br>
+<br>
+<br>
+<span style="font-weight: bold;"> For more information</span><br>
+- iButton information:<br>
+<a href="http://www.iButton.com"> http://www.iButton.com</a><br>
+- Maxim Integrated information:<br>
+<a href="http://www.maximintegrated.com"> http://www.maximintegrated.com</a><br>
+- Technical Support Request Submission:<br>
+<a href="http://support.maximintegrated.com/1-wire">
+http://support.maximintegrated.com/1-wire</a><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

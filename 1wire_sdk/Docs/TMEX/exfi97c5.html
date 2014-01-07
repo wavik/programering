@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>1-Wire File Structure</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="1-wirefilestructure"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ 1-Wire File Structure  <a href="tmexapi.html">Overview</a></h1>
+<br>
+The 1-Wire File Structure is the foundation of the Presentation Layer of
+the TMEX API.  It provides a directory structure for iButton data, allowing
+named files to be randomly accessed as they are on a diskette.  Application
+Note 114 (located here:  <u>http://pdfserv.maxim-ic.com/arpdf/AppNotes/app114.pdf</u>)
+provides a basic specification of the 1-Wire File Structure.  This document
+extends the basic definition to include bitmap files for large capacity iButtons,
+multiple sub-directories, extended file attributes, passwords, date-stamps,
+owner identification, and other useful constructs.
+<p>The definitions and rules of the 1-Wire File Structure are sufficient
+to store multiple files in nested directories using device capacities up
+to 64K bytes.  These devices may be organized as 4...256 pages of 32...256
+bytes.  The rules given in this document are scaleable to all combinations
+of memory organization within this range.  (Note that in all discussions
+of iButton data structure, the first available page of memory is called page
+0.)</p>
+<p>The TMEX API implements a subset of the following 1-Wire File Structure
+specification.</p>
+<p><b>Data Organization</b></p>
+<p>The data organization of the 1-Wire File Structure is very similar to
+that of a floppy disk.  A sector of a floppy roughly corresponds to a page
+of an iButton.  The directory tells which files are stored, where the data
+is located in the device, and how many pages it occupies. In this way information
+can be randomly accessed for quick response.</p>
+<p>The organization of data within a page of a file or directory is shown
+below.  (The numbers shown assume a 32 byte page length, but the same structure
+applies for devices with page lengths up to 256 bytes.)</p>
+<pre><code>+-------------------------------------------------------+<br>| length | data          | cont.-  | /CRC16  | not      |<br>| binary |ASCII or binary| pointer | binary  | used     |<br>| 1...29 |               | binary  |         |          |<br>| 1 byte | 0 to 28 bytes | 1 byte  | 2 bytes | 28 to 0  |<br>+-------------------------------------------------------+</code></pre>
+<p>Each page of a file or directory begins with a length byte, contains a
+continuation pointer, and ends with an inverted CRC16 check.  The continuation
+pointer is the page address where the file or directory is continued.  A
+continuation pointer value of 0 marks the last page. The length byte indicates
+how many valid bytes a page contains, not counting the length byte itself
+or the CRC.  The CRC calculation, however, also includes the length byte.
+ The CRC accumulator is initialized by setting it equal to the iButton page
+number. Every byte of a page is transmitted to or from an iButton least significant
+bit first.  The length byte is the first to be transmitted.  Of the two CRC
+bytes, the least significant will be sent first.</p>
+<p>Each touch memory must be formatted before it can be used with the 1-Wire
+file structure.  During the process of formatting, the root directory file
+is created.  The root directory always begins in the first page of the iButton
+(page 0).  The organization of data within the first page of the root directory
+is shown below:</p>
+<pre><code>+-------------------------------------------------------+<br>| length |control| file entries |cont.- |/CRC16 | not   |<br>| binary | data  |ASCII &amp; binary|pointer|binary | used  |<br>| 8...29 |       |              |binary |       |       |<br>| 1 byte |7 bytes| 0 to 21 bytes|1 byte |2 bytes|21 to 0|<br>+--------+-------+--------------------------------------+<br>         |       |<br>+--------+       +--------------------------------------+<br>|                                                       |<br>+-------------------------------------------------------|<br>| directory |  re- |  bitmap  | bitmap of used pages or |<br>|   mark    |served|  control | address of bitmap file  |<br>|   "AA"    | "00" | xyyyyyzp |  4 byte binary number   |<br>|  1 byte   |1 byte|  1 byte  | LS-byte/   /   /MS-byte |<br>+-------------------------------------------------------+</code></pre>
+<p>Instead of data, the directory contains management information and file
+entries.  The control field of seven bytes has the same length as a file
+entry.  The bitmap supports TMEX in allocation of memory space for writing
+files.  In the bitmap, used pages are marked with a 1, empty pages with a
+0.  The least significant bit corresponds to page 0.  This local bitmap is
+only used for non-EPROM devices with less then 32 pages of data.  All other
+devices have remote bitmap files.  In large NV-RAM iButton the bitmap file
+page number refers to normal data space. In EPROM devices the page number
+refers to status memory.  For EPROM devices the unprogrammed state is 1 and
+the programmed state is 0.  Due to this constraint the bits in the EPROM
+bitmap's are inverted.  An empty page has a 1 and an occupied page has a
+0. </p>
+<p>The most significant bit, "x", of the bitmap control byte specifies whether
+the bitmap is stored immediately in the first directory packet or in a separate
+file.  If this bit is a 1, the 4 byte bitmap immediately follows the bitmap
+control byte.  If this bit is a 0, the two bytes following the bitmap control
+byte are zero.  The "y" bits in the bitmap control byte specify directory
+attributes.  These bits are from most significant to least significant.</p>
+read-only : The directory that contains this attribute and all files and
+sub-directories can be read but not deleted or modified.  If it is set on
+the root level then the entire device is read-only.<br>
+archive   : The directory that contains this attribute has had some or all
+of its files modified since the last backup.<br>
+system    : The directory that contains this attribute is designated to have
+system files.<br>
+encrypt   : The directory that contains this attribute has all of its files
+encrypted.
+<p>The "z" bit in the bitmap control byte is not used.  The least significant
+bit "p" is an in-progress bit.  This bit can be set when doing non-interruptible
+operations like file optimization.  Note that TMEX does not set this attribute
+because none of its operations are non-interruptible.  The bit is cleared
+after the operations are complete.</p>
+<p>The next two bytes contain the starting page address and the number of
+pages required by the bitmap file.  Note that the bitmap or the nameless
+bitmap file is created during the process of formatting. Continuation pages
+of the directory don't need a control field. This space is available to store
+another file entry.</p>
+<p>File entries consist of the 4-byte file name, one-byte file extension,
+the starting page address where the file begins, and the number of pages
+the file occupies.  This structure is shown below:</p>
+<pre><code>+---------------------------------------------------------+<br>|      file name       | extension | start page | # pages |<br>| ASCII, blank filled, |  binary   |  binary    | binary  |<br>|    left justified    | aeeeeeee  |            |         |<br>|       4 bytes        |  1 byte   |  1 byte    | 1 byte  |<br>+---------------------------------------------------------+</code></pre>
+<p>File names must consist of ASCII characters only, as with DOS.  However,
+if the first byte of a file entry has a value greater than 127, then it represents
+the first byte of an extended directory entry.  The extended directory entry
+is a 7-byte or multiple 7-byte data packet that applies to the next directory
+entry. Each 7-byte data packet must have a first byte greater than 127. 
+The additional bytes in an extended directory entry may be used to specify
+additional file attributes, passwords, file ownership, date/time stamps,
+and other special-purpose information regarding the file.</p>
+<p>The 7 least significant "e" bits of the extension represent the extension
+number of the file entry.  Extensions 0-99 decimal are reserved for normal
+file entries, 100 for an AddFile that resides on an EPROM iButton device
+ and 101 for a  Monetary File that is only created on a DS1962, DS1963, DS2422
+and DS2423. The data page of the Monetary File can only be located on a page
+that has a corresponding counter. If a page with a counter is not available
+on the device then the Monetary File will not be created.  Extension 127
+decimal designates a sub-directory.  Extensions 102-126 are reserved for
+future specialty file types.  The most significant bit of the file extension
+"a" is an attribute flag for the entry.  If it is set and the entry is a
+normal file with extensions 0-99 then the file is read-only.  If it is set
+and the entry is a sub-directory with extension 127 then the sub-directory
+is hidden.   File entries denoting sub-directories contain the real "start
+page" of the sub-directory file.  The "# pages" specifier for a sub-directory
+entry does not contain a valid number.  It always contains 0 and need not
+be updated when the length of a sub-directory file changes.  A sub-directory
+file contains a back reference to the next higher directory file.  If there
+is no higher sub-directory file the entry will be "ROOT".  The start page
+of ROOT is always 0.  The first packet of a sub-directory file has the following
+structure:</p>
+<pre><code>+-------------------------------------------------------+<br>| length |control| file entries |cont.- |/CRC16 | not   |<br>| binary | data  |ASCII &amp; binary|pointer|binary | used  |<br>| 8...29 |       |              |binary |       |       |<br>| 1 byte |7 bytes| 0 to 21 bytes|1 byte |2 bytes|21 to 0|<br>+--------+-------+--------------------------------------+<br>         |       |<br>+--------+       +--------------------------------------+<br>|                                                       |<br>+-------------------------------------------------------|<br>| directory |  re- | reference to higher | start page   |<br>|   mark    |served|   directory level   | higher dir.  |<br>|   "AA"    | "00" |       ASCII         |   binary     |<br>|  1 byte   |1 byte|      4 bytes        |   1 byte     |<br>+-------------------------------------------------------+</code></pre>
+<p>Again, the numbers shown above presume a 32-byte page length, but the
+basic structure applies for greater page lengths.  A continuation packet
+of a root directory or a sub-directory file follows the definition of a data
+packet.  It has the following structure:</p>
+<pre><code>+-------------------------------------------------------+<br>| length |  file entries | cont.-  | /CRC16  | not      |<br>| binary | ASCII &amp; binary| pointer | binary  | used     |<br>| 1...29 |   (0 ... 4)   | binary  |         |          |<br>| 1 byte | 0 to 28 bytes | 1 byte  | 2 bytes | 28 to 0  |<br>+-------------------------------------------------------+</code></pre>
+<h1>Features</h1>
+<p>The 1-Wire File Structure is carefully designed to provide high speed
+and optimal performance in a Touch environment. Every memory page can be
+read, CRC-checked or written without the need to access other pages.  If
+a file is modified, only the affected pages need to be rewritten.  This provides
+a significant speed advantage.  Pages of a file need not be contiguous. 
+Files can be extended by redefining continuation pointers.  Files can be
+grouped into nested sub-directories.  Attributes defined for a directory
+apply for all files within it.  The <u>i</u>Button file structure also accommodates
+future types of <u>i</u>Buttons with up to 256 pages with a maximum of 256
+bytes per page.</p>
+<h1>Properties</h1>
+<p>The notes below summarize many of the significant properties of the 1-Wire
+File Structure as specified above.  These notes may be helpful in understanding
+the implications of the 1-Wire File Structure with regard to data storage
+and management.</p>
+<ul>
+	<li>The page length is derived from the family code.  <u>i</u>Buttons and
+other 1-Wire devices currently available have a 32 byte page length, but
+the definition of the 1-Wire File Structure also supports greater page lengths.</li>
+	<li>Each page of data in the 1-Wire File Structure is a Universal Data Packet
+(UDP), starting at a page boundary.  The Universal Data Packet of the 1-Wire
+File Structure is somewhat limited compared with the general Universal Data
+Packet.  This Universal Data Packet may be shorter but never longer than
+one page.</li>
+	<li>Each Universal Data Packet starts with a length byte, contains a continuation
+pointer and ends with a CRC16 check.  The pointer indicates the number of
+the page where a file is continued.  A continuation pointer "0" marks the
+last packet of a file.</li>
+	<li>The length byte indicates the number of bytes between length byte and
+CRC, not counting the length byte and the CRC.  The CRC calculation includes
+all of the preceding data, including the length byte.  The CRC accumulator
+is initialized by setting it equal to the <u>i</u>Button page number.</li>
+	<li>Each Universal Data Packet may be read and CRC-checked independently,
+without reference to data from other packets.</li>
+	<li>All types of files consist of one or several Universal Data Packets.
+ The Universal Data Packets contain either application data (data packet)
+or directory information (directory packet).</li>
+	<li>Every byte of a data packet is transmitted least significant bit first.
+ The length byte is the first to be transmitted.</li>
+	<li>The maximum number of application data bytes within a data packet is
+(page length - 4).</li>
+	<li>There is exactly one main directory file in a touch memory.  This file
+is called the root directory and always starts at page 0.</li>
+	<li>The maximum number of entries in the first packet of a (sub)directory
+file is (page length-11)/7. The maximum number of entries in continuation
+packets is (page length-4)/7.</li>
+	<li>The bitmap serves TMEX as a fast lookup table to find free pages.  The
+data of the bitmap are treated as a 4 byte binary number.  The least significant
+bit corresponds to page 0. A used page is marked with a "1", an empty page
+with a "0".  The least significant byte of the bitmap is stored at the lower
+address and is transmitted first.  The bitmap file must be used with <u>i</u>Buttons
+of capacity greater than 32 pages.  It may be used with smaller devices depending
+on formatting.</li>
+	<li>The only reserved extensions are 102 - 126.  0 - 99 are file extensions,
+100 for an AddFile, 101 for a  Monetary File and 127 is for sub-directories.
+ </li>
+	<li>It is allowed to have data packets with no data.  A packet with only
+a length, pointer and CRC16 bytes is considered empty.  These empty data
+packets act as pointers to the next data packet of the same file.  It is
+allowed to use empty or partly filled (sub)directory continuation packets.
+ Partly filled (sub)directory continuation packets contain data left justified,
+i. e. the unused space must follow the CRC.</li>
+</ul>
+<p><b>See Also</b></p>
+<p><a href="udpt47ck.html"><b>Universal Data Packet</b></a></p>
+<br>
+</body>
+</html>

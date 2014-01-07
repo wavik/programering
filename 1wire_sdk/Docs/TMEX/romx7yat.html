@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMRom Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmromexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMRom Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+short result;
+short ROM[8];
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* call TMFirst to find the first device on the 1-Wire network */
+result = TMFirst(session_handle, state_buffer);
+
+if (result == 1)
+{
+   /* device found, now read its unique ROM number */
+   ROM[0] = 0;  /* zero the first integer to indicate a read */
+   result = TMRom(session_handle, state_buffer, ROM);
+   
+   if (result == 1)
+   {
+      /* ROM buffer now has unique ROM in it */
+      /* ROM[0] has the family code and ROM[7] has the 8 bit CRC */
+      ...
+   }
+   else
+     /* session not valid */
+}
+else
+{
+   /* device not found on 1-Wire network */
+   ...
+}
+   
+/* now set the internal ROM buffer to a previously read value */
+ROM[0] = 0x0C;
+ROM[1] = 0xE2;
+ROM[2] = 0x01;
+ROM[3] = 0x00;
+ROM[4] = 0x00;
+ROM[5] = 0x00;
+ROM[6] = 0x00;
+ROM[7] = 0x8F;
+
+result = TMRom(session_handle, state_buffer, ROM);
+
+if (result == 1)
+{
+    /* ROM set, now can do mult-drop function such as TMFirstFile */
+    ...
+}
+else
+   /* session not valid */
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

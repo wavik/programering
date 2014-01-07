@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMExtendedReadPage</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmextendedreadpagemain"></a><img
+ src="./images/ibuttons.gif" alt="" border="0">
+ TMExtendedReadPage  <a href="tran5ozb.html">Overview</a>  <a
+ href="tran7dx0.html">Group</a></h1>
+<p>The <b>TMExtendedReadPage</b> API call reads a self generated CRC8 or CRC16
+verified status or data page from a 1-Wire device with EPROM memory.  For
+the current devices the page length of a status page is always 8 bytes and
+the length of a data page is always 32 bytes for the current devices.  Some
+1-Wire devices have a self generated CRC so that just a single bit can be
+changed in a page and still be read with CRC verification.  This function
+reads the specified status or data page and puts it in the supplied buffer
+without the CRC bytes.  When reading a data page from a DS1985, D1986, DS1982
+or DS2407 the 33rd byte of the provided buffer will be a redirection byte;
+a zero there indicates that the page is not redirected.  Note that the ROM
+pattern for the desired 1-Wire device must already be in the internal eight-byte
+buffer before this function is called.  This can be accomplished by directly
+writing to the internal buffer using the TMRom API call or by use of the network
+functions TMFirst, TMNext, TMFirstAlarm or TMNextAlarm.  This constraint enables
+this function to be multi-drop compatible.  The page type 'page_type' is
+as follows:</p>
+<p>0 :  regular memory page</p>
+<p>1 :  status memory page</p>
+<p>The current devices that have an extended read memory command are DS1982,
+DS1985, DS1986, and DS2407.</p>
+<tt><b><br>
+short far pascal TMExtendedReadPage(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>            // session handle for
+the desired 1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i>          // state buffer provided for
+the 1-Wire network session<br>
+<b>short</b> <i>page,</i>                      // page number read (status
+or regular)<br>
+<b>unsigned char far *</b><i>read_buffer,</i>  // buffer to hold the read
+data<br>
+<b>short</b> <i>page_type                  </i>// indicates status or regular
+page space<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>page</i></p>
+<p>Specifies the page to read.  This page could be in the regular or status
+memory area of the 1-Wire device.  The parameter ‘<i>page_type</i>’ indicates
+which data area. </p>
+<p><i>read_buffer</i></p>
+<p>Specifies a pointer to a memory location that will contain the data that
+is read.  The size of the buffer must be at least one byte larger than the
+largest page length.  Currently the largest page is 32 bytes long so the ‘<i>read_buffer</i>’
+must be at least 33 bytes long. </p>
+<p><i>page_type</i></p>
+<p>Specifies the page type.  0 indicates regular data space and 1 indicates
+status data space.  Note that not all 1-Wire devices have status memory.</p>
+<p><b>Return Value</b></p>
+<p>&gt;=0  =&gt; length of valid data read</p>
+<p>&lt;0  =&gt; <a href="tran4z77.html"><b>TMEX Transport Error Return Code</b></a></p>
+<p><a href="exre0wh1.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="repa0x7y.html"><b>TMReadPacket</b></a>,</p>
+<br>
+<br>
+</body>
+</html>

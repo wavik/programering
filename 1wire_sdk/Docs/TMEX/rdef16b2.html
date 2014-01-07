@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMReadDefaultPort</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmreaddefaultportmain"></a><img
+ src="./images/ibuttons.gif" alt="" border="0">
+ <b>TMReadDefaultPort  <a href="hso5i2f.html">Overview</a></b>  <a
+ href="hsl3d84.html"><b>Group</b></a></h1>
+<p><br>
+The <b>TMReadDefaultPort</b> API call reads the default 1-Wire port number
+and type from the system registry.  The port number and port type are both
+integers that describe on which port the 1-Wire network is connected and through
+which port adapter type.  </p>
+<p>The port numbers can be an integer from 0 to 16.  Most valid port numbers
+on PCs are 1, 2, or 3. The following is a list of port adapter types:</p>
+<blockquote><tt>1           Older DS9097E-type serial port adapters</tt><br>
+  <tt>2           Parallel port adapters</tt><br>
+  <tt>5           Standard DS90907U-type serial port adapters</tt><br>
+  <tt>6           USB port adapters</tt></blockquote>
+<tt><b><br>
+short far pascal TMReadDefaultPort(</b><br>
+<b>short far</b> <i>*portnum</i><b>, </b>    // port number of port (serial,
+parallel, or usb) <br>
+<b>short far </b><i>*porttype,</i>    // the type of port adapter used.<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>portnum</i></p>
+<p>Specifies the port number of the specific port (serial, parallel, or usb)
+where the 1-Wire network is located.  Most port numbers on PCs are 1, 2 or
+3.</p>
+<p><i>porttype</i></p>
+<p>Specifies the port adapter type.  There are a variety of PC-to-1-Wire adapters
+available.  For a short list, see above.  For a more in-depth list of adapters
+and their respective port type numbers, please see the <a
+ href="tmex8lrr.html"><b>TMEX API Overview</b></a>.  Currently used numbers
+are:  1, 2, 5, and 6.</p>
+<p><b>Return Value</b></p>
+<p><code>1 =&gt;</code> defaults were returned</p>
+<p><code>-2 =&gt;</code> defaults not found</p>
+<p><a href="rdef5so5.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="exst8l9q.html"><b>TMExtendedStartSession</b></a></p>
+<br>
+<br>
+</body>
+</html>

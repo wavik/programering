@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMExtendedStartSession Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmextendedstartsessionexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMExtendedStartSession Code Example</H1>
+
+<PRE><CODE>long session_handle;
+short PortNum = 1, PortType = 1;
+
+/* attempt to get a session on Port */
+session_handle = TMExtendedStartSession(PortNum,PortType,NULL);
+
+if (session_handle &gt; 0)
+{
+    /* call TMEX API function with session_handle */
+    ...
+}
+else if (session_handle == 0)
+{
+    /* port not available */
+    ...
+}
+else if (session_handle == -1)
+{
+    /* failure, indicated type does not have a driver */
+    ...
+}
+
+/* relinquish port */
+TMEndSession(session_handle);</CODE></PRE>
+
+</BODY>
+</HTML>

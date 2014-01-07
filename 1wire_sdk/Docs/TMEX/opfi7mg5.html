@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMOpenFile Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmopenfileexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMOpenFile Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+FileEntry fentry;
+short file_handle;
+short result;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* get the unique registration number of the device to communicate with using TMFirst,TMNext,TMRom... */
+...
+
+/* get the first file in the current directory */
+result = TMFirstFile(session_handle,state_buffer,&amp;fentry);
+
+/* make sure a file was found that was not a directory reference */
+if ((result &gt; 0) &amp;&amp; (fentry.extension != 0x7F))
+{
+   /* try and open the file that was just found */
+   file_handle = TMOpenFile(session_handle,state_buffer,&amp;fentry);
+   if (file_handle &gt;= 0)
+   {
+       /* file is opened, ready to read using file_handle */
+       ...
+   }
+   else
+   {
+       /* error getting file handle */
+       ...
+   }
+}
+else
+{
+    /* error getting first file or file entry is a directory */
+    ...
+}
+
+OR
+
+fentry.name[0] = 'D';
+fentry.name[1] = 'E';
+fentry.name[2] = 'M';
+fentry.name[3] = 'O';
+fentry.extension = 0;
+
+/* try to open the file DEMO.000 */
+file_handle = TMOpenFile(session_handle,state_buffer,&amp;fentry);
+
+if (file_handle &gt;= 0)
+{
+   /* file is opened, ready to read */
+   ...
+}
+else
+{
+   /* error opening file */
+   ...
+}    
+
+/* close the opened file with a call to TMCloseFile */
+...
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

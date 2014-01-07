@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMWriteAddFile</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmwriteaddfilemain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMWriteAddFile  <a href="fiop6apj.html">Overview</a>  <a
+ href="fiop1g38.html">Group</a></h1>
+<p>The <b>TMWriteAddFile</b> API adds to an opened 'add' file specified by
+the file handle 'file_handle'.  The ‘file_handle’ can be acquired with TMCreateFile
+for a new file or <a href="opfi3o32.html"><b>TMOpenFile</b></a> for an existing
+‘add’ file.  An ‘add’ file is a file with extension 100 (decimal) that resides
+on an EPROM 1-Wire<u> </u>device.  The ‘add’ file is special because the
+contents of the file can be added to without deleting and then rewriting
+it.  The TMWriteAddFile API call has two modes of operation.  It can append
+data to the end of the 'add' file or it can add data at an offset from the
+beginning of the file.  The 'operation' flag is:</p>
+<blockquote>
+  <p>1 : Append to the file starting after the last programmed byte (not
+FF Hex) in the last page of the file.</p>
+  <p>0 : Write the data starting at the specified 'offset'.  If there is
+data already there then the result will be to program any zeroes in the data.
+ For instance:</p>
+  <blockquote>
+    <p>00110101 current byte in device</p>
+    <p>01010111 data byte to program</p>
+    <p>-------------</p>
+    <p>00010101 result</p>
+  </blockquote>
+  <p>Note that with this feature, individual bits can be programmed. </p>
+</blockquote>
+<p>If the operation is 1 'append' then the 'offset' entry is not used.  The
+data is provided in the 'write_buffer' and the length of the data to write
+is 'num_write' bytes. </p>
+<tt><b><br>
+short far pascal TMWriteAddFile(</b><br>
+<b>long</b> <i>session_handle</i><b>,              </b>// session handle
+for the desired 1-Wire network <br>
+<b>void far *</b><i>state_buffer</i>,           // state buffer provided
+for the 1-Wire network session <br>
+<b>short </b><i>file_handle,</i>                // file handle<br>
+<b>short </b><i>operation,</i>                  // append(1) or from offset(0)
+operation mode<br>
+<b>short </b><i>offset,</i>                     // offset from beginning
+of file if in offset mode<br>
+<b>unsigned char far *</b><i>write_buffer,</i>  // buffer containing the
+file data to write<br>
+<b>short</b> <i>num_write</i>                   // number of bytes to write
+<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b><br>
+Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>file_handle</i></p>
+<p>Specifies a file handle of the file to write. </p>
+<p><i>operation</i></p>
+<p>Specifies the operation mode of appending to the end of the file (1) or
+writing at an offset (0). </p>
+<p><i>offset</i></p>
+<p>Specifies the offset number of bytes from the beginning of the file if
+operation is 0 for offset mode. </p>
+<p><i>write_buffer</i></p>
+<p>Specifies a pointer to a buffer that contains the data to write to the
+file.  It must be at least ‘<i>num_write</i>’ bytes long.</p>
+<p><i>num_write</i></p>
+<p>Specifies the number of bytes to write from the ‘<i>write_buffer</i>’.
+</p>
+<p><b>Return Value</b></p>
+&gt;= 0 =&gt; file written, and this is the number of bytes<br>
+&lt;0 =&gt; <a href="fiop6blf.html"><b>TMEX File Operations Error Return Code</b></a>
+<p><a href="wrad5279.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="tead8nu6.html"><b>TMTerminateAddFile</b></a></p>
+<br>
+</body>
+</html>

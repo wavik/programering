@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMGetFamilySpec Code Example</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmgetfamilyspecexample"></a><img
+ src="./images/ibuttons.gif" alt="" border="0">
+ TMGetFamilySpec Code Example</h1>
+<pre><code>long session_handle;<br>unsigned char state_buffer[15360];<br>short result;<br>Specification spec;<br><br>/* session_handle set from a call to TMExtendedStartSession */<br>...<br><br>/* set the unique registration number of the device to get information on using TMFirst,TMNext,TMRom... */<br><br>result = TMGetFamilySpec(session_handle,state_buffer,&amp;spec);<br><br>if (result &lt; 0)<br>{<br>    /* FILE_OPERATIONS error */<br>    ...<br>}<br>else<br>{<br>    /* success, info is in spec */<br>    sprintf(buf,"Device %s, number of pages %d of length %d\n",<br>            spec.description, spec.features[0], spec.features[1]);<br>    ...<br>}<br><br>/* close the session with a call to TMEndSession */<br>...<br><br></code></pre>
+<br>
+</body>
+</html>

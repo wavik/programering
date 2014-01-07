@@ -1,0 +1,171 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>SecureKey91.exe Readme</title>
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+tt
+	{font-family:"Courier New";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p><b><span style='font-size:10.0pt;font-family:Arial'>&quot;SecureKey91.exe&quot;
+Readme</span></b><span style='font-size:10.0pt;font-family:Arial'><br>
+<br>
+<b>Introduction</b><br>
+SecureKey91.exe is an example program that reads/writes the DS1991
+iButton.&nbsp; It contains 3 password-protected memory areas (called
+&quot;subkeys&quot; or &quot;secure subkeys&quot;).</span></p>
+
+<p><span style='font-size:10.0pt;font-family:Arial'>This particular example was
+written in Microsoft VB.NET (Visual Studio 2005).</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>Requirements</span></b><span
+style='font-size:10.0pt;font-family:Arial'><br>
+<span style='color:blue'><a href="http://www.maxim-ic.com/1-wiredrivers">1-Wire
+Drivers</a></span> version 4.00 or higher, with the OneWireAPI.NET.dll in the
+same directory as the executable.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>.NET
+Framework 2.0 Redistributable:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal style='color:blue'><span style='font-size:10.0pt;
+     font-family:Arial'><a
+     href="http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5"
+     id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+     color:blue'><a
+     href="http://www.microsoft.com/downloads/details.aspx?FamilyID=b44a0000-acf8-4fa1-affb-40e78d788b00"
+     id="ctl00_mainContentContainer_ctl04">Download x64 version</a></span><span
+     style='font-size:10.0pt;font-family:Arial'> </span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+Visual J# .NET 2.0 Second Edition Redistributable:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal style='color:blue'><span style='font-size:10.0pt;
+     font-family:Arial'><a href="http://go.microsoft.com/?linkid=6802972"
+     id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+ <li class=MsoNormal style='color:blue'><span style='font-size:10.0pt;
+     font-family:Arial'><a href="http://go.microsoft.com/?linkid=6802973"
+     id="ctl00_mainContentContainer_ctl04">Download x64 version</a> </span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+When compiling this program, make sure that the program references “vjslib”,
+and the OneWireAPI.NET.dll.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>Before
+running this program, make sure to set the default 1-Wire adapter settings to
+the preferred type (usually &quot;{DS9490}&quot;) and number (usually
+&quot;USB1&quot;).&nbsp; This can be done by running the &quot;Default 1-Wire
+NET.exe&quot; program found in the 1-Wire Drivers application directory.</span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:Arial'>Operation<br>
+</span></b><span style='font-size:10.0pt;font-family:Arial'>To run the
+SecureKey91.exe program, double-click on the &quot;SecureKey91.exe&quot;
+file.&nbsp; This runs the program.&nbsp; The main window of the program will
+appear containing a text box and 3 buttons.&nbsp; The top of the text box shows
+which 1-Wire adapter and port is being used as the &quot;Default&quot; adapter
+and port.&nbsp; The 3 buttons on the main window of MemoryBanks.exe are titled
+&quot;Find and set all DS1991 passwords&quot;, &quot;Write the secure subkeys&quot;,
+and &quot;Read the secure subkeys&quot;.&nbsp; Clicking on &quot;Find and set
+all DS1991 passwords&quot; will set the passwords of the three subkeys to the
+hard-coded password, &quot;password&quot;, with the hard-coded id of
+&quot;ds1991id&quot;. Clicking on &quot;Write the secure subkeys&quot; button
+writes the hard-coded buffer &quot;testing 123&quot; to each subkey.&nbsp;
+Finally, clicking on the &quot;Read the secure subkeys&quot; button will read
+the secure subkeys and print the contents to the text box.</span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:Arial'>Files</span></b></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>AssemblyInfo.vb&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - VB.NET module containing version
+strings</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>FormSecureKey.Designer.vb&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- VB.NET module containing prototype
+code</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>FormSecureKey.resx&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+VB.NET resources file</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>FormSecureKey.vb&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+VB.NET module containing most of the 1-Wire code</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>Readme.html&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- This file.<br>
+<br>
+SecureKey91.sln&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- Visual Studio.NET solutions file<br>
+<br>
+SecureKey91.vbproj&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- VB.NET project file<br>
+<br>
+SecureKey91.vbproj.user&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- VB.NET file project
+user file<br>
+<br>
+SecureKey91.vb&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- VB module containing
+source to program<br>
+<br>
+..\..\..\..\Lib\OW.NET\OneWireAPI.NET.dll - 1-Wire API</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>..\bin\SecureKey91.exe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- Program executable.</span></p>
+
+<p>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

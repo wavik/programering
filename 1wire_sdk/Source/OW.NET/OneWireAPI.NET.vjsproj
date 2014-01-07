@@ -1,0 +1,547 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{63A89C65-907A-4300-B61A-93430AB4556A}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>OneWireAPI.NET</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OneWireAPI.NET</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <BaseAddress>285212672</BaseAddress>
+    <Optimize>true</Optimize>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\Release\OneWireAPI.NET.xml</DocumentationFile>
+    <RegisterForComInterop>true</RegisterForComInterop>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.jsl">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\adapter\DSPortAdapter.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\adapter\DumbAdapter.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\adapter\MulticastListener.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\adapter\NetAdapter.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\adapter\NetAdapterConstants.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\adapter\NetAdapterHost.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\adapter\NetAdapterSim.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\adapter\OneWireIOException.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\file\MemoryCache.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\file\OWFile.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\file\OWFileDescriptor.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\file\OWFileInputStream.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\file\OWFileNotFoundException.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\file\OWFileOutputStream.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\file\OWSyncFailedException.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\monitor\AbstractDeviceMonitor.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\monitor\DeviceMonitor.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\monitor\DeviceMonitorEvent.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\monitor\DeviceMonitorEventListener.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\monitor\DeviceMonitorException.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\monitor\NetworkDeviceMonitor.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\sha\SHADebit.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\sha\SHADebitUnsigned.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\sha\SHAiButtonCopr.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\sha\SHAiButtonCoprVM.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\sha\SHAiButtonUser.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\sha\SHAiButtonUser18.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\sha\SHAiButtonUser33.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\sha\SHASoftAuth.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\sha\SHATransaction.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\Contact.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\D2A.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\Event.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\Humidity.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\Level.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\SAXParser.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\Switch.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\TaggedActuator.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\TaggedDevice.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\TaggedSensor.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\TAGHandler.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\TAGParser.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\Thermal.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\application\tag\XML.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\ADContainer.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\ClockContainer.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\HumidityContainer.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBank.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankAD.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankAppReg.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankEE.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankEEPROM.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankEEPROMblock.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankEEPROMstatus.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankEPROM.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankNV.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankNVCRC.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankNVCRCPW.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankSBM.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankScratch.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankScratchCRC.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankScratchCRCPW.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankScratchEE.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankScratchEx.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankScratchSHA.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankScratchSHAEE.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankScratchTemp.java" />
+    <Compile Include="Common\com\dalsemi\onewire\container\MemoryBankSHAEE.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\MissionContainer.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer01.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer02.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer04.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer05.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer06.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer08.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer09.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer0A.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer0B.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer0C.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer0F.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer10.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer12.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer13.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer14.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer18.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer1A.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer1C.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer1D.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer1F.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer20.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer21.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer22.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer23.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer24.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer26.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer27.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer28.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer29.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer2C.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer2D.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer30.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer33.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer37.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer3A.java" />
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer41.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer42.java" />
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireContainer43.java" />
+    <Compile Include="Common\com\dalsemi\onewire\container\OneWireSensor.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\OTPMemoryBank.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\PagedMemoryBank.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\PasswordContainer.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\PotentiometerContainer.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\ScratchPad.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\SwitchContainer.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\container\TemperatureContainer.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\debug\Debug.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\OneWireException.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\utils\Address.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\utils\Bit.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\utils\Convert.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\utils\IOHelper.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\utils\OWPath.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\utils\OWPathElement.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\com\dalsemi\onewire\utils\SHA.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\nanoxml\sax\SAXLocator.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\nanoxml\sax\SAXParser.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\nanoxml\XMLElement.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\nanoxml\XMLParseException.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\AttributeList.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\DocumentHandler.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\DTDHandler.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\EntityResolver.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\ErrorHandler.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\HandlerBase.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\helpers\AttributeListImpl.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\helpers\LocatorImpl.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\helpers\ParserFactory.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\InputSource.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\Locator.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\Parser.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\SAXException.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NanoXML\org\xml\sax\SAXParseException.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Platform\com\dalsemi\onewire\adapter\DotNetAdapterx64.java" />
+    <Compile Include="Platform\com\dalsemi\onewire\adapter\DotNetAdapterx86.java" />
+    <Compile Include="Platform\com\dalsemi\onewire\OneWireAccessProvider.java" />
+    <Compile Include="Platform\com\dalsemi\onewire\utils\CRC16.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Platform\com\dalsemi\onewire\utils\CRC8.java">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="DotNet.keyfile" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualJSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

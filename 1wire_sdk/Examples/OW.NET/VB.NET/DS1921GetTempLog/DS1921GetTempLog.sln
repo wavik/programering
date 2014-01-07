@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DS1921GetTempLog", "DS1921GetTempLog.vbproj", "{264226B2-FBD7-495A-AFD4-9F68FB24B500}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{264226B2-FBD7-495A-AFD4-9F68FB24B500}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{264226B2-FBD7-495A-AFD4-9F68FB24B500}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{264226B2-FBD7-495A-AFD4-9F68FB24B500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264226B2-FBD7-495A-AFD4-9F68FB24B500}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

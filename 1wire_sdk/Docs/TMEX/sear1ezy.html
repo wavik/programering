@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMSearch</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmsearchmain"></a><img src="./images/ibuttons.gif" alt=""
+ border="0">
+ TMSearch  <a href="netw70vr.html">Overview</a>  <a href="netw4ipg.html">Group</a></h1>
+<p>The <b>TMSearch</b> API call is a general purpose 1-Wire search.  The
+search can have an optional 1-Wire reset performed before the search (PerformReset=1)
+or not (PerformReset=0).  The ResetSearch parameter optionally resets the
+1-Wire search parameters (ResetSearch=1) so that the API finds the ‘first’
+device.  The SearchCmd command supplies the 1-Wire search command to use.</p>
+<tt><b><br>
+short far pascal TMSearch(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>   // session handle for the desired
+1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i> // state buffer provided for the 1-Wire
+network session<br>
+<b>short </b><i>ResetSearch</i>,      // ResetSearch=1 will reset 1-Wire
+search parameters <br>
+<b>short </b><i>PerformReset,     </i>// 1-Wire reset performed before the
+search or not at all<br>
+<b>short </b><i>SrchCmd</i>           // the 1-wire search command to use
+<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>ResetSearch</i></p>
+<p>Optionally resets the 1-Wire search parameters (ResetSearch=1) so that
+the API finds the ‘first’ device.  With ResetSearch=0, the function will
+not reset the 1-Wire search parameters.</p>
+<p><i>PerformReset</i></p>
+<p>Specifies an optional 1-Wire reset performed before the search (PerformReset=1)
+or not (PerformReset=0).</p>
+<p><i>SrchCmd.</i></p>
+<p>Supplies the 1-Wire search command to use.  Currently, there are two search
+commands available.  The first is 0xFO (hexadecimal) for a regular search-rom
+command and the second is 0XEC (hexadecimal) for an interrupt (alarm) search.</p>
+<p><b>Return Value</b></p>
+<p>1   =&gt; 1-Wire device found</p>
+<p>&lt;0 =&gt; <a href="netw14fn.html"><b>TMEX Network Error Return Code</b></a></p>
+<p><a href="sear4c11.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="firs2f5a.html"><b>TMFirst</b></a>, <a href="fial3x2m.html"><b>TMFirstAlarm</b></a>,
+<a href="next25ym.html"><b>TMNext</b></a>, <a href="neal4mjy.html"><b>TMNextAlarm</b></a></p>
+<br>
+</body>
+</html>

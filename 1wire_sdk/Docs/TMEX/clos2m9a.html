@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMClose</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmclosemain"></a><img src="./images/ibuttons.gif" alt=""
+ border="0">
+ TMClose  <a href="hso5i2f.html">Overview</a>  <a href="hsl3d84.html">Group</a></h1>
+<p>The <b>TMClose</b> API call closes access to a particular 1-Wire network.
+After this function is called on a 1-Wire network, the only way to use it
+again is to call <a href="setu0apa.html"><b>TMSetup</b></a>.  A common use
+of this API call is in hardware situations where a port needs to be powered
+down when not in use.  Note that in the Windows situation where multiple programs
+may be using a 1-Wire network, closing a port may be disastrous so this function
+is callable but it does not have an effect in Windows.</p>
+<tt><b><br>
+short far pascal TMClose(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>      // session handle for the
+desired 1-Wire network<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><b>Return Value</b></p>
+<p>1   =&gt; 1-Wire network is closed.</p>
+<p>&lt;0 =&gt; <a href="hse1tmb.html"><b>TMEX Hardware Specific Error Return
+Code</b></a></p>
+<p><a href="clos8nad.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="setu0apa.html"><b>TMSetup</b></a></p>
+<br>
+<br>
+</body>
+</html>

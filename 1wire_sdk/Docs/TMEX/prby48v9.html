@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMProgramByte Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmprogrambyteexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMProgramByte Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360], read_buffer[100];
+short result, address, bits, write_byte;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* the internal 8-byte ROM buffer contains a valid ROM that is going to be selected to do a device specific operation */
+...
+
+/* clear bit 4 of the 6th byte of page 3 in regular data space in EPROM */
+address = 3 * 32 + 6 - 1;   /* calculate the address */
+bits = 8;                   /* set bits to program on each pass */
+write_byte = 0xEF;          /* write byte with bit 4 cleared */
+
+result = TMProgramByte(session_handle, state_buffer, write_byte, address, 0, &amp;bits, 1);
+
+if (result == 1)
+{
+   /* success, bit cleared */
+   ...
+}
+else
+{
+   /* TRANSPORT error clearing bit */
+   ...
+}
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

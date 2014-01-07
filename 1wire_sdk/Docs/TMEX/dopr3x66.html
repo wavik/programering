@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMDoProgramJob</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmdoprogramjobmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMDoProgramJob  <a href="fiop6apj.html">Overview</a>  <a
+ href="fiop1g38.html">Group</a></h1>
+<p>The <b>TMDoProgramJob</b> API call writes all of the data that has been
+written to the EPROM device since the <a href="crpr5xri.html"><b>TMCreateProgramJob</b></a>
+function was called.  The write jobs are done one at a time until complete.
+ This function marks off the jobs it has done so that if writing can not
+continue because the device has lost contact it can begin where it left off
+when it is called again.  If this function fails and is not called again
+and allowed to complete, then the target device may be left in an unknown
+state.  EPROMs are treated differently by TMEX because any write to an EPROM
+is destructive, meaning it uses up device memory.  In NV-RAM devices, if
+an operation is unsuccessful then the function could then be just called
+again with no ill effects.  If EPROMs were regarded in this way then some
+or all of the memory space could be lost.  The TMDoProgramJob function is
+called again and again by the application program until all of the jobs are
+completed.  This puts the onus on the application programmer to make sure
+that the EPROM device does not go away in mid write and waste memory space
+and leave the device in an unknown state. If the ROM is changed at any time
+before TMDoProgramJob is finished then the program job becomes invalid.</p>
+<tt><b><br>
+short far pascal TMDoProgramJob(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>    // session handle for the desired
+1-Wire network<br>
+<b>void far *</b><i>state_buffer</i>   // state buffer provided for the 1-Wire
+network session<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><b>Return Value</b></p>
+<p>1   =&gt; Program Job completed</p>
+<p>&lt;0 =&gt; <a href="fiop6blf.html"><b>TMEX File Operations Error Return
+Code</b></a></p>
+<p><a href="dopr2wv9.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="crpr5xri.html"><b>TMCreateProgramJob</b></a></p>
+<br>
+</body>
+</html>

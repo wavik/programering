@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMGetTypeVersion</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmgettypeversionmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMGetTypeVersion  <a href="hso5i2f.html">Overview</a>  <a
+ href="hsl3d84.html">Group</a></h1>
+<p>The <b>TMGetTypeVersion</b> API call reads the version ID string for the
+specified HARDWARE_SPECIFIC TMEX driver.  The provided buffer 'ID_buf' must
+be at least 80 bytes to hold the ID string.  The valid hardware specific
+type numbers ‘HSType’ are in the range 0 to 15.  See <a
+ href="tmwi5ur7.html"><b>Microsoft Windows TMEX Considerations</b></a> for
+a description of the type numbers and their default drivers. The format for
+the hardware specific ID string is "tttt_HARDWARENAME_Vz.zz_month/day/year
+(FULLNAME.DLL)" where:</p>
+<blockquote><tt>_ - represents spaces<br>
+ </tt><br>
+  <tt>tttt - This is the one to four letter short version of the hardware
+type.  This short name can be used by applications as an indicator of the
+port type such as ‘COM’ for the DS9097E COM port driver.<br>
+ </tt><br>
+  <tt>HARDWARENAME - is the name of the hardware such as the DS9097E or DS1410E
+1-wire addapters.<br>
+ </tt><br>
+  <tt>DLLNAME - the name of the DLL that ranges in length from 1 to 8 characters.<br>
+ </tt><br>
+  <tt>Vz.zz - version number. (i.e. V1.00)  It could include other specifier
+such as ‘Alpha’ or ‘Beta’.</tt><br>
+  <br>
+  <tt>month/day/year - date DLL released</tt><br>
+  <br>
+  <tt>(FULLNAME.DLL) - is the full name of the DLL driver.</tt></blockquote>
+<tt><b><br>
+short far pascal TMGetTypeVersion(</b><br>
+<b>short</b> <i>HSType,</i>     // hardware type number<br>
+<b>char far *</b><i>ID_buf</i>  // buffer to hold hardware type id string
+<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>HSType</i></p>
+<p>Specifies the hardware type number to read the id string from.</p>
+<p><i>ID_buf</i></p>
+<p>Specifies a pointer to a buffer to hold the hardware type ID string.</p>
+<p><b>Return Value</b></p>
+<p>1   =&gt; ID string is in ID_buf.</p>
+<p>0   =&gt; could not get the ID</p>
+<p>&lt;0   =&gt; <a href="hse1tmb.html"><b>TMEX Hardware Specific Error Return
+Codes</b></a></p>
+<p><a href="gety50px.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="geve78ku.html"><b>Get_Version</b></a></p>
+<br>
+</body>
+</html>

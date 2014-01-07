@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMTerminateAddFile Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmterminateaddfileexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMTerminateAddFile Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+FileEntry fentry;
+short result;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* get the unique registration number of the device to communicate with using TMFirst,TMNext,TMRom... */
+...
+
+/* call TMCreateProgramJob to set up EPROM writing */
+...
+
+fentry.name[0] = 'D';
+fentry.name[1] = 'E';
+fentry.name[2] = 'M';
+fentry.name[3] = 'O';
+fentry.extension = 100;
+
+/* try to Terminate the 'add' file DEMO.100 */
+result = TMTerminateAddFile(session_handle,state_buffer,&amp;fentry);
+
+if (result &gt;= 0)
+{
+   /* 'add' file is terminated */
+   ...
+}
+else
+{
+   /* error terminating 'add' file */
+   ...
+}    
+
+/* Call TMDoProgramJob until EPROM programming is complete */
+...
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

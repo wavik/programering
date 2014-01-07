@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMStrongAccess</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmstrongaccessmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMStrongAccess  <a href="netw70vr.html">Overview</a>  <a
+ href="netw4ipg.html">Group</a></h1>
+<p>The <b>TMStrongAccess</b> API call verifies that the device in the ROM
+buffer is on the 1-Wire network and selects it for a device specific command.
+ This is the same as TMAccess except instead of using a match ROM command
+the search ROM command is used.  This only disadvantage to this API call
+is that it takes three times as long to run as TMAccess.  </p>
+<tt><b><br>
+short far pascal TMStrongAccess(</b><br>
+<b>long</b> <i>session_handle</i><b>,    </b>// session handle for the desired
+1-Wire network<br>
+<b>void far *</b><i>state_buffer</i>  // state buffer provided for the 1-Wire
+network session<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><b>Return Value</b></p>
+<p>0 =&gt; device in ROM buffer not on 1-Wire network</p>
+<p>1 =&gt; device in ROM buffer on 1-Wire network and it is selected</p>
+<p>&lt;0 =&gt; <a href="netw14fn.html"><b>TMEX Network Error Return Code</b></a></p>
+<p><a href="stac0u79.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="romm1rxq.html"><b>TMRom</b></a>, <a href="stal4wfi.html"><b>TMStrongAlarmAccess</b></a>,
+<a href="ovac42i6.html"><b>TMOverAccess</b></a>, <a href="acce3s4u.html"><b>TMAccess</b></a></p>
+<br>
+</body>
+</html>

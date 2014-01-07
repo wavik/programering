@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMBlockStream Code Example</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmblockstreamexample"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMBlockStream Code Example</h1>
+<pre><code>long session_handle;<br>unsigned char tran_buffer[100];<br>short result,flag;<br><br>/* session_handle set from a call to TMExtendedStartSession */<br>...<br><br>/* construct a buffer to read the scratchpad of a DS199X */<br>tran_buf[0] = 0xCC;   /* skip ROM */<br>tran_buf[1] = 0xAA;   /* read scratchpad */<br>for (i = 0; i &lt; 35; i++)<br>   tran_buf[2+i] = 0xFF;  /* area to read address, data */<br><br>flag = TMTouchReset(session_handle);<br>if ( flag == 1) or ( flag == 2 )<br>{ <br>   result = TMBlockStream(session_handle, tran_buffer, 37);<br>   <br>   if (result == 37)<br>   {<br>      /* the contents of the scratchpad are in the buffer<br>      in location tran_buf[2] to tran_buf[36] */<br>      ...<br>   }<br>   else<br>      /* TRANSPORT error */<br>};<br><br>/* close the session with a call to TMEndSession */<br>...<br><br></code></pre>
+<br>
+</body>
+</html>

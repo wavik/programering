@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMProgramBlock</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmprogramblockmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMProgramBlock  <a href="tran5ozb.html">Overview</a>  <a
+ href="tran7dx0.html">Group</a></h1>
+<p>The <b>TMProgramBlock</b> API call writes a buffer of bytes to an EPROM
+device such as the DS1982, DS1985, DS1986 or DS2406.  The address of the
+buffer to write, 'write_buf', the location, 'address,’ and the number of
+bits, 'bits,' to program are specified as parameters to the function.  If
+the function cannot program the entire number of bits specified to be programmed
+the function will automatically fall back to a lower value.  To expedite
+future calls to TMProgramBlock, the number of bits per pass is returned.
+ If the function is forced to fall back to a lower value then use this value
+on subsequent calls to the function.  Note that the ROM pattern for the desired
+1-Wire device must already be in the internal eight-byte buffer before this
+function is called.  This can be accomplished through a call to <a
+ href="romm1rxq.html"><b>TMRom</b></a> or by using a network API call <a
+ href="firs2f5a.html"><b>TMFirst</b></a>, <a href="next25ym.html"><b>TMNext</b></a>,
+<a href="fial3x2m.html"><b>TMFirstAlarm</b></a> or <a href="neal4mjy.html"><b>TMNextAlarm</b></a>.
+ This constraint enables this function to be multi-drop compatible with other
+EPROM devices on the 1-Wire Net.  It is the responsibility of the calling
+program to make sure that there are no non-EPROM devices on the 1-Wire Net
+at the time of programming.  A non-EPROM device can be damaged from the programming
+pulse.</p>
+<tt><b><br>
+short far pascal TMProgramBlock(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>    // session handle for the desired
+1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i>  // state buffer provided for the 1-Wire
+network session<br>
+<b>uchar far</b> *<i>write_buf,</i>    // buffer of bytes to write to 1-Wire
+device<br>
+<b>short </b><i>length</i>,            // length of bytes of write_buf <br>
+<b>short </b><i>address,           </i>// the memory location to start writing
+<br>
+<b>short far </b><i>*bits</i>          // number of bits to program<br>
+<b>);</b></tt> 
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>write_buf</i></p>
+<p>Specifies the buffer of bytes to write to the EPROM device.</p>
+<p><i>length</i></p>
+<p>Specifies the length in bytes of the write_buf buffer.</p>
+<p><i>address</i></p>
+<p>The memory location of the EPROM device where writing starts.</p>
+<p><i>bits</i></p>
+<p>The number of bits to write to the EPROM device.  This variable will return
+the number of bits actually written and should be used in future calls to
+the function.</p>
+<p></p>
+<p><b>Return Value</b></p>
+<p>&gt;=0 =&gt; length of valid data read</p>
+<p>&lt;0 =&gt; <a href="tran4z77.html"><b>TMEX Transport Error Return Code</b></a></p>
+<p><a href="prog67dx.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="prby9966.html"><b>TMProgramByte</b></a></p>
+<br>
+</body>
+</html>

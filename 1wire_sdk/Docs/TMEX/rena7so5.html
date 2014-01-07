@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMReNameFile Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmrenamefileexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMReNameFile Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+FileEntry fentry;
+short file_handle,result;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* get the unique registration number of the device to communicate with using TMFirst,TMNext,TMRom... */
+...
+
+fentry.name[0] = 'D';
+fentry.name[1] = 'E';
+fentry.name[2] = 'M';
+fentry.name[3] = 'O';
+fentry.extension = 0;
+
+/* rename DEMO.000 to BACK.014 */
+file_handle = TMOpenFile(session_handle, state_buffer, &amp;fentry);
+
+if (file_handle &gt;= 0)
+{
+   /* file opened correctly */
+   
+   fentry.name[0] = 'B';
+   fentry.name[1] = 'A';
+   fentry.name[2] = 'C';
+   fentry.name[3] = 'K';
+   fentry.extension = 14;
+
+   result = TMReNameFile(session_handle, state_buffer, 
+                          file_handle, &amp;fentry);
+
+   if (result == 1)
+   {
+      /* file name changed */
+      ...
+   }
+   else
+   {
+      /* error renaming the file */
+      ...
+   }
+}  
+else 
+{
+   /* error opening the file */
+   ...
+}
+
+/* close the opened file with a call to TMCloseFile */
+...
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

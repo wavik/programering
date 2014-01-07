@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMChangeDirectory Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmchangedirectoryexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMChangeDirectory Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+short result;
+DirectoryPath cd_buf;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* get the unique registration number of the device to communicate with using TMFirst,TMNext,TMRom... */
+...
+
+/* set the current directory to \WORK\TMP */
+cd_buf.NumEntries = 2;
+cd_buf.Ref = '\\';
+cd_buf.Entries[0][0] = 'W';
+cd_buf.Entries[0][1] = 'O';
+cd_buf.Entries[0][2] = 'R';
+cd_buf.Entries[0][3] = 'K';
+cd_buf.Entries[1][0] = 'T';
+cd_buf.Entries[1][1] = 'M';
+cd_buf.Entries[1][2] = 'P';
+cd_buf.Entries[1][3] = ' ';
+
+result = TMChangeDirectory(session_handle, status_buffer, 0, &amp;cd_buf);
+
+if (result == 1)
+{
+   /* current directory set */
+   ...
+}
+else
+{
+   /* error setting current directory to \WORK\TMP */
+   ...
+}
+
+/* read the current directory */
+result = TMChangeDirectory(session_handle, status_buffer, 1, &amp;cd_buf);
+
+if (result == 1)
+{
+   /* current directory read, should be \WORK\TMP */
+   ...
+}
+else
+{
+   /* error reading current directory */
+   ...
+}
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

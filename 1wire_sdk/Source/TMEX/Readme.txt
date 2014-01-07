@@ -1,0 +1,1 @@
+Source to the TMEX drivers and Dlls will not be made available in this release.

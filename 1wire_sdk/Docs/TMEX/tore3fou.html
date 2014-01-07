@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMTouchReset</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmtouchresetmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMTouchReset  <a href="hso5i2f.html">Overview</a>  <a href="hsl3d84.html">Group</a></h1>
+<p>The <b>TMTouchReset</b> API call performs the Reset function on the 1-Wire
+network, resetting all of the devices on the 1-Wire network. The function
+returns the result of the operation.</p>
+<tt><b><br>
+short far pascal TMTouchReset(</b><br>
+<b>long</b> <i>session_handle</i>      // session handle for the desired
+1-Wire network<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><b>Return Value</b></p>
+0   =&gt; No presence pulse detected.<br>
+1   =&gt; Non-alarming presence pulse detected.<br>
+2   =&gt; Alarming presence pulse detected. (not available on all platforms)
+<br>
+3   =&gt; 1-Wire network is shorted.<br>
+5   =&gt; TMTouchReset not supported<br>
+&lt;0   =&gt; <a href="hse1tmb.html"><b>TMEX Hardware Specific Error Return
+Codes</b></a>
+<p><a href="tore6ndx.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="setu0apa.html"><b>TMSetup</b></a>, <a href="toby91ri.html"><b>TMTouchByte</b></a></p>
+<br>
+</body>
+</html>

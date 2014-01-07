@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMOneWireLevel</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmonewirelevelmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMOneWireLevel  <a href="hso5i2f.html">Overview</a>  <a
+ href="hsl3d84.html">Group</a></h1>
+<p>The <b>TMOneWireLevel</b> API call reads (‘Operation’ = 1) or sets (‘Operation’
+= 0) the 1-Wire communication  level.   The following are the allowed values
+to ‘LevelMode’:</p>
+<blockquote>00 hex - Normal high impedance (1500 ohm) normal voltage (3-5
+volt)<br>
+01 hex - Strong pull-up (low impedance normal voltage state cabable of sourcing
+50 ma at 3 volts)<br>
+02 hex - Break (low impedance zero voltage)<br>
+03 hex - Program voltage (12 volt at 10 ma suitable for EPROM programming)
+</blockquote>
+<p>Primed(1) indicates the voltage remains unchanged now but gets changed
+after the next <a href="tobi767i.html"><b>TMTouchBit</b></a>.  Primed(2) is
+the same but after the next <a href="toby91ri.html"><b>TMTouchByte</b></a>.
+ Primed(0) means that the level change is immediate. Primed and value are
+not used when mode is reading(1).  </p>
+<p>Note that not all of the above modes will be available for all hardware
+platforms.  </p>
+<tt><b><br>
+short far pascal TMOneWireLevel(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>   // session handle for the desired
+1-Wire network<br>
+<b>short</b> <i>Operation,</i>        // Read (1) or Set (0) the communication
+rate<br>
+<b>short</b> <i>LevelMode,</i>        // 1-Wire level if setting<br>
+<b>short</b> <i>primed</i>            // prime for delay level change<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>Operation</i></p>
+<p>Specifies whether reading or setting the 1-Wire network 1-Wire level rate.
+ (1) indicates reading and (0) indicates setting.</p>
+<p><i>LevelMode</i></p>
+<p>Specifies the 1-Wire network 1-Wire level as specified above if the ‘<i>Operation</i>’
+parameter is (0) for setting.</p>
+<p><i>primed</i></p>
+<p>Specifies whether the level change if setting is immediate (0) or after
+the next <a href="tobi767i.html"><b>TMTouchBit</b></a> (1) or after the next
+<a href="toby91ri.html"><b>TMTouchByte</b></a> (2).</p>
+<p><b>Return Value</b></p>
+<p>&gt;=0 =&gt; LevelMode that was set or read.</p>
+<p>&lt;0   =&gt; <a href="hse1tmb.html"><b>TMEX Hardware Specific Error Return
+Code</b></a></p>
+<p><a href="onwi6iqt.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="onwi9zfy.html"><b>TMOneWireCom</b></a></p>
+<br>
+</body>
+</html>

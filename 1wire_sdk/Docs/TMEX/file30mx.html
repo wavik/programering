@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>FileEntry TMEX Type</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="fileentry"></a><img src="./images/ibuttons.gif" alt=""
+ border="0">
+ FileEntry TMEX Type  <a href="tmex4do3.html">Group</a></h1>
+<b><tt><code>typedef struct {</code><br>
+<code>   unsigned char name[4];            /* four-character file name */</code><br>
+<code>     unsigned char extension;        /* extension number, range 0 -
+99, 127 */</code><br>
+<code>     unsigned char startpage;          /* page number where file starts
+*/</code><br>
+<code>     unsigned char numpages;            /* number of pages occupied
+by file */ </code><br>
+<code>     unsigned char attrib;                /* file/directory attribute
+*/</code><br>
+<code>     unsigned char bitmap[32];        /* current bitmap of the device
+*/</code><br>
+<code>} FileEntry;</code></tt></b><br>
+<code></code>
+<pre><code><br>(This is a packed structure on 1 byte boundaries)<br></code></pre>
+<p>The ‘name’ is a four characters left justified with spaces.  The ‘extension’
+is the file extension in the range of 0-99 for normal files and 100 for an
+add file.  If the extension is 127 the entry is a directory entry.  The ‘startpage’
+indicates the page number that the file starts on.  The number of pages is
+the estimated number of pages that the file takes up.  ‘attrib’ indicates
+that attributes that the file or directory entry has.  See <a
+ href="attr7ju6.html"><b>TMAttribute</b></a> for an explanation of the supported
+attributes.  The ‘bitmap’ indicates that used pages in the device.  A ‘1’
+bit indicates a used page and a ‘0’ indicates an unused page.  The ‘bitmap’
+has the least significant byte first with the first page being in the least
+significant bit of the first byte.  The ‘bitmap’ of the device is read and
+placed in the FileEntry structure even if there are no files in the directory
+(return 0).</p>
+<br>
+</body>
+</html>

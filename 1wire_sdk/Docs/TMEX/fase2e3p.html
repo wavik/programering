@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMFamilySearchSetup Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmfamilysearchsetupexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMFamilySearchSetup Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+short result, ROM[8];
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* setup the search to find family type 0x0C on the next search */
+result = TMFamilySearchSetup(session_handle, state_buffer, 0x0C);
+
+/* attempt to find the first 0x0C family device on 1-Wire network */
+result = TMNext(session_handle, state_buffer);
+
+if (result == 1)
+{
+   /* device ROM number found, call TMRom to get ROM */
+   ROM[0] = 0; /* reset to read */
+   result = TMRom(session_handle, state_buffer, ROM);
+   if ((result == 1) &amp;&amp; (ROM[0] == 0x0C))
+   {
+      /* success, a device with 0x0C family code found */
+      ...
+   }
+   else
+      /* device type not on 1-Wire network at time of search */  
+}
+else 
+{
+   /* no device on 1-Wire network at this time or error */
+   ...
+}
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

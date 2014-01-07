@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMCreateProgramJob Code Example</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmcreateprogramjobexample"></a><img
+ src="./images/ibuttons.gif" alt="" border="0">
+ TMCreateProgramJob Code Example</h1>
+<pre><code>long session_handle;<br>unsigned char state_buffer[15360];<br>short result;<br><br>/* session_handle set from a call to TMExtendedStartSession */<br>...<br><br>/* get the unique registration number of the device to communicate with using TMFirst,TMNext,TMRom... */<br>...<br><br>/* create a program job because the device is an EPROM<br>   and a write operation is desired */<br><br>result = TMCreateProgramJob(session_handle, state_buffer);<br><br>if (result == 1)<br>{<br>   /* TMProgramJob is create, now ready for a write operation<br>      and then calls to TMDoProgramJob */<br>   ...<br>}<br>else<br>{<br>   /* error creating TMProgramJob */<br>   ...<br>}<br><br>/* close the session with a call to TMEndSession */<br>...<br><br></code></pre>
+<br>
+</body>
+</html>

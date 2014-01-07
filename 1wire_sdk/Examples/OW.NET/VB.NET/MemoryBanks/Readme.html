@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+  <meta name="Generator" content="Microsoft Word 11 (filtered)">
+  <title>MemoryBanks.exe Readme</title>
+  <style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:blue;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+tt
+	{font-family:"Courier New";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+  </style>
+</head>
+<body lang="EN-US" link="blue" vlink="blue">
+<div class="Section1">
+<p><b><span style="font-size: 10pt; font-family: Arial;">"MemoryBanks.exe"
+Readme</span></b><span style="font-size: 10pt; font-family: Arial;"><br>
+<br>
+<b>Introduction</b><br>
+The MemoryBanks.exe is an example program that allows the user to
+read/write
+iButton/1-Wire devices supported by the OW.NET API's "Memory Bank"
+object. It will write only to a "General Purpose"<br>
+Memory Bank if present.</span></p>
+<p><span style="font-size: 10pt; font-family: Arial;">This particular
+example was
+written in Microsoft Visual Basic .NET with Microsoft Visual Studio
+.NET 2005.</span></p>
+<p class="MsoNormal"><b><span
+ style="font-size: 10pt; font-family: Arial;">Requirements</span></b><span
+ style="font-size: 10pt; font-family: Arial;"><br>
+<a href="http://www.maxim-ic.com/1-wiredrivers">1-Wire Drivers</a>
+version 4.00
+or higher, with the OneWireAPI.NET.dll in the same directory as the
+executable.</span></p>
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">&nbsp;</span></p>
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">.NET
+Framework 2.0 Redistributable:</span></p>
+<ul style="margin-top: 0in;" type="disc">
+  <li class="MsoNormal"><span
+ style="font-size: 10pt; font-family: Arial;"><a
+ href="http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5"
+ id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+  <li class="MsoNormal"><span
+ style="font-size: 10pt; font-family: Arial;"><a
+ href="http://www.microsoft.com/downloads/details.aspx?FamilyID=b44a0000-acf8-4fa1-affb-40e78d788b00"
+ id="ctl00_mainContentContainer_ctl04">Download x64 version</a> </span></li>
+</ul>
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><br>
+Visual J# .NET 2.0 Second Edition Redistributable:</span></p>
+<ul style="margin-top: 0in;" type="disc">
+  <li class="MsoNormal"><span
+ style="font-size: 10pt; font-family: Arial;"><a
+ href="http://go.microsoft.com/?linkid=6802972"
+ id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+  <li class="MsoNormal"><span
+ style="font-size: 10pt; font-family: Arial;"><a
+ href="http://go.microsoft.com/?linkid=6802973"
+ id="ctl00_mainContentContainer_ctl04">Download x64 version</a> </span></li>
+</ul>
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;"><br>
+When compiling this program, make sure that the program references
+&#8220;vjslib&#8221;, and the OneWireAPI.NET.dll.</span></p>
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">&nbsp;</span></p>
+<p class="MsoNormal"><span style="font-size: 10pt; font-family: Arial;">Before
+running
+this program, make sure to set the default 1-Wire adapter settings to
+the
+preferred type (usually "{DS9490}") and number (usually
+"USB1").&nbsp; This can be done by running the "Default 1-Wire
+NET.exe" program found in the 1-Wire Drivers application directory.</span></p>
+<p><b><span style="font-size: 10pt; font-family: Arial;">Operation<br>
+</span></b><span style="font-size: 10pt; font-family: Arial;">To run
+the
+MemoryBanks.exe program, double-click on the "MemoryBanks.exe"
+file.&nbsp; This runs the program.&nbsp; The main window of the program
+will
+appear containing a text box and 2 buttons.&nbsp; The top of the text
+box shows
+which 1-Wire adapter and port is being used as the "Default" adapter
+and port.&nbsp; To change the "Default" adapter and port, please look
+in the 1-Wire Drivers folder under "Program Files" and find the
+"Default 1-Wire Net" icon.&nbsp; Double-clicking this icon will allow
+the user to select from the different available 1-Wire adapters and
+ports. </span></p>
+<p><span style="font-size: 10pt; font-family: Arial;">The two buttons
+on the main
+window of MemoryBanks.exe are titled "Read Memory Banks" and
+"Write 'Testing 123' to Each Main Memory Bank Page".&nbsp; Clicking
+on "Read Memory Banks" will read out the contents of each Memory Bank
+on every iButton/1-Wire device found on a 1-Wire network.&nbsp; Please
+note
+that some 1-Wire devices do not contain any Memory Banks while others
+may
+contain multiple Memory Banks.&nbsp; </span></p>
+<p><span style="font-size: 10pt; font-family: Arial;">The second button
+is the
+"Write 'Testing 123' to Each General Purpose Memory Bank Page"
+button.&nbsp; This will write to every page of a "General Purpose"
+Memory
+Bank of a 1-Wire device.&nbsp; Optionally, the programmer can make a
+single line source code change to write a page packet instead (consists
+of a length byte, followed by "Testing 123" in byte format, followed by
+a 2-byte CRC16).&nbsp; Also, a way to write raw bytes through .NET's
+System.Buffer namespace is documented (but commented out).&nbsp; It
+shows how to write unsigned byte information (for example, 0xFF) to an
+SByte (a widely used data type for sending data to and from 1-Wire
+devices through .NET).</span></p>
+<p><span style="font-size: 10pt; font-family: Arial;">Note:&nbsp;
+Please be
+patient when using the DS1977, as the program will read/write the
+entire 32K of
+memory contents.</span></p>
+<p class="MsoNormal"><b><span
+ style="font-size: 10pt; font-family: Arial;">Files</span></b></p>
+<p class="MsoNormal"><tt><span style="font-size: 10pt;">&nbsp; </span></tt><br>
+<tt><span style="font-size: 10pt;">AssemblyInfo.vb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;- VB.NET assembly file.</span></tt></p>
+<p><tt><span style="font-size: 10pt;">FormMemBanks.resx
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - VB.NET resource file.</span></tt></p>
+<p><tt><span style="font-size: 10pt;">FormMemBanks.vb&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - MemoryBanks.exe main form.</span></tt></p>
+<p><tt><span style="font-size: 10pt;">MemoryBanks.sln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- VB.NET MemoryBanks solution file (opens project solution)</span></tt></p>
+<p><tt><span style="font-size: 10pt;">MemoryBanks.vbproj&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+VB.NET project file.</span></tt></p>
+<p><tt><span style="font-size: 10pt;">MemoryBanks.vbproj.user - VB.NET
+project
+user file.</span></tt></p>
+<p class="MsoNormal"><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">Readme.html
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;-
+This file.</span></p>
+<p class="MsoNormal"><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;<br>
+..\..\..\..\Lib\OW.NET\OneWireAPI.NET.dll&nbsp;&nbsp;- 1-Wire API<br>
+<br>
+..\bin\MemoryBanks.exe&nbsp;&nbsp;- Program executable</span></p>
+</div>
+</body>
+</html>

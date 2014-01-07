@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMExtendedReadPage Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmextendedreadpageexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMExtendedReadPage Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360], read_buffer[100];
+short len;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* the internal 8-byte ROM buffer contains a valid ROM that is going to be selected to do a device specific operation */
+...
+
+/* attempt to read page 0 of the status memory */
+len = TMExtendedReadPage(session_handle, state_buffer, 0, read_buffer, 1); 
+
+if (len &gt;= 0)
+{
+   /* success, status page read and its length is len */
+   ...
+}
+else
+{
+   /* TRANSPORT error reading extended page (did this device have 
+      extended read?) */
+   ...
+}
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

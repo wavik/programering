@@ -1,0 +1,142 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>ClockAdj.exe Readme</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Courier;
+	panose-1:2 7 4 9 2 2 5 2 4 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h4
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>&quot;ClockAdj.exe&quot;
+Readme<br>
+</span></b><br>
+<b><span style='font-size:10.0pt;font-family:Arial'>Introduction</span></b><span
+style='font-size:10.0pt;font-family:Arial'><br>
+The &quot;ClockAdj.exe&quot; is an example program that allows 1-Wire/<u>i</u>Button
+clocks to be &quot;set&quot; (basically, any OneWireContainer that implements
+the ClockContainer interface).<br>
+<br>
+This particular example was written in Microsoft Visual Basic .NET through
+Visual Studio .NET 2005.<br>
+<br>
+<b>Requirements</b><br>
+<a href="http://www.maxim-ic.com/1-wiredrivers">1-Wire Drivers</a> version 4.00
+or higher, with the OneWireAPI.NET.dll in the same directory as the executable.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>.NET Framework
+2.0 Redistributable:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><a
+     href="http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5"
+     id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><a
+     href="http://www.microsoft.com/downloads/details.aspx?FamilyID=b44a0000-acf8-4fa1-affb-40e78d788b00"
+     id="ctl00_mainContentContainer_ctl04">Download x64 version</a> </span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+Visual J# .NET 2.0 Second Edition Redistributable:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><a
+     href="http://go.microsoft.com/?linkid=6802972"
+     id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><a
+     href="http://go.microsoft.com/?linkid=6802973"
+     id="ctl00_mainContentContainer_ctl04">Download x64 version</a> </span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+When compiling this program, make sure that the program references
+&#8220;vjslib&#8221;, and the OneWireAPI.NET.dll.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+<b>Operation</b><br>
+To run the ClockAdj.exe program, double-click on the &quot;ClockAdj.exe&quot;
+file.&nbsp; You can set the 1-Wire/<u>i</u>Button clock to the PC&#8217;s time.<br>
+<br>
+<br>
+<b>Files</b><br>
+</span><br>
+<span style='font-size:10.0pt;font-family:Courier'>AssemblyInfo.vb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+VB.NET module containing manufacturer data<br>
+<br>
+ClockAdj.sln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+Visual Studio.NET solutions file<br>
+<br>
+ClockAdj.vbproj&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+VB.NET project file<br>
+<br>
+ClockAdj.vbproj.user&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+VB.NET project user file<br>
+<br>
+ClockAdjForm.resx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+VB.NET resources file<br>
+&nbsp;<br>
+ClockAdjForm.vb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;- VB module containing source to program<br>
+<br>
+Readme.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+This file.<br>
+<br>
+..\..\..\..\Lib\OW.NET\OneWireAPI.NET.dll&nbsp;&nbsp;- 1-Wire API<br>
+<br>
+..\bin\ClockAdj.exe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Program executable. </span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span style='font-size:10.0pt;
+font-family:Arial'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

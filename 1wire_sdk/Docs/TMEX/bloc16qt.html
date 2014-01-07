@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMBlockIO Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmblockioexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMBlockIO Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char tran_buffer[100];
+short result;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* construct a buffer to read the scratchpad of a DS199X */
+tran_buf[0] = 0xCC;   /* skip ROM */
+tran_buf[1] = 0xAA;   /* read scratchpad */
+for (i = 0; i &lt; 35; i++)
+   tran_buf[2+i] = 0xFF;  /* area to read address, data */
+
+result = TMBlockIO(session_handle, tran_buffer, 37);
+
+if (result == 37)
+{
+   /* the contents of the scratchpad are in the buffer
+      in location tran_buf[2] to tran_buf[36] */
+   ...
+}
+else
+   /* TRANSPORT error */
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>Specification TMEX Type</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="specification"></a><img src="./images/ibuttons.gif" alt=""
+ border="0">
+ Specification TMEX Type  <a href="tmex4do3.html">Group</a></h1>
+<pre><code><b>typedef struct {<br>   unsigned short features[32];<br>   char description[255];<br>} Specification;</b><br></code></pre>
+<p>(This is a packed structure on 1 byte boundaries)</p>
+<pre></pre>
+<p>The Specification structure contains two data arrays.  The first array,
+features[], consists of 32 unsigned short integers.  The second array, description[],
+consists of 255 chars.  Two TMEX API functions make use of this structure.
+ The first is <a href="getf1sxa.html"><b>TMGetFamilySpec</b></a> and the second
+is <a href="geta7ga6.html"><b>TMGetAdapterSpec</b></a>.  Their formats are
+as follows:</p>
+<p><b>TMGetFamilySpec</b></p>
+<p>For the TMGetFamilySpec function, the Specification struct is returned
+that describes the 1-Wire device discovered based on its family code.  </p>
+<p><i>The features[] array is defined as follows: </i></p>
+features[0] = regular pages, unsigned least significant byte first<br>
+features[1] = bytes per page in regular memory<br>
+features[2] = status pages, unsigned least significant byte first<br>
+features[3] = bytes per page in status memory<br>
+features[4] = max communication speed (regular = 0, overdrive = 1, hyperdrive
+= 2)<br>
+features[5] = memory type (0 = NOMEM,  1 = NVRAM, 2 = EPROM1, 3 = EPROM2,
+4 = EPROM3, 5 = EEPROM1, 6 = MNVRAM, 7 = EEPROM2, 8 = NVRAM2, 9 = NVRAM3)
+<br>
+features[6-31] are left for future expansion
+<p>Explanation of Memory Types:</p>
+<ol>
+	<li>NOMEM – A part with no user storage space or with non-standard structure.
+Only TMEX hardware specific functions apply to this type.<br>
+    <br>
+  </li>
+	<li>NVRAM – A part with non-volatile RAM. All TMEX API’s are supported with
+the exception of the programming API reserved for EPROM parts and TMExtendedReadPage.<br>
+    <br>
+  </li>
+	<li>EPROM1- A part with Electrically Programmable Read Only Memory. Contains
+an onboard 8-bit CRC data check.  All TMEX API’s apply to this type.<br>
+    <br>
+  </li>
+	<li>EPROM2 – A part with Electrically Programmable Read Only Memory. Contains
+an onboard 16-bit CRC data check. All TMEX API’s apply to this type.<br>
+    <br>
+  </li>
+	<li>EPROM3 – A part with Electrically Programmable Read Only Memory. Contains
+an onboard 16-bit CRC. EPROM2 and EPROM3 differ only by the location and
+size of TMEX bitmap, the details of which are abstracted into the driver.
+All TMEX API’s apply to this type<br>
+    <br>
+  </li>
+	<li>EEPROM1 – Electrically Erasable Programmable Read Only Memory. All TMEX
+API’s are supported with the exception of the programming API reserved for
+EPROM parts and TMExtendedReadPage.<br>
+    <br>
+  </li>
+	<li>MNVRAM – A part with read-only non rolling-over page write cycle counters
+associated with a portion of the non-volatile RAM. Pages with the 101 extension
+in the TMEX file name can only reside on counter pages, however any other
+file name can also reside on counter pages. All TMEX API’s are supported
+with the exception of the programming API reserved for EPROM parts.<br>
+    <br>
+  </li>
+	<li>EEPROM2 - Electrically Erasable Programmable Read Only Memory. On board
+CRC16 for Write/Read memory. Copy Scratchpad returns an authentication byte.
+All TMEX API’s are supported with the exception of the programming API reserved
+for EPROM parts.<br>
+    <br>
+  </li>
+	<li>NVRAM2 - A part with non-volatile RAM. Contains an onboard 16-bit CRC.
+All TMEX API’s are supported with the exception of the programming API reserved
+for EPROM parts.<br>
+    <br>
+  </li>
+	<li>NVRAM3 – A part with non-volatile RAM with bit accessible memory.  Contains
+an onboard 16-bit CRC.  TMEX hardware specific functions and TMExtendedReadPage
+apply to this type.</li>
+</ol>
+<p><i>The description[] array is defined as follows:</i>  </p>
+<p>The description[] array is an array of characters that contains 3 fields;
+part number, alternative part number and brief functional description. The
+fields are delimited by commas and the string is null terminated. ie: DS1920,DS1820,Temperature
+iButton with Trips</p>
+<pre></pre>
+<p><b><br>
+TMGetAdapterSpec</b></p>
+<p>For the TMGetAdapterSpec function, the Specification struct is returned
+that describes the current 1-Wire adapter being used.  </p>
+<p><i>The features[] array is defined as follows:</i></p>
+features[0] = overdrive <br>
+features[1] = strong pullup<br>
+features[2] = EPROM programming<br>
+features[3] = flexible speed<br>
+features[4] = 1-Wire break (short to ground)<br>
+features[5-31] are left for future expansion
+<p><i>The description[] array is defined as follows:</i>  </p>
+<p>An array of characters that contains 3 fields; part number, alternative
+part number and brief functional description. The fields are delimited by
+commas and the string is null terminated.</p>
+<pre></pre>
+<br>
+</body>
+</html>

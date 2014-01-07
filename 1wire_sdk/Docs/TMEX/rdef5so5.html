@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMReadDefaultPort Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmreaddefaultportexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMReadDefaultPort Code Example</H1>
+
+<PRE><CODE>long session_handle;
+short port_num, port_type, result;
+
+result = TMReadDefaultPort(&amp;port_num, &amp;port_type);
+
+if (result == 1)
+    /* default port and type read */
+else
+    /* error reading default port and type */
+</CODE></PRE>
+
+</BODY>
+</HTML>

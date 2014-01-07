@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMCloseFile Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmclosefileexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMCloseFile Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+short file_handle,result;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* get the unique registration number of the device to communicate with using TMFirst,TMNext,TMRom... */
+...
+
+fentry.name[0] = 'D';
+fentry.name[1] = 'E';
+fentry.name[2] = 'M';
+fentry.name[3] = 'O';
+fentry.extension = 0;
+
+/* try to open the file DEMO.000 */
+file_handle = TMOpenFile(session_handle,state_buffer,&amp;fentry);
+
+if (file_handle &gt;= 0)
+{
+   /* file is opened, ready to read */
+   ...
+
+   /* done with file so close it */
+   result = TMCloseFile(session_handle,state_buffer,file_handle);
+
+   if (result &lt; 0)
+   {
+      /* error closing file */
+      ...
+   }
+}
+else
+{
+   /* error opening file */
+   ...
+}    
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMDoProgramJob Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmdoprogramjobexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMDoProgramJob Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+short result;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* get the unique registration number of the device to communicate with using TMFirst,TMNext,TMRom... */
+...
+
+/* TMCreateProgram job called and a successful write operation has been done */
+...
+
+do
+{
+   result = TMDoProgramJob(session_handle, state_buffer);
+
+   if (result &lt; 0)
+   {
+      /* error doing Program Job, prompt user to correct */
+      ...
+   }
+} 
+while (result != 1);
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

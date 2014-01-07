@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMDirectoryMR Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmdirectorymrexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMDirectoryMR Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+FileEntry dir_buf;
+short result;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* get the unique registration number of the device to communicate with using TMFirst,TMNext,TMRom... */
+...
+
+dir_buf.name[0] = 'T';
+dir_buf.name[1] = 'E';
+dir_buf.name[2] = 'M';
+dir_buf.name[3] = 'P';
+
+/* make a sub-directory called TEMP */
+result = TMDirectoryMR(session_handle, state_buffer, 0, &amp;dir_buf);
+
+if (result == 1)
+{
+   /* sub-directory TEMP made */
+   ...
+}
+else
+{
+   /* error making sub-directory */
+   ...
+}
+
+/* remove the sub-directory just made */
+result = TMDirectoryMR(session_handle, state_buffer, 1, &amp;dir_buf);
+
+if (result == 1)
+{
+   /* sub-directory TEMP removed */
+   ...
+}
+else
+{
+   /* error removing sub-directory */
+   ...
+}
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

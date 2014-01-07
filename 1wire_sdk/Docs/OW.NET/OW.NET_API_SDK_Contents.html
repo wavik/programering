@@ -1,0 +1,254 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>OW.NET API SDK Contents</title>
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h1
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman";}
+tt
+	{font-family:"Courier New";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=blue>
+
+<div class=Section1>
+
+<h1>OW.NET API SDK Contents&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+href="../1-Wire_SDK_Help.html">1-Wire SDK Help</a></h1>
+
+<p class=MsoNormal><br>
+The 1-Wire API .NET assembly library (OneWireAPI.NET.dll) is based on our
+1-Wire API for Java. &nbsp;The Java class files from the 1-Wire API for Java
+were compiled in Microsoft J# to create the above .NET library.&nbsp; Please
+see the<a href="OWCOM_Overview.html"></a> <a href="OW.NET_Primer.html">OW.NET
+API Primer</a> for a nice overview/tutorial of the assembly library and how to
+use. Also, make sure that the .NET framework version 2.0 and Visual J#
+redistributable version 2.0 Second Edition are installed prior to running or
+compiling the example programs.&nbsp; These are available for download from <a
+href="http://www.microsoft.com">Microsoft</a>.&nbsp; To create your own 1-Wire
+.NET program, create a Visual Studio 2005&nbsp; project and simply add a
+reference to the OneWireAPI.NET.dll and vjslib (the J# redistributable)
+libraries.&nbsp; Then start coding. The OneWireAPI.NET.dll library provides
+powerful &quot;Container&quot; classes that wrap the entire functionality of a
+1-Wire device into easy-to-program methods and properties. <br>
+<br>
+The contents of the SDK for OW.NET are as follows:</p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal>Source code examples in Visual Basic and C#
+     written/compiled as AnyCPU programs, which will run as 32-bit on 32-bit
+     Microsoft operating systems and 64-bit on 64-bit operating systems. </li>
+ <li class=MsoNormal>A complete set of HTML documentation containing detailed
+     descriptions of all of the 1-Wire API for .NET, including objects,
+     methods, and properties.</li>
+ <li class=MsoNormal>Compiled versions of all of the example programs. </li>
+ <li class=MsoNormal>The complete source code for the OneWireAPI.NET.dll library
+     as a Microsoft Visual J# project.</li>
+</ol>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><br>
+<b><u>File list for the OW.NET portion of the SDK:</u></b><br>
+<br>
+<i>Documentation in (install directory)\DOCS\OW.NET<br>
+</i><br>
+HTML DOCS -&nbsp; To browse them, please start with <a href="html/index.html">index.html</a><br>
+<br>
+<i>Source Files and J# project for OneWireAPI.NET.dll in (install
+directory)\SOURCE</i>\OW.NET<br>
+<span style='font-size:10.0pt;font-family:"Courier New"'><br>
+</span><br>
+<i>Example Program Source Files by directory are in (install
+directory)\EXAMPLES\OW.NET:</i></p>
+
+<p class=MsoNormal><tt><span style='font-size:10.0pt'>\C#</span></tt><span
+style='font-size:10.0pt;font-family:"Courier New"'><br>
+</span><br>
+<tt><span style='font-size:10.0pt'>&nbsp;
+&nbsp;\HygrochronViewer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; </span></tt>A
+C# GUI Demo app.</p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal>Exercises DS1923 Hygrochron iButtons, DS1922L/T/E Thermochron
+iButtons, and DS2422 Datalogger Chips.&nbsp; This application supports starting
+and stopping missions, analyzing mission results from temperature and humidity
+(or as integer data values in the case of the DS2422), and saving those results
+to .csv file for use in Microsoft Excel or other spreadsheet applications.</p>
+
+</div>
+
+<p class=MsoNormal><br>
+<span style='font-size:10.0pt;font-family:"Courier New"'><br>
+<tt>\VB.NET</tt><br>
+<br>
+<tt>&nbsp; &nbsp;\ClockADJ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; -&nbsp; </tt></span>A VB.NET GUI Demo app. </p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal>Sets 1-Wire/iButton clocks (basically, any OneWireContainer
+that implements the ClockContainer interface).  Examples of these are the
+DS1904, DS2417, and all the iButton data logger models:  DS1921G/H/Z,
+DS1922L/T/E, DS2422.<tt><span style='font-size:10.0pt'>&nbsp;</span></tt></p>
+
+</div>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'><br>
+<tt>&nbsp; &nbsp;\DS1921GetTempLog &nbsp;&nbsp;&nbsp; &nbsp; -&nbsp; </tt></span>A
+VB.NET GUI Demo app.</p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal>Downloads the temperature history of DS1921G/H/Z temperature
+data loggers.&nbsp; Allows for saving temperature history to a file.<tt><span
+style='font-size:10.0pt'> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </span></tt></p>
+
+</div>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'><br>
+<tt>&nbsp; &nbsp;\FileApp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; -&nbsp; </tt></span>A VB.NET GUI Demo app.</p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal>The &quot;FileApp.exe&quot; is an example program that
+reads/writes files according to the 1-Wire File structure standard.&nbsp; The
+program can also format a 1-Wire/iButton memory for the file system, display
+the directory structure, make or delete directories, create/write files.  This
+works on any iButton with writable memory, such as the DS199X (but not the
+DS1990a) devices, DS198X devices, DS197X, DS250X, DS2430, DS2431, DS2433 and the
+user memory of the iButton data loggers.</p>
+
+</div>
+
+<p class=MsoNormal><br>
+<tt><span style='font-size:10.0pt'>&nbsp; &nbsp;\Get1WireAddresses&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp; </span></tt>A VB.NET GUI Demo app.</p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal>The &quot;Get1WireAddresses.exe&quot; is an example program
+that simply lists the 1-Wire/iButton devices available on a 1-Wire
+network.&nbsp; It also prints a description of the device.  This applies to all
+iButton and 1-Wire devices.<br>
+<tt><span style='font-size:10.0pt'>&nbsp; &nbsp; &nbsp; &nbsp; </span></tt></p>
+
+</div>
+
+<p class=MsoNormal><tt><span style='font-size:10.0pt'>&nbsp;
+&nbsp;\GetA2DVolts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp; </span></tt>A VB.NET GUI Demo app.</p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'>Lists the Analog-to-Digital
+1-Wire devices found, specifically, those for which the ADContainer interface
+has been implemented. It will also print out the voltages on each channel of
+the device.  This applies to the DS2450, DS2438, DS2422.</p>
+
+</div>
+
+<p class=MsoNormal><tt><span style='font-size:10.0pt'>&nbsp; &nbsp;\GetTemps
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; -&nbsp; </span></tt>A
+VB.NET GUI Demo app.</p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'>Lists all devices for which the
+TemperatureContainer has been implemented and also displays the temperature
+associated with the device.  This applies to the DS1920, DS18S20, DS18B20,
+DS28EA00, and the entire data logger line of iButtons.</p>
+
+</div>
+
+<p class=MsoNormal><tt><span style='font-size:10.0pt'>&nbsp;&nbsp;
+\MemoryBanks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp; </span></tt>A VB.NET GUI Demo app. </p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'>The MemoryBanks.exe is an
+example program that allows the user to read/write iButton/1-Wire devices
+supported by the OW.NET API's &quot;Memory Bank&quot; object. It will write a
+page packet only to a &quot;Main Memory&quot; or &quot;Data Memory&quot; Memory
+Bank.&nbsp; The page packet consists of a length byte, followed by &quot;Testing
+123&quot; in byte format, followed by a 2-byte CRC16.  This applies to iButtons
+with memory.</p>
+
+</div>
+
+<p class=MsoNormal><tt><span style='font-size:10.0pt'>&nbsp;
+&nbsp;\MissionStartDelay&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -&nbsp; </span></tt>A
+VB.NET GUI Demo app.</p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'>Missions DS1922L/DS1922T
+devices to take temperatures at specified intervals.&nbsp; With this example,
+the mission start delay box on the main window continuously &quot;ticks&quot;
+away once set so that multiple Thermochrons can easily be synchronized to start
+at the same time.</p>
+
+</div>
+
+<p class=MsoNormal><tt><span style='font-size:10.0pt'>&nbsp;
+&nbsp;\SecureKey91&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp; </span></tt>A VB.NET GUI Demo app.</p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'>Reads/writes the DS1991
+iButton.&nbsp; It finds and sets all DS1991s' passwords to a hard-coded
+password &quot;password&quot;, with the hard-coded id of
+&quot;ds1991id&quot;.&nbsp; Clicking on &quot;Write the secure subkeys&quot;
+button writes the hard-coded ascii string &quot;testing 123&quot; to each
+subkey.</p>
+
+</div>
+
+<p class=MsoNormal><tt><span style='font-size:10.0pt'>&nbsp;
+&nbsp;\SkipRomTemps&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-&nbsp; </span></tt>A VB.NET GUI Demo app.</p>
+
+<div style='margin-left:2.5in'>
+
+<p class=MsoNormal>To shorten the time to retrieve temps, SkipRomTemps.exe
+issues a &quot;Skip Rom&quot; command followed by a &quot;Temp Conversion&quot;
+command.&nbsp; It broadcasts to all DS1920s to perform a temperature conversion
+at the same time, thus avoiding several 1-second delays. This program only
+works with the DS1920 (DS18S20) temperature sensors.&nbsp; </p>
+
+</div>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

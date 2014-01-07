@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMCRC</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmcrcmain"></a><img src="./images/ibuttons.gif" alt=""
+ border="0">
+ TMCRC  <a href="tran5ozb.html">Overview</a>  <a href="tran7dx0.html">Group</a></h1>
+<p>The <b>TMCRC</b> API call provides CRC calculation facilities. The Type
+parameter specifies either 8-bit CRC (Type=0) or 16-bit CRC (Type=1).  Since
+the last byte of the unique registration number embedded into every 1-Wire
+device is an 8-bit CRC, this function call, in 8-bit CRC mode can verify the
+integrity of a 1-Wire registration number.  The 16-bit CRC mode can be used
+to help make and verify <a href="udpt47ck.html"><b>Universal Data Packets</b></a>
+(UDPs). Creating UDPs is a TMEX-supported way to packetize data before writing
+to a 1-Wire device.  UDPs use 16-bit CRCs to verify data integrity.  </p>
+<p>A detailed description of the 8-bit CRC and 16-bit CRC can be found in
+Application Note 27 “Understanding and Using Cyclic Redundancy Checks with
+Dallas Semiconductor iButton Products”.  The Application Note is located on
+MAXIM/Dallas Semiconductor’s website: <a
+ href="http://pdfserv.maxim-ic.com/arpdf/AppNotes/app27.pdf">http://pdfserv.maxim-ic.com/arpdf/AppNotes/app27.pdf</a>.</p>
+<p></p>
+<tt><b><br>
+short far pascal TMCRC(</b><br>
+<b>short </b><i>length,</i>               // length of bytes of <i>buf</i>
+<br>
+<b>uchar far</b> *<i>buf,</i>            // buffer of bytes to CRC<br>
+<b>unsigned short </b><i>seed</i>,  // the CRC seed<br>
+<b>short </b><i>Type</i>                      // either 8-bit CRC (Type=0)
+or 16-bit CRC (Type=1)<br>
+<b>);</b></tt> 
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>length</i></p>
+<p>Specifies the length of the buffer to CRC.</p>
+<p><i>buf</i></p>
+<p>Specifies a pointer the byte buffer containing the data.to CRC.</p>
+<p><i>seed</i></p>
+<p>Specifies the CRC seed to use.</p>
+<p><i>Type</i></p>
+<p>Specifies the type of CRC to perform:  It can either be an 8-bit CRC (Type=0)
+or a 16-bit CRC (Type=1)</p>
+<p><b>Return Value</b></p>
+<p>&gt;=0 =&gt; the CRC result</p>
+<p>&lt;0 =&gt; <a href="tran4z77.html"><b>TMEX Transport Error Return Code</b></a></p>
+<p><a href="crce9ujp.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="udpt47ck.html"><b>Universal Data Packets</b></a></p>
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>SkipRomTemps.exe Readme</title>
+<style>
+<!--
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h4
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+tt
+	{font-family:"Courier New";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<h4><span style='font-size:10.0pt;font-family:Arial'>&#8220;SkipRomTemps.exe&#8221;
+Readme</span></h4>
+
+<p><b><span style='font-size:10.0pt;font-family:Arial'>Introduction</span></b><span
+style='font-size:10.0pt;font-family:Arial'><br>
+SkipRomTemps.exe is an example program that reads temperatures from DS1920
+iButtons.&nbsp; It does so by first issuing a skip rom and broadcasting to all
+DS1920 thermometers to perform a temperature conversion simultaneously.&nbsp;
+This can reduce the time necessary to retrieve temperature readings from
+multiple devices.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:Arial'>This particular example was
+written in Microsoft VB.NET (Visual Studio 2005).</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>Requirements</span></b><span
+style='font-size:10.0pt;font-family:Arial'><br>
+<span style='color:blue'><a href="http://www.maxim-ic.com/1-wiredrivers">1-Wire
+Drivers</a></span> version 4.00 or higher, with the OneWireAPI.NET.dll in the
+same directory as the executable.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>.NET
+Framework 2.0 Redistributable:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal style='color:blue'><span style='font-size:10.0pt;
+     font-family:Arial'><a
+     href="http://www.microsoft.com/downloads/details.aspx?FamilyID=0856eacb-4362-4b0d-8edd-aab15c5e04f5"
+     id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial;
+     color:blue'><a
+     href="http://www.microsoft.com/downloads/details.aspx?FamilyID=b44a0000-acf8-4fa1-affb-40e78d788b00"
+     id="ctl00_mainContentContainer_ctl04">Download x64 version</a></span><span
+     style='font-size:10.0pt;font-family:Arial'> </span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+Visual J# .NET 2.0 Second Edition Redistributable:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal style='color:blue'><span style='font-size:10.0pt;
+     font-family:Arial'><a href="http://go.microsoft.com/?linkid=6802972"
+     id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+ <li class=MsoNormal style='color:blue'><span style='font-size:10.0pt;
+     font-family:Arial'><a href="http://go.microsoft.com/?linkid=6802973"
+     id="ctl00_mainContentContainer_ctl04">Download x64 version</a> </span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+When compiling this program, make sure that the program references
+&#8220;vjslib&#8221;, and the OneWireAPI.NET.dll.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>Before
+running this program, make sure to set the default 1-Wire adapter settings to
+the preferred type (usually &quot;{DS9490}&quot;) and number (usually
+&quot;USB1&quot;).&nbsp; This can be done by running the &quot;Default 1-Wire
+NET.exe&quot; program found in the 1-Wire Drivers application directory.</span></p>
+
+<p><b><span style='font-size:10.0pt;font-family:Arial'>Operation</span></b>&nbsp;
+</p>
+
+<p><span style='font-size:10.0pt;font-family:Arial'>To run the SkipRomTemps.exe
+program, double-click the pre-compiled executable in the ..\bin
+directory.&nbsp; A window with a text box and button will appear.&nbsp;
+Clicking the button will start a search for DS1920s.<br>
+The results of the search and the appropriate temperature will appear in the
+text box.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:Arial'>This program only works
+with the DS1920 (DS18S20) temperature sensors.&nbsp; To shorten the time to
+retrieve temps, it issues a &quot;SkipRom&quot; command followed by a &quot;TempConversion&quot;
+command.&nbsp; It broadcasts to all DS1920s to perform a temperature conversion
+at the same time, thus avoiding several 1-second delays. </span></p>
+
+<p><span style='font-size:10.0pt;font-family:Arial'>Lines of code can be
+uncommented if the programmer wishes to provide external power to multiple
+DS18S20s.</span></p>
+
+<p><span style='font-size:10.0pt;font-family:Arial;color:red'>WARNING:&nbsp;
+Keep in mind that having many DS1920s on the same line performing temperature
+conversions at the same time consumes more power than performing temperature conversions
+one at a time.&nbsp; If too many are on the 1-Wire network at the same time,
+erroneous results or exceptions might occur.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>Files</span></b></p>
+
+<p><tt><span style='font-size:10.0pt'>AssemblyInfo.vb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- VB.NET assembly file.</span></tt></p>
+
+<p><tt><span style='font-size:10.0pt'>GetSkipRomTempsMainForm.resx &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+VB.NET resource file.</span></tt></p>
+
+<p><tt><span style='font-size:10.0pt'>GetSkipRomTempsMainForm.vb&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+The program&#8217;s main form.</span></tt></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>R<tt>eadme.html &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+This file.</tt></span></p>
+
+<p><tt><span style='font-size:10.0pt'>SkipRomTemps.sln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- VB.NET SkipRomTemps solution file</span></tt></p>
+
+<p><tt><span style='font-size:10.0pt'>SkipRomTemps.vbproj&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- VB.NET project file.</span></tt></p>
+
+<p><tt><span style='font-size:10.0pt'>SkipRomTemps.vbproj.user&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- VB.NET project user file.</span></tt></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>..\..\..\..\Lib\OneWireAPI.NET.dll
+- 1-Wire API</span></p>
+
+<p><span style='font-size:10.0pt;font-family:"Courier New"'>..\bin\SkipRomTemps.exe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+Program executable.</span></p>
+
+</div>
+
+</body>
+
+</html>

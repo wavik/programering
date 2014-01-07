@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMEndSession Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmendsessionexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMEndSession Code Example</H1>
+
+<PRE><CODE>/* session_handle from previous call to TMExtendedStartSession */
+...
+
+if (TMEndSession(session_handle) == 0)
+{
+    /* the session_handle was not valid to end */
+    ...
+}
+else
+{
+    /* session successfully ended */
+    ...
+}
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMCreateFile</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmcreatefilemain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMCreateFile  <a href="fiop6apj.html">Overview</a>  <a
+ href="fiop1g38.html">Group</a></h1>
+<p>The <b>TMCreateFile</b> API function provides the information necessary
+(file name and extension) to create a new file and file name in the current
+directory on the current device on the 1-Wire network.  It returns a file_handle,
+which can then be used later to write a file and file name to the part with
+a call to <a href="wrfi8l66.html"><b>TMWriteFile</b></a>.  The new file name
+is provided in the <a href="file30mx.html"><b>FileEntry</b></a> structure 'fentry'.
+ Only the 'name' and 'extension' portions of FileEntry need to be set before
+calling TMCreateFile.  Repeat file names are not permitted. This API returns
+a file handle &gt;= 0.  Please be aware that there is a limited number of
+file handles (4) that can be used at one time.  When finished writing a file,
+please close the file (and free up the file handle) with<a
+ href="clfi004u.html"><b>TMCloseFile</b></a>.  </p>
+<p>The API call also returns the estimated maximum number of bytes, ‘maxwrite,’
+available for this new file.  The ‘maxwrite’ variable has no meaning until
+returned by the funtion call (it is an output variable).  The file name must
+be left justified padded with spaces.  The valid file name characters are
+(ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!#$%&amp;'-@^_`{}~).  The valid value
+of the extension is 0-99 decimal for normal files, 100 for an ‘AddFile’ and
+101 for a ‘Monetary File’.  The ‘AddFile’ is described in the API function
+description of <a href="wrad82i6.html"><b>TMWriteAddFile</b></a>. The ‘Monetary
+File’ is a file that is only created on a DS1962, DS1963, DS2422 and DS2423.
+The data page of this file can only be located on a page that has a corresponding
+counter. If a page with a counter is not available on the device, then the
+‘Monetary File’ will not be created. In case of the ‘Monetary File’, some
+of its other values are set upon returning from this function. In particular,
+the page number where the file is copied to is set in the ‘start page’ value
+of the FileEntry structure. Also, the Counter and Tamper bytes are written
+into the first eight bytes of the ‘bitmap’ section of the FileEntry structure.
+Note that  the Counter value reported is the current Counter value. If the
+counter is a page write cycle counter as in the DS1963, then 1 must be added
+to the counter value to reflect the upcoming copy. </p>
+<tt><b><br>
+short far pascal TMCreateFile(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>     // session handle for the
+desired 1-Wire network<br>
+<b>void far *</b><i>state_buffer,</i> // state buffer provided for the 1-Wire
+network session<br>
+<b>short far *</b><i>maxwrite,</i>       // pointer to short location to
+put max file size to write<br>
+<b>FileEntry far *</b><i>fentry</i>     // pointer to a structure with the
+file information<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><i>maxwrite</i></p>
+<p>Specifies a pointer to a memory location that will contain the estimated
+maximum file size to write (how much room is left on the part) after returning
+from the API.  The ‘maxwrite’ variable has no meaning until returned by the
+funtion call (it is an output variable).  The maxwrite size may be off by
++-28 bytes.</p>
+<p><i>fentry</i></p>
+<p>Specifies a pointer to a memory location that contains a <a
+ href="file30mx.html"><b>FileEntry</b></a> structure.  This structure must
+have the name and extension portions set before calling this API.  </p>
+<p><b>Return Value</b></p>
+<p>&gt;= 0 =&gt; file created, and this is the file handle</p>
+<p>&lt;0    =&gt; <a href="fiop6blf.html"><b>TMEX File Operations Error Return
+Code</b></a></p>
+<p><a href="crfi6i91.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="wrfi8l66.html"><b>TMWriteFile</b></a>, <a href="fifi210u.html"><b>TMFirstFile</b></a>,
+<a href="nefi5h66.html"><b>TMNextFile</b></a>, <a href="opfi3o32.html"><b>TMOpenFile</b></a></p>
+<br>
+<br>
+</body>
+</html>

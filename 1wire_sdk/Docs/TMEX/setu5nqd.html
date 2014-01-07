@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMSetup Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmsetupexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMSetup Code Example</H1>
+
+<PRE><CODE>long session_handle;
+short result;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* try to verify 1-Wire network setup, note 1-Wire network is known to TMEX through the session_handle that was given by
+TMExtendedStartSession */
+
+result = TMSetup(session_handle);
+
+if (result == 1)
+{
+       /* 1-Wire network is valid and setup */
+       ...
+}
+else if (result == 2)
+{ 
+/* 1-Wire network exists but is currently shorted. This could   indicate a problem such as a missing DS9097 adapter or it could be only a transient problem */
+       ...
+}
+else
+{
+       /* error in setting up 1-Wire network */
+       ...
+}
+
+/* close the session with a call to TMEndSession */
+...</CODE></PRE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMCreateFile Code Example</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="tmcreatefileexample"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMCreateFile Code Example</H1>
+
+<PRE><CODE>long session_handle;
+unsigned char state_buffer[15360];
+short file_handle, maxwrite;
+FileEntry fentry;
+
+/* session_handle set from a call to TMExtendedStartSession */
+...
+
+/* get the unique registration number of the device to communicate with using TMFirst,TMNext,TMRom... */
+...
+
+fentry.name[0] = 'D';
+fentry.name[1] = 'E';
+fentry.name[2] = 'M';
+fentry.name[3] = 'O';
+fentry.extension = 63;
+
+/* try to create the file DEMO.063 */
+file_handle = TMCreateFile(session_handle,state_buffer,&amp;maxwrite, 
+                &amp;fentry);
+
+if (file_handle &gt;= 0)
+{
+   /* file is created, ready to write using file_handle */
+   ...
+}
+else
+{
+   /* error creating file */
+   ...
+}    
+
+/* close the opened file with a call to TMCloseFile */
+...
+
+/* close the session with a call to TMEndSession */
+...
+
+</CODE></PRE>
+
+</BODY>
+</HTML>

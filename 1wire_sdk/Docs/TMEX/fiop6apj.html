@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>TMEX File Operations API Overview</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+
+<H1><A NAME="fileoperationsoverview"></A><IMG SRC="./images/ibuttons.gif" ALT="" BORDER=0> TMEX File Operations API Overview  <A HREF="tmex8lrr.html">Overview</A>  <A HREF="tmex3vlg.html">Group</A></H1>
+
+<P>The <B>TMEX File Operations API</B> layer functions do file and directory operations.  The ROM pattern for the desired 1-Wire device must already be in the internal eight-byte buffer before any of the File Operations API functions can be called.  This can be accomplished by directly writing to the internal buffer by using the <A HREF="romm1rxq.html"><B>TMRom</B></A> API call or by using one of the Network functions <A HREF="firs2f5a.html"><B>TMFirst</B></A>, <A HREF="next25ym.html"><B>TMNext</B></A>, <A HREF="fial3x2m.html"><B>TMFirstAlarm</B></A> or <A HREF="neal4mjy.html"><B>TMNextAlarm</B></A>.  This constraint enables all of these API calls to be multi-drop compatible.  'multi-drop compatible' refers to successful operation even though there are more than one device on a single 1-Wire network.</P>
+
+<P><B>See Also</B></P>
+
+<P><A HREF="fiop1g38.html"><B>TMEX File Operations API List</B></A>, <A HREF="fiop6blf.html"><B>TMEX File Operations Error Return Codes</B></A></P>
+
+</BODY>
+</HTML>

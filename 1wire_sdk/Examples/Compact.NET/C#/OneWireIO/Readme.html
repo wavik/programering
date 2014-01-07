@@ -1,0 +1,175 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=us-ascii">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>OneWireIO-Pure.exe Readme</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Courier;
+	panose-1:2 7 4 9 2 2 5 2 4 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+h4
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0in;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>&#8220;OneWireIO-Pure.exe&#8221;
+Readme</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>Introduction</span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>&#8220;OneWireIO-Pure.exe&#8221;
+is a GUI Demo app for exercising all features of the 1-Wire Port Adapter, including
+both standard speed and overdrive speed resets, bit operations, byte
+operations, power delivery operations, and searches.&nbsp; The
+&quot;-Pure&quot; qualifier refers to the fact that this references the Adapter
+object</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>defined in
+the Pure-C# OneWireLinkLayer, a portable 1-Wire API that is compatible with the
+.NET Compact Framework.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>Requirements</span></b><span
+style='font-size:10.0pt;font-family:Arial'><br>
+Only the Compact .NET Framework is required for serial ports on a Windows CE
+device.&nbsp; However, for demo purposes on a PC, the <a
+href="http://www.maxim-ic.com/1-wiredrivers">1-Wire Drivers</a> version 4.00 or
+higher will provide support for other adapters such as USB or parallel ports
+(on a PC).&nbsp; </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>Compact .NET
+Framework 2.0 Redistributable:</span></p>
+
+<ul style='margin-top:0in' type=disc>
+ <li class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><a
+     href="http://www.microsoft.com/downloads/details.aspx?FamilyID=9655156b-356b-4a2c-857c-e62f50ae9a55&amp;displaylang=en"
+     id="ctl00_mainContentContainer_ctl03">Download x86 version</a> </span></li>
+</ul>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+When compiling this program, make sure that the program references OneWireLinkLayer.dll.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>Operation</span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>After
+installing the prerequisites, simply extract the OneWireIO-Pure.exe file, along
+with OneWireLinkLayer.dll, to a folder on your PC. Double-click the
+OneWireIO-Pure.exe file in the ..\bin directoryto start the application. Under
+the File menu, select the 1-Wire adapter submenu and select your 1-Wire adapter
+and port combination.&nbsp; The status bar will display the adapter and port
+you selected if it was successful in opening the port.</span></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>&nbsp;</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:10.0pt;font-family:Arial'>Revision
+History</span></b></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>1.00 -
+First release.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'>2.00 &#8211;
+Second release with Compact .NET Framework 2.0.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+<b>Files</b></span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Arial'><br>
+</span><span style='font-size:10.0pt;font-family:"Courier New"'>App.ico&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- Application icon.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>AssemblyInfo.cs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- C# module containing version/manufacturer data.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>OneWireIO-Pure.csproj&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- C# project file.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>OneWireIO-Pure.csproj.user
+&#8211; C# project user file.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>OneWireIO-Pure.sln&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- Visual Studio 2005 main solution file.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>OneWireIO.cs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- C# module containing most of the example code.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>OneWireIO.resx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- C# resource file.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:"Courier New"'>Readme.html&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- This file.</span></p>
+
+<p class=MsoNormal><span style='font-size:10.0pt;font-family:Courier'><br>
+..\..\..\..\Lib\Compact.NET\OneWireLinkLayer.dll&nbsp;&nbsp;- 1-Wire API for
+Compact .NET<br>
+<br>
+..\bin\OneWireIO-Pure.exe&nbsp;&nbsp;- Program executable. </span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span style='font-size:10.0pt;
+font-family:Arial'>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

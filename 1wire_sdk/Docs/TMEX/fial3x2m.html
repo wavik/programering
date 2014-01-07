@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMFirstAlarm</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmfirstalarmmain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMFirstAlarm  <a href="netw70vr.html">Overview</a>  <a
+ href="netw4ipg.html">Group</a></h1>
+<p>The <b>TMFirstAlarm</b> API call operates exactly like the function TMFirst,
+except that the search is limited to those parts with an active alarm interrupt
+pending. This allows a program to limit the scope of the search algorithm
+to only those parts that may require attention because an alarm condition
+has been set.  The DS1994, DS1920, and DS2407 potentially have an alarm condition.
+ The ROM data pattern that was found is stored in an internal eight byte
+buffer. The internal eight byte buffer can be read using the <a
+ href="romm1rxq.html"><b>TMRom</b></a> API call.</p>
+<tt><b><br>
+short far pascal TMFirstAlarm(</b><br>
+<b>long</b> <i>session_handle</i><b>, </b>     // session handle for the
+desired 1-Wire network<br>
+<b>void far *</b><i>state_buffer</i>    // state buffer provided for the
+1-Wire network session<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><i>state_buffer</i></p>
+<p>Specifies a pointer to a memory location that TMEX keeps all of the state
+information for the 1-Wire networks. This parameter is required by most TMEX
+API functions.</p>
+<p><b>Return Value</b></p>
+<p>0   =&gt; device not found</p>
+<p>1   =&gt; first alarming device on the 1-Wire network found</p>
+<p>&lt;0 =&gt; <a href="netw14fn.html"><b>TMEX Network Error Return Code</b></a></p>
+<p><a href="fial3q3p.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="firs2f5a.html"><b>TMFirst</b></a>, <a href="romm1rxq.html"><b>TMRom</b></a>,
+<a href="neal4mjy.html"><b>TMNextAlarm</b></a></p>
+<br>
+</body>
+</html>

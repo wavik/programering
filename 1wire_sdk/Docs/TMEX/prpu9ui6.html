@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=Windows-1252">
+  <title>TMProgramPulse</title>
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h1><a name="tmprogrampulsemain"></a><img src="./images/ibuttons.gif"
+ alt="" border="0">
+ TMProgramPulse  <a href="hso5i2f.html">Overview</a>  <a
+ href="hsl3d84.html">Group</a></h1>
+<p>The <b>TMProgramPulse</b> API call requires a hardware adapter that supports
+programming voltage such as the DS9097E COM serial port brick adapter.  
+It should be used only if there is a 1-Wire<u> </u>EPROM device on the 1-Wire
+network.  This function puts out a 480 microsecond 12 volt pulse on the 1-Wire
+network to program EPROM bits in a 1-Wire EPROM device such as the DS1982.
+ WARNING!! if an NV-RAM, EEPROM or memory-less 1-Wire device is on the 1-Wire
+network, damage may occur from the 12 volt pulse.</p>
+<tt><b><br>
+short far pascal TMProgramPulse(</b><br>
+<b>long</b> <i>session_handle</i><b>     </b>// session handle for the desired
+1-Wire network<br>
+<b>);</b></tt>
+<p>For a description of the above types, see the <a href="tmex4do3.html"><b>TMEX
+Type Descriptions</b></a>.</p>
+<p><b>Parameters</b></p>
+<p><i>session_handle</i></p>
+<p>Specifies the session handle returned from the API function <a
+ href="exst8l9q.html"><b>TMExtendedStartSession</b></a> that specifies the
+desired 1-Wire network port.  This parameter is required by most TMEX API
+functions.</p>
+<p><b>Return Value</b></p>
+<p>1   =&gt; 480us 12 volt pulse sent to 1-Wire network.</p>
+<p>&lt;0 =&gt; <a href="hse1tmb.html"><b>TMEX Hardware Specific Error Return
+Code</b></a></p>
+<p><a href="prpu8u79.html"><b>Code Example</b></a></p>
+<p><b>See Also</b></p>
+<p><a href="prby9966.html"><b>TMProgramByte</b></a></p>
+<br>
+</body>
+</html>
