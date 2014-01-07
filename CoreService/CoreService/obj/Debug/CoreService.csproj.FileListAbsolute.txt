@@ -1,0 +1,6 @@
+C:\Users\chwa\Dropbox\programering\CoreService\CoreService\bin\Debug\CoreService.exe
+C:\Users\chwa\Dropbox\programering\CoreService\CoreService\bin\Debug\CoreService.pdb
+C:\Users\chwa\Dropbox\programering\CoreService\CoreService\bin\Debug\Topshelf.dll
+C:\Users\chwa\Dropbox\programering\CoreService\CoreService\obj\Debug\CoreService.csprojResolveAssemblyReference.cache
+C:\Users\chwa\Dropbox\programering\CoreService\CoreService\obj\Debug\CoreService.exe
+C:\Users\chwa\Dropbox\programering\CoreService\CoreService\obj\Debug\CoreService.pdb
